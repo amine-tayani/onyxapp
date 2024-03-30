@@ -1,16 +1,22 @@
+/* eslint-disable no-unused-vars */
 'use client';
 
 // import { useState } from 'react';
 // import Highlight from "@tiptap/extension-highlight";
 import { EditorContent, useEditor } from '@tiptap/react';
-import StarterKit from '@tiptap/starter-kit';
-import Heading from '@tiptap/extension-heading';
+import Placeholder from '@tiptap/extension-placeholder';
 import Paragraph from '@tiptap/extension-paragraph';
+import Heading from '@tiptap/extension-heading';
+import StarterKit from '@tiptap/starter-kit';
 import Text from '@tiptap/extension-text';
 import { Toolbar } from './editor-toolbar';
-import Placeholder from '@tiptap/extension-placeholder';
 
-export default function Tiptap() {
+interface RichEditorProps {
+  onChange: (body: string) => void;
+  value: string;
+}
+
+export default function Editor({ onChange, value }: RichEditorProps) {
   const extensions = [
     StarterKit.configure({
       bulletList: {
@@ -31,12 +37,12 @@ export default function Tiptap() {
   const editor = useEditor({
     extensions: extensions,
     onUpdate({ editor }) {
-      console.log(editor.getHTML());
+      onChange(editor.getHTML());
     },
     editorProps: {
       attributes: {
         class:
-          'scrollbar min-h-[150px] max-h-[150px] w-[700px] rounded-lg rounded-br-none rounded-bl-none bg-muted px-3 py-6 border-b-0 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 overflow-y-auto',
+          'custom-scrollable-element min-h-[150px] max-h-[150px] w-[700px] rounded-lg rounded-br-none rounded-bl-none bg-muted px-3 py-6 border-b-0 text-sm ring-offset-background text-neutral-200 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 prose max-w-none overflow-y-auto',
       },
     },
   });
@@ -47,7 +53,7 @@ export default function Tiptap() {
         <Toolbar editor={editor} />
       </div>
       <div className='flex justify-center'>
-        <EditorContent editor={editor} />
+        <EditorContent editor={editor} value={value} />
       </div>
     </div>
   );

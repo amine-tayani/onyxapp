@@ -42,7 +42,7 @@ import {
 import { Calendar } from '@/components/ui/calendar';
 import { createApplication } from './create.action';
 import { Spinner } from '@/components/ui/spinner';
-import TiptapEditor from '@/components/ui/tiptap-editor';
+import Editor from '@/components/ui/rich-editor';
 
 export function CreateAppButton() {
   const router = useRouter();
@@ -73,6 +73,15 @@ export function CreateAppButton() {
         title: 'Success',
         description: `Your Application has been created with the id : ${id}`,
       });
+      toast({
+        variant: 'mytheme',
+        description: (
+          <pre className='mt-2 w-[340px] p-4'>
+            <code className='text-white'>{JSON.stringify(data, null, 2)}</code>
+          </pre>
+        ),
+      });
+
       router.refresh();
     } catch (err) {
       console.error(err);
@@ -270,15 +279,13 @@ export function CreateAppButton() {
               <FormField
                 control={form.control}
                 name='description'
-                // TODO : connect rhf to this editor component
-                // eslint-disable-next-line no-unused-vars
-                render={({ field }) => (
+                render={({ field: { onChange, value } }) => (
                   <FormItem>
                     <FormLabel className='text-muted-foreground/80'>
                       Description
                     </FormLabel>
                     <FormControl>
-                      <TiptapEditor />
+                      <Editor onChange={onChange} value={value} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
