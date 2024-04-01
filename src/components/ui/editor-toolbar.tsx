@@ -7,7 +7,7 @@ import {
   Heading2Icon,
   Undo,
   Redo,
-  AxeIcon,
+  TextIcon,
   ListIcon,
 } from 'lucide-react';
 import { Toggle } from './toggle';
@@ -48,7 +48,7 @@ export function Toolbar({ editor }: Props) {
         onClick={() => editor.chain().focus().setParagraph().run()}
         className={editor.isActive('paragraph') ? 'is-active' : ''}
       >
-        <AxeIcon className='mr-1 h-4 w-4' />
+        <TextIcon className='mr-1 h-4 w-4' />
       </Toggle>
       <Toggle
         size='sm'

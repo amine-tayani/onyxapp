@@ -5,10 +5,10 @@ import StarterKit from '@tiptap/starter-kit';
 import Heading from '@tiptap/extension-heading';
 import Paragraph from '@tiptap/extension-paragraph';
 import Text from '@tiptap/extension-text';
-
 import { EmptyPlaceholder } from '@/components/ui/empty-placeholder';
 import { Application } from '@/lib/db/types';
-import { getRelativeTime } from '@/utils/time';
+import { Button } from '@/components/ui/button';
+import { Edit2Icon } from 'lucide-react';
 
 export function ApplicationView({ application }: { application: Application }) {
   const editor = useEditor({
@@ -65,8 +65,11 @@ export function ApplicationView({ application }: { application: Application }) {
               {application.company}
             </p>
           </div>
-          <div className='mt-2 self-end text-sm font-normal leading-[1.6] text-primary/80'>
-            {getRelativeTime(application.datePosted)}
+          <div className='text-sm text-primary/80'>
+            <Button>
+              <Edit2Icon className='mr-2 h-4 w-4' />
+              <span>Edit</span>
+            </Button>
           </div>
         </div>
 
