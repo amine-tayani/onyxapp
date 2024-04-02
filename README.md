@@ -1,4 +1,28 @@
-# Onyx
+<p align="center">
+  <a href="https://github.com/amine-tayani/onyxapp">
+   <img src="https://github.com/amine-tayani/onyxapp/blob/main/media/landing.png" alt="Landing">
+  </a>
+
+  <h3 align="center">Onyx.com (formerly Appeo)</h3>
+
+  <p align="center">
+    The open-source Job Application Tracking app.
+    <br />
+    <a href="https://github.com/amine-tayani/onyxapp"><strong>Learn more »</strong></a>
+    <br />
+    <br />
+    <a href="https://github.com/amine-tayani/onyxapp">Discord</a>
+    ·
+    <a href="https://github.com/amine-tayani/onyxapp">Website</a>
+    ·
+    <a href="https://github.com/amine-tayani/onyxapp/issues">Issues</a>
+    ·
+    <a href="https://github.com/amine-tayani/onyxapp">Roadmap</a>
+  </p>
+</p>
+
+
+## About the Project
 
 Onyx is a job search management tool that helps you organize and track your every step of your job search. it is a full stack application built with Next.js, React, Shadcn, TypeScript and Tailwind CSS / Tiptap Wysiwyg editor.
 
