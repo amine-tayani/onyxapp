@@ -1,6 +1,6 @@
 # Onyx
 
-Onyx is a job search management tool that helps you organize and track your every step of your job search. it is a full stack application built with Next.js, React, Shadcn, TypeScript and Tailwind CSS / tiptap rich text editor.
+Onyx is a job search management tool that helps you organize and track your every step of your job search. it is a full stack application built with Next.js, React, Shadcn, TypeScript and Tailwind CSS / Tiptap Wysiwyg editor.
 
 ## Installation
 
@@ -30,14 +30,27 @@ Onyx is a job search management tool that helps you organize and track your ever
 
 ## UI
 
+
 - **Dashboard Page** :
-  ![search-UI](https://github.com/amine-tayani/spotify-cl/blob/main/public/screenshots/Spotify-Search.png)
 
-- **Add new Application Modal** :
-  ![playlist-UI](https://github.com/amine-tayani/spotify-cl/blob/main/public/screenshots/Spotify-Playlist.png)
+  ![dash-home](https://github.com/amine-tayani/onyxapp/blob/main/media/dashboard_home.png)
 
-- **Application Detail page** :
-  ![playlist-UI](https://github.com/amine-tayani/spotify-cl/blob/main/public/screenshots/Spotify-Playlist.png)
+- **Add new Application** :
 
-- **Onyx settings page** :
-  ![playlist-UI](https://github.com/amine-tayani/spotify-cl/blob/main/public/screenshots/Spotify-Playlist.png)
+  ![new_app_modal](https://github.com/amine-tayani/onyxapp/blob/main/media/add_application_modal.png)
+
+- **Application Detail** :
+
+  ![app_detail](https://github.com/amine-tayani/onyxapp/blob/main/media/application_details.png)
+
+- **Onyx profile settings** :
+
+  ![profile_settings](https://github.com/amine-tayani/onyxapp/blob/main/media/profile_onyx.png)
+
+- **Theme settings** :
+
+  ![theme_settings](https://github.com/amine-tayani/onyxapp/blob/main/media/theme_settings.png)  
+
+- **Notifications settings** :
+
+  ![notifications_settings](https://github.com/amine-tayani/onyxapp/blob/main/media/notifications.png)
