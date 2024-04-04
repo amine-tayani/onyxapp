@@ -26,8 +26,12 @@ export function ApplicationCard({ application }: Props) {
 
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button size='icon' className='h-5 w-5'>
-                  <LucideMoreVertical className='h-5 w-5 text-muted-foreground/80' />
+                <Button
+                  size='icon'
+                  variant='link'
+                  className='h-5 w-5 outline-none focus-visible:ring-inset'
+                >
+                  <LucideMoreVertical className='h-5 w-5 text-muted-foreground/80 hover:text-primary' />
                   <span className='sr-only'>More</span>
                 </Button>
               </DropdownMenuTrigger>
