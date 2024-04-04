@@ -1,10 +1,7 @@
-/* eslint-disable no-unused-vars */
 'use client';
 
-// import { useState } from 'react';
 // import Highlight from "@tiptap/extension-highlight";
 import { EditorContent, useEditor } from '@tiptap/react';
-import CharacterCount from '@tiptap/extension-character-count';
 import Placeholder from '@tiptap/extension-placeholder';
 import Paragraph from '@tiptap/extension-paragraph';
 import Heading from '@tiptap/extension-heading';
@@ -12,13 +9,13 @@ import StarterKit from '@tiptap/starter-kit';
 import Text from '@tiptap/extension-text';
 import { Toolbar } from './editor-toolbar';
 
+/* eslint-disable no-unused-vars */
 interface RichEditorProps {
   onChange: (body: string) => void;
   value: string;
 }
 
 export default function Editor({ onChange, value }: RichEditorProps) {
-  const limit = 2000;
   const extensions = [
     StarterKit.configure({
       bulletList: {
@@ -26,7 +23,6 @@ export default function Editor({ onChange, value }: RichEditorProps) {
         keepAttributes: false,
       },
     }),
-    CharacterCount.configure({ limit }),
     Placeholder.configure({
       placeholder: 'Write the job description.',
     }),
@@ -61,12 +57,6 @@ export default function Editor({ onChange, value }: RichEditorProps) {
       </div>
       <div className='flex justify-center'>
         <EditorContent editor={editor} value={value} />
-      </div>
-      <div className='character-count my-2 flex justify-between text-sm text-muted-foreground/80'>
-        <span>
-          {editor.storage.characterCount.characters()}/{limit} characters
-        </span>
-        <span>{editor.storage.characterCount.words()} words</span>
       </div>
     </div>
   );

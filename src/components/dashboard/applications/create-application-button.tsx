@@ -73,20 +73,12 @@ export function CreateAppButton() {
         title: 'Success',
         description: `Your Application has been created with the id : ${id}`,
       });
-      toast({
-        variant: 'mytheme',
-        description: (
-          <pre className='mt-2 w-[340px] p-4'>
-            <code className='text-white'>{JSON.stringify(data, null, 2)}</code>
-          </pre>
-        ),
-      });
-
       router.refresh();
     } catch (err) {
       console.error(err);
     } finally {
       setLoading(false);
+      setDialogOpen(false);
     }
   }
 
@@ -308,7 +300,11 @@ export function CreateAppButton() {
                   className='bg-hero hover:bg-purple-800 disabled:cursor-not-allowed disabled:opacity-20 disabled:hover:bg-none'
                   type='submit'
                 >
-                  {loading ? <Spinner /> : 'Create'}
+                  {form.formState.isSubmitting || loading ? (
+                    <Spinner />
+                  ) : (
+                    'Create'
+                  )}
                 </Button>
               </DialogFooter>
             </form>
