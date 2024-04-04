@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { CreateAppButton } from './applications/create-application-button';
 import { getApplicationList } from '@/app/applications/[id]/getApplicationsData';
@@ -48,9 +47,7 @@ export async function DashboardApplicationTabs() {
                 {applications
                   .filter((application) => application.status === value)
                   .map((item) => (
-                    <Link href={`/applications/${item.id}`} key={item.id}>
-                      <ApplicationCard application={item} />
-                    </Link>
+                    <ApplicationCard application={item} key={item.id} />
                   ))}
               </div>
             </TabsContent>

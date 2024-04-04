@@ -1,6 +1,14 @@
 'use client';
 
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 import { Application } from '@/lib/db/types';
 import { LucideMoreVertical } from 'lucide-react';
 
@@ -15,15 +23,29 @@ export function ApplicationCard({ application }: Props) {
         <CardTitle className='font-display text-sm font-medium text-muted-foreground '>
           <div className='flex items-center justify-between'>
             <span>{application.company}</span>
-            <LucideMoreVertical className='hidden h-5 w-5 hover:text-neutral-100 group-hover:block' />
+
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button size='icon' className='h-5 w-5'>
+                  <LucideMoreVertical className='h-5 w-5 text-muted-foreground/80' />
+                  <span className='sr-only'>More</span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align='end'>
+                <DropdownMenuItem>Edit</DropdownMenuItem>
+                <DropdownMenuItem>Delete</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <div className='text-2xl font-bold'>{application.title}</div>
-        <p className=' font-display text-sm text-neutral-400'>
-          {application.location}
-        </p>
+        <Link href={`/applications/${application.id}`}>
+          <div className='text-2xl font-bold'>{application.title}</div>
+          <p className=' font-display text-sm text-neutral-400'>
+            {application.location}
+          </p>
+        </Link>
       </CardContent>
     </Card>
   );
