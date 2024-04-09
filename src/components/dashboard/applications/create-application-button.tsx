@@ -93,7 +93,7 @@ export function CreateAppButton() {
             className='group'
           >
             <Plus className=' h-5 w-5 text-neutral-400 transition-colors duration-300 ease-in-out group-hover:text-neutral-100 md:mr-2' />
-            <span className='hidden md:block'>Create Application</span>
+            <span className='hidden md:block'>Add Application</span>
           </Button>
         </DialogTrigger>
         <DialogContent
@@ -104,7 +104,7 @@ export function CreateAppButton() {
         >
           <DialogHeader>
             <DialogTitle className='text-2xl font-semibold text-neutral-100'>
-              Create Application
+              Add new Application
             </DialogTitle>
           </DialogHeader>
           <Form {...form}>
@@ -124,7 +124,7 @@ export function CreateAppButton() {
                       <FormControl>
                         <Input
                           className='border-none bg-muted hover:bg-muted/80'
-                          placeholder='Type role title'
+                          placeholder='Add job title'
                           {...field}
                         />
                       </FormControl>
@@ -143,7 +143,7 @@ export function CreateAppButton() {
                       <FormControl>
                         <Input
                           className='border-none bg-muted hover:bg-muted/80'
-                          placeholder='Type the company name'
+                          placeholder='Add Company name'
                           {...field}
                         />
                       </FormControl>
@@ -207,7 +207,7 @@ export function CreateAppButton() {
                       <FormControl>
                         <Input
                           className='border-none bg-muted hover:bg-muted/80'
-                          placeholder='paste the job URL here'
+                          placeholder='https://www.linkedin.com/jobs/'
                           {...field}
                         />
                       </FormControl>
@@ -259,7 +259,7 @@ export function CreateAppButton() {
                       <FormControl>
                         <Input
                           className='border-none bg-muted hover:bg-muted/80'
-                          placeholder='type the location'
+                          placeholder='Add location'
                           {...field}
                         />
                       </FormControl>

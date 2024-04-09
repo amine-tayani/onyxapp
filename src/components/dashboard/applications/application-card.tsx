@@ -1,16 +1,10 @@
 'use client';
 
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
 import { Application } from '@/lib/db/types';
-import { LucideMoreVertical } from 'lucide-react';
+import { EditApplicationButton } from './edit-application-button';
+import { DeleteApplicationButton } from './delete-application-button';
 
 interface Props {
   application: Application;
@@ -23,23 +17,10 @@ export function ApplicationCard({ application }: Props) {
         <CardTitle className='font-display text-sm font-medium text-muted-foreground '>
           <div className='flex items-center justify-between'>
             <span>{application.company}</span>
-
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  size='icon'
-                  variant='link'
-                  className='h-5 w-5 outline-none focus-visible:ring-inset'
-                >
-                  <LucideMoreVertical className='h-5 w-5 text-muted-foreground/80 hover:text-primary' />
-                  <span className='sr-only'>More</span>
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align='end'>
-                <DropdownMenuItem>Edit</DropdownMenuItem>
-                <DropdownMenuItem>Delete</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <div className='flex items-center space-x-2 opacity-0 transition-opacity duration-200 ease-in-out group-hover:opacity-100'>
+              <EditApplicationButton />
+              <DeleteApplicationButton />
+            </div>
           </div>
         </CardTitle>
       </CardHeader>
