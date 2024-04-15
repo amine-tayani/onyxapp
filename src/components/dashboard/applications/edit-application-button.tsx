@@ -239,10 +239,13 @@ export function EditApplicationButton({ application }: Props) {
                       <FormLabel className='text-muted-foreground/80'>
                         Status
                       </FormLabel>
-                      <Select onValueChange={field.onChange}>
+                      <Select
+                        value={field.value}
+                        onValueChange={field.onChange}
+                      >
                         <FormControl>
                           <SelectTrigger className='text-muted-foreground/70'>
-                            <SelectValue defaultValue={application.status} />
+                            <SelectValue />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
