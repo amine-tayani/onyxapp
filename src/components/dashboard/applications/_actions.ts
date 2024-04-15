@@ -23,7 +23,10 @@ export async function createApplication(data: CreateOrUpdateApplicationSchema) {
   });
 }
 
-export async function updateApplication(data: CreateOrUpdateApplicationSchema) {
+export async function updateApplication(
+  data: CreateOrUpdateApplicationSchema,
+  id: string
+) {
   const session = await getServerSession(authOptions);
 
   if (!session || !session.user) {
@@ -32,8 +35,19 @@ export async function updateApplication(data: CreateOrUpdateApplicationSchema) {
 
   const application = await prisma.application.findFirstOrThrow({
     where: {
-      Url: data.Url,
+      id,
     },
+  });
+
+  if (!application) {
+    throw new Error('No Application was found with this id.');
+  }
+
+  await prisma.application.update({
+    where: {
+      id,
+    },
+    data,
   });
 
   return application;

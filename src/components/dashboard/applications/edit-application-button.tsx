@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import { useToast } from '@/components/ui/use-toast';
 import { cn } from '@/lib/cn';
 import { format } from 'date-fns';
-import { useRouter } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import {
   Form,
   FormControl,
@@ -54,6 +54,7 @@ interface Props {
 
 export function EditApplicationButton({ application }: Props) {
   const router = useRouter();
+  const { id } = useParams();
   const [loading, setLoading] = React.useState(false);
   const [dialogOpen, setDialogOpen] = React.useState(false);
   const { toast } = useToast();
@@ -76,15 +77,18 @@ export function EditApplicationButton({ application }: Props) {
 
   async function onSubmit(data: CreateOrUpdateApplicationSchema) {
     try {
-      await updateApplication(data);
+      await updateApplication(data, id as string);
       setLoading(true);
       toast({
         variant: 'mytheme',
-        title: 'Success',
+        title: 'This Application has been updated.',
       });
       router.refresh();
     } catch (err) {
-      console.error(err);
+      toast({
+        variant: 'destructive',
+        title: 'Uh oh! Something went wrong. Please try again.',
+      });
     } finally {
       setLoading(false);
       setDialogOpen(false);
@@ -315,7 +319,7 @@ export function EditApplicationButton({ application }: Props) {
                   {form.formState.isSubmitting || loading ? (
                     <Spinner />
                   ) : (
-                    'Create'
+                    'Update'
                   )}
                 </Button>
               </DialogFooter>

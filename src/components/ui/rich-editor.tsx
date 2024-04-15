@@ -35,6 +35,7 @@ export default function Editor({ onChange, value }: RichEditorProps) {
 
   const editor = useEditor({
     extensions: extensions,
+    content: value,
     onUpdate({ editor }) {
       onChange(editor.getHTML());
     },
