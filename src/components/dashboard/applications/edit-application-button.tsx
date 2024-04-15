@@ -75,6 +75,7 @@ export function EditApplicationButton({ application }: Props) {
   });
 
   async function onSubmit(data: CreateOrUpdateApplicationSchema) {
+    // rename this to updateApplication and add it to actions
     const { id } = await createApplication(data);
     try {
       setLoading(true);
