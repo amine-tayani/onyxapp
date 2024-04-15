@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import { useRouter } from 'next/navigation';
 import {
   Dialog,
   DialogContent,
@@ -12,10 +13,43 @@ import {
 } from '@/components/ui/dialog';
 import { XIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-// import { Spinner } from '@/components/ui/spinner';
+import { Spinner } from '@/components/ui/spinner';
+import { useToast } from '@/components/ui/use-toast';
+import type { Application } from '@/lib/db/types';
+import { deleteApplication } from './_actions';
 
-export function DeleteApplicationButton() {
+interface Props {
+  application: Application;
+}
+
+export function DeleteApplicationButton({ application }: Props) {
   const [dialogOpen, setDialogOpen] = React.useState(false);
+  const router = useRouter();
+  const [loading, setLoading] = React.useState(false);
+  const { toast } = useToast();
+
+  const handleDeleteApplication = async () => {
+    try {
+      await deleteApplication(application);
+      setLoading(true);
+      toast({
+        variant: 'mytheme',
+        title: 'Application Deleted',
+        description: 'The Application was successfully deleted.',
+      });
+      router.refresh();
+    } catch (err) {
+      toast({
+        title: 'Uh Oh!',
+        variant: 'destructive',
+        description:
+          'An error occurred while trying to delete your application.',
+      });
+    } finally {
+      setLoading(false);
+      setDialogOpen(false);
+    }
+  };
 
   return (
     <>
@@ -54,20 +88,18 @@ export function DeleteApplicationButton() {
             <Button
               type='button'
               onClick={() => {
-                // form.clearErrors();
-                // form.reset();
                 setDialogOpen(false);
               }}
             >
               Cancel
             </Button>
             <Button
-              // disabled={form.formState.isSubmitting || loading}
-              className='bg-hero hover:bg-purple-800 disabled:cursor-not-allowed disabled:opacity-20 disabled:hover:bg-none'
-              type='submit'
+              variant='destructive'
+              onClick={() => {
+                void handleDeleteApplication();
+              }}
             >
-              Delete
-              {/* {form.formState.isSubmitting || loading ? <Spinner /> : 'Delete'} */}
+              {loading ? <Spinner /> : 'Delete'}
             </Button>
           </DialogFooter>
         </DialogContent>

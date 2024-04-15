@@ -17,8 +17,7 @@ export function ApplicationCard({ application }: Props) {
           <div className='flex items-center justify-between'>
             <span>{application.company}</span>
             <div className='flex items-center space-x-2 opacity-0 transition-opacity duration-200 ease-in-out group-hover:opacity-100'>
-              {/* <EditApplicationButton application={application} /> */}
-              <DeleteApplicationButton />
+              <DeleteApplicationButton application={application} />
             </div>
           </div>
         </CardTitle>
