@@ -43,7 +43,7 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 import { Calendar } from '@/components/ui/calendar';
-import { createApplication } from './create.action';
+import { createApplication } from './_actions';
 import { Spinner } from '@/components/ui/spinner';
 import Editor from '@/components/ui/rich-editor';
 

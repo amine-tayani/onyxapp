@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Application } from '@/lib/db/types';
-import { EditApplicationButton } from './edit-application-button';
 import { DeleteApplicationButton } from './delete-application-button';
 
 interface Props {
@@ -18,7 +17,7 @@ export function ApplicationCard({ application }: Props) {
           <div className='flex items-center justify-between'>
             <span>{application.company}</span>
             <div className='flex items-center space-x-2 opacity-0 transition-opacity duration-200 ease-in-out group-hover:opacity-100'>
-              <EditApplicationButton application={application} />
+              {/* <EditApplicationButton application={application} /> */}
               <DeleteApplicationButton />
             </div>
           </div>

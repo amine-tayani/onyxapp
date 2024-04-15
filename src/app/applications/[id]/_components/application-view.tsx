@@ -7,8 +7,7 @@ import Paragraph from '@tiptap/extension-paragraph';
 import Text from '@tiptap/extension-text';
 import { EmptyPlaceholder } from '@/components/ui/empty-placeholder';
 import { Application } from '@/lib/db/types';
-import { Button } from '@/components/ui/button';
-import { Edit2Icon } from 'lucide-react';
+import { EditApplicationButton } from '@/components/dashboard/applications/edit-application-button';
 
 export function ApplicationView({ application }: { application: Application }) {
   const editor = useEditor({
@@ -66,10 +65,7 @@ export function ApplicationView({ application }: { application: Application }) {
             </p>
           </div>
           <div className='text-sm text-primary/80'>
-            <Button>
-              <Edit2Icon className='mr-2 h-4 w-4' />
-              <span>Edit</span>
-            </Button>
+            <EditApplicationButton application={application} />
           </div>
         </div>
 

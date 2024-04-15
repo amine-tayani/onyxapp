@@ -43,7 +43,7 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 import { Calendar } from '@/components/ui/calendar';
-import { createApplication } from './create.action';
+import { updateApplication } from './_actions';
 import { Spinner } from '@/components/ui/spinner';
 import Editor from '@/components/ui/rich-editor';
 import type { Application } from '@/lib/db/types';
@@ -75,14 +75,12 @@ export function EditApplicationButton({ application }: Props) {
   });
 
   async function onSubmit(data: CreateOrUpdateApplicationSchema) {
-    // rename this to updateApplication and add it to actions
-    const { id } = await createApplication(data);
     try {
+      await updateApplication(data);
       setLoading(true);
       toast({
         variant: 'mytheme',
         title: 'Success',
-        description: `Your Application has been created with the id : ${id}`,
       });
       router.refresh();
     } catch (err) {
@@ -101,12 +99,10 @@ export function EditApplicationButton({ application }: Props) {
             onClick={() => {
               setDialogOpen(!dialogOpen);
             }}
-            size='icon'
-            variant='link'
-            className='group h-5 w-5 outline-none focus-visible:ring-inset'
+            className='text-neutral-300 outline-none hover:text-primary focus-visible:ring-inset'
           >
-            <Pencil className='h-5 w-5 text-muted-foreground/80 hover:text-primary' />
-            <span className='sr-only'>Edit</span>
+            <Pencil className='mr-2 h-5 w-5' />
+            <span>Edit</span>
           </Button>
         </DialogTrigger>
         <DialogContent
