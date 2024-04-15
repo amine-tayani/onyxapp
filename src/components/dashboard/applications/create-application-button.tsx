@@ -26,7 +26,10 @@ import {
   DialogTitle,
   DialogHeader,
 } from '@/components/ui/dialog';
-import { CreateApplicationSchema, createApplicationSchema } from './zod-schema';
+import {
+  CreateOrUpdateApplicationSchema,
+  createOrUpdateApplicationSchema,
+} from './zod-schema';
 import {
   Select,
   SelectContent,
@@ -52,8 +55,8 @@ export function CreateAppButton() {
   const status = ['APPLIED', 'INTERVIEW', 'REJECTED', 'OFFER', 'CLOSED'];
   const today = new Date();
 
-  const form = useForm<CreateApplicationSchema>({
-    resolver: zodResolver(createApplicationSchema),
+  const form = useForm<CreateOrUpdateApplicationSchema>({
+    resolver: zodResolver(createOrUpdateApplicationSchema),
     mode: 'onChange',
     defaultValues: {
       title: '',
@@ -64,7 +67,7 @@ export function CreateAppButton() {
     },
   });
 
-  async function onSubmit(data: CreateApplicationSchema) {
+  async function onSubmit(data: CreateOrUpdateApplicationSchema) {
     const { id } = await createApplication(data);
     try {
       setLoading(true);

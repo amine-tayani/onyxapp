@@ -1,6 +1,6 @@
 import * as z from 'zod';
 
-export const createApplicationSchema = z.object({
+export const createOrUpdateApplicationSchema = z.object({
   title: z.string({ required_error: 'Please type a title.' }),
   company: z.string({ required_error: 'Please type a company name.' }),
   description: z
@@ -23,4 +23,6 @@ export const createApplicationSchema = z.object({
   }),
 });
 
-export type CreateApplicationSchema = z.infer<typeof createApplicationSchema>;
+export type CreateOrUpdateApplicationSchema = z.infer<
+  typeof createOrUpdateApplicationSchema
+>;

@@ -26,7 +26,10 @@ import {
   DialogTitle,
   DialogHeader,
 } from '@/components/ui/dialog';
-import { CreateApplicationSchema, createApplicationSchema } from './zod-schema';
+import {
+  CreateOrUpdateApplicationSchema,
+  createOrUpdateApplicationSchema,
+} from './zod-schema';
 import {
   Select,
   SelectContent,
@@ -43,28 +46,35 @@ import { Calendar } from '@/components/ui/calendar';
 import { createApplication } from './create.action';
 import { Spinner } from '@/components/ui/spinner';
 import Editor from '@/components/ui/rich-editor';
+import type { Application } from '@/lib/db/types';
 
-export function EditApplicationButton() {
+interface Props {
+  application: Application;
+}
+
+export function EditApplicationButton({ application }: Props) {
   const router = useRouter();
   const [loading, setLoading] = React.useState(false);
-  const { toast } = useToast();
   const [dialogOpen, setDialogOpen] = React.useState(false);
+  const { toast } = useToast();
   const status = ['APPLIED', 'INTERVIEW', 'REJECTED', 'OFFER', 'CLOSED'];
   const today = new Date();
 
-  const form = useForm<CreateApplicationSchema>({
-    resolver: zodResolver(createApplicationSchema),
+  const form = useForm<CreateOrUpdateApplicationSchema>({
+    resolver: zodResolver(createOrUpdateApplicationSchema),
     mode: 'onChange',
     defaultValues: {
-      title: '',
-      company: '',
-      description: '',
-      Url: '',
-      location: '',
+      title: application.title,
+      company: application.company,
+      description: application.description,
+      Url: application.Url as string,
+      location: application.location,
+      datePosted: application.datePosted,
+      status: application.status,
     },
   });
 
-  async function onSubmit(data: CreateApplicationSchema) {
+  async function onSubmit(data: CreateOrUpdateApplicationSchema) {
     const { id } = await createApplication(data);
     try {
       setLoading(true);
@@ -232,7 +242,7 @@ export function EditApplicationButton() {
                       <Select onValueChange={field.onChange}>
                         <FormControl>
                           <SelectTrigger className='text-muted-foreground/70'>
-                            <SelectValue placeholder='Select status' />
+                            <SelectValue defaultValue={application.status} />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
@@ -273,13 +283,13 @@ export function EditApplicationButton() {
               <FormField
                 control={form.control}
                 name='description'
-                render={({ field: { onChange, value } }) => (
+                render={({ field }) => (
                   <FormItem>
                     <FormLabel className='text-muted-foreground/80'>
                       Description
                     </FormLabel>
                     <FormControl>
-                      <Editor onChange={onChange} value={value} />
+                      <Editor value={field.value} onChange={field.onChange} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
