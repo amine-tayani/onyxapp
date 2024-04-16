@@ -8,7 +8,7 @@ import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import { cn } from '@/lib/cn';
 import { Button } from '@/components/ui/button';
-import { useToast } from '@/components/ui/use-toast';
+import { useToast } from '@/components/toast/use-toast';
 import { Input } from '@/components/ui/input';
 import {
   Form,

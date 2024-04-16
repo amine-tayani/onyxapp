@@ -11,7 +11,7 @@ import {
   FormItem,
 } from '@/components/ui/form';
 import { Switch } from '@/components/ui/switch';
-import { toast } from '@/components/ui/use-toast';
+import { toast } from '@/components/toast/use-toast';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 

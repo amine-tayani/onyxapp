@@ -14,7 +14,7 @@ import {
 import { XIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Spinner } from '@/components/ui/spinner';
-import { useToast } from '@/components/ui/use-toast';
+import { useToast } from '@/components/toast/use-toast';
 import type { Application } from '@/lib/db/types';
 import { deleteApplication } from './_actions';
 

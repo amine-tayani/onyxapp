@@ -3,7 +3,7 @@
 import { EmptyPlaceholder } from '@/components/ui/empty-placeholder';
 import { Application } from '@/lib/db/types';
 import { EditApplicationButton } from '@/components/dashboard/applications/edit-application-button';
-import { DescriptionViewer } from '@/components/ui/description-viewer';
+import { DescriptionViewer } from '@/components/editor/description-viewer';
 
 export function ApplicationView({ application }: { application: Application }) {
   if (!application) {

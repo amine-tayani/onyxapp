@@ -3,7 +3,7 @@ import { satoshi, inter } from '@/lib/fonts/font';
 
 import './globals.css';
 import { NextAuthProvider } from '@/components/auth/providers';
-import { Toaster } from '@/components/ui/toaster';
+import { Toaster } from '@/components/toast/toaster';
 import { siteConfig } from '@/config/site';
 import { cn } from '@/lib/cn';
 

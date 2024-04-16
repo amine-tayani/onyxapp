@@ -9,7 +9,7 @@ import { cn } from '@/lib/cn';
 import { FormSchema, loginSchema } from './validators';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { useToast } from '@/components/ui/use-toast';
+import { useToast } from '@/components/toast/use-toast';
 import { useForm } from 'react-hook-form';
 import { Spinner } from '@/components/ui/spinner';
 import {

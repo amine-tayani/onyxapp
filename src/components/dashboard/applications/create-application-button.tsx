@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { useToast } from '@/components/ui/use-toast';
+import { useToast } from '@/components/toast/use-toast';
 import { cn } from '@/lib/cn';
 import { format } from 'date-fns';
 import { useRouter } from 'next/navigation';
@@ -45,7 +45,7 @@ import {
 import { Calendar } from '@/components/ui/calendar';
 import { createApplication } from './_actions';
 import { Spinner } from '@/components/ui/spinner';
-import Editor from '@/components/ui/rich-editor';
+import Editor from '@/components/editor/rich-editor';
 
 export function CreateAppButton() {
   const router = useRouter();

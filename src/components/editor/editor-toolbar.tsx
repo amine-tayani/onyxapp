@@ -10,7 +10,7 @@ import {
   TextIcon,
   ListIcon,
 } from 'lucide-react';
-import { Toggle } from './toggle';
+import { Toggle } from '../ui/toggle';
 
 type Props = {
   editor: Editor | null;
