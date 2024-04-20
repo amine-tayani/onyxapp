@@ -93,10 +93,13 @@ export function CreateAppButton() {
             onClick={() => {
               setDialogOpen(!dialogOpen);
             }}
-            className='group'
+            className='group hover:bg-muted'
+            variant='sidenav'
           >
-            <Plus className=' h-5 w-5 text-neutral-400 transition-colors duration-300 ease-in-out group-hover:text-neutral-100 md:mr-2' />
-            <span className='hidden md:block'>Add Application</span>
+            <Plus className=' h-5 w-5 text-muted-foreground/80 group-hover:text-primary md:mr-2' />
+            <span className='hidden group-hover:text-primary  md:block'>
+              Add Application
+            </span>
           </Button>
         </DialogTrigger>
         <DialogContent
@@ -107,7 +110,7 @@ export function CreateAppButton() {
         >
           <DialogHeader>
             <DialogTitle className='text-2xl font-semibold text-neutral-100'>
-              Add new Application
+              Add Application
             </DialogTitle>
           </DialogHeader>
           <Form {...form}>

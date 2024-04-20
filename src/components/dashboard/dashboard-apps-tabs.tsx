@@ -1,5 +1,4 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { CreateAppButton } from './applications/create-application-button';
 import { getApplicationList } from '@/app/applications/[id]/getApplicationsData';
 import { ApplicationStatus } from '@/lib/db/types';
 import { ApplicationCard } from './applications/application-card';
@@ -16,13 +15,7 @@ export async function DashboardApplicationTabs() {
   return (
     <>
       <div className='flex-1 p-8 pt-6'>
-        <div className='flex items-center justify-between space-y-2 lg:space-y-0'>
-          <h2 className='text-3xl font-bold tracking-tight'>
-            Your applications
-          </h2>
-          <CreateAppButton />
-        </div>
-
+        <h2 className='text-3xl font-bold tracking-tight'>Your applications</h2>
         <Tabs
           defaultValue={ApplicationStatus.APPLIED}
           className='mt-3 space-y-4'
