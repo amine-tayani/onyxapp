@@ -12,3 +12,77 @@ export const siteConfig = {
 };
 
 export type SiteConfig = typeof siteConfig;
+
+export const menuConfig = {
+  mainNav: [
+    {
+      title: 'Home',
+      href: '/',
+    },
+    {
+      title: 'About',
+      href: '/about',
+    },
+    {
+      title: 'FAQ',
+      href: '/faq',
+    },
+    {
+      title: 'Privacy Policy',
+      href: '/privacy',
+    },
+  ],
+
+  sidebarNav: [
+    {
+      title: 'Dashboard',
+      href: '/dashboard',
+      items: [
+        {
+          title: 'Analytics',
+          href: '/dashboard/analytics',
+          items: [],
+        },
+        {
+          title: 'FAQ',
+          href: '/dashboard/faq',
+          items: [],
+        },
+      ],
+    },
+
+    {
+      title: 'Settings',
+      href: '/settings',
+      items: [
+        {
+          title: 'General',
+          href: '/settings',
+          items: [],
+        },
+        {
+          title: 'Account',
+          href: '/settings/account',
+          items: [],
+        },
+        {
+          title: 'Preferences',
+          href: '/settings/preferences',
+          items: [],
+        },
+        {
+          title: 'Notifications',
+          href: '/settings/notifications',
+          items: [],
+        },
+        {
+          title: 'Security',
+          href: '/settings/security',
+          items: [],
+        },
+      ],
+    },
+  ],
+};
+
+export type MenuConfig = typeof menuConfig;

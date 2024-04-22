@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { siteConfig } from '@/config/site';
 import UserNav from '@/components/ui/navigation/user-nav';
-import { Search } from '@/components/dashboard/search';
 import { DashboardSidebar } from '@/components/dashboard/sidebar';
 import { Icons } from '@/components/ui/icons';
 
@@ -18,10 +17,9 @@ export default async function DashboardLayout({
   return (
     <main>
       <div className='flex-1 space-y-4 p-8 pt-6'>
-        <div className='flex h-16 items-center justify-between border-b border-muted px-4 pb-3'>
+        <div className='flex h-16 items-center justify-between px-4'>
           <div className='flex items-center space-x-4'>
             <Icons.logo className='h-8 w-8' />
-            <Search />
           </div>
           <div className='ml-auto'>
             <UserNav align='end' />

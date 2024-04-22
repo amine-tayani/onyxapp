@@ -3,10 +3,16 @@
 import Link from 'next/link';
 import { cn } from '@/lib/cn';
 import { usePathname } from 'next/navigation';
-import { MessageCircle, Home, BarChart3, PencilLine } from 'lucide-react';
+import {
+  MessageCircle,
+  LayoutDashboard,
+  LineChart,
+  Settings,
+} from 'lucide-react';
 import { buttonVariants } from '@/components/ui/button';
 import { CreateAppButton } from '../applications/create-application-button';
 import { Separator } from '@radix-ui/react-dropdown-menu';
+import { SearchMenu } from '@/components/ui/search-menu';
 
 interface SidebarNavProps extends React.HTMLAttributes<HTMLElement> {}
 
@@ -17,12 +23,12 @@ export function DashboardSidebar({ className, ...props }: SidebarNavProps) {
     {
       title: 'Dashboard',
       href: '/dashboard',
-      icon: Home,
+      icon: LayoutDashboard,
     },
     {
       title: 'Analytics',
       href: '/dashboard/analytics',
-      icon: BarChart3,
+      icon: LineChart,
     },
     {
       title: 'FAQ',
@@ -30,14 +36,15 @@ export function DashboardSidebar({ className, ...props }: SidebarNavProps) {
       icon: MessageCircle,
     },
     {
-      title: 'Support',
-      href: '/dashboard/support',
-      icon: PencilLine,
+      title: 'Settings',
+      href: '/settings',
+      icon: Settings,
     },
   ];
 
   return (
-    <aside className='hidden border-r border-muted px-2 lg:block lg:w-52'>
+    <aside className='hidden border-r border-muted px-2 lg:block'>
+      <SearchMenu />
       <nav
         className={cn(
           'mt-8 flex space-x-2 lg:flex-col lg:space-x-0 lg:space-y-2',
