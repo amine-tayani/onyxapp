@@ -10,8 +10,6 @@ import {
   Settings,
 } from 'lucide-react';
 import { buttonVariants } from '@/components/ui/button';
-import { CreateAppButton } from '../applications/create-application-button';
-import { Separator } from '@radix-ui/react-dropdown-menu';
 import { SearchMenu } from '@/components/ui/search-menu';
 
 interface SidebarNavProps extends React.HTMLAttributes<HTMLElement> {}
@@ -31,14 +29,14 @@ export function DashboardSidebar({ className, ...props }: SidebarNavProps) {
       icon: LineChart,
     },
     {
-      title: 'FAQ',
-      href: '/dashboard/faq',
-      icon: MessageCircle,
-    },
-    {
       title: 'Settings',
       href: '/settings',
       icon: Settings,
+    },
+    {
+      title: 'FAQ',
+      href: '/dashboard/faq',
+      icon: MessageCircle,
     },
   ];
 
@@ -77,10 +75,6 @@ export function DashboardSidebar({ className, ...props }: SidebarNavProps) {
           </Link>
         ))}
       </nav>
-      <Separator className='mt-4 h-px w-full bg-muted' />
-      <div className='mt-2'>
-        <CreateAppButton />
-      </div>
     </aside>
   );
 }

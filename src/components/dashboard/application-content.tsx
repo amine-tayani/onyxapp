@@ -1,21 +1,26 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { getApplicationList } from '@/app/applications/[id]/getApplicationsData';
-import { ApplicationStatus } from '@/lib/db/types';
+import { ApplicationStatus, Application } from '@/lib/db/types';
 import { ApplicationCard } from './applications/application-card';
+import { ViewHeader } from './view-header';
 
-export async function DashboardApplicationTabs() {
+interface ApplicationsContentProps {
+  applications: Application[];
+}
+
+export function ApplicationsContent({
+  applications,
+}: ApplicationsContentProps) {
   const applicationStatus = Object.values(ApplicationStatus);
   const labels = applicationStatus.map((status) => ({
     label: status,
     value: status,
   }));
 
-  const applications = await getApplicationList();
-
   return (
     <>
-      <div className='flex-1 p-8 pt-6'>
-        <h2 className='text-3xl font-bold tracking-tight'>Your applications</h2>
+      <div className='flex-1 px-6'>
+        <ViewHeader />
+        {/* render either grid or table view for applications */}
         <Tabs
           defaultValue={ApplicationStatus.APPLIED}
           className='mt-3 space-y-4'

@@ -15,7 +15,7 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import { CalendarIcon, Plus } from 'lucide-react';
+import { CalendarIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
@@ -90,22 +90,14 @@ export function CreateAppButton() {
       <Dialog open={dialogOpen} onOpenChange={(o) => setDialogOpen(o)}>
         <DialogTrigger asChild>
           <Button
-            onClick={() => {
-              setDialogOpen(!dialogOpen);
-            }}
-            className='group hover:bg-muted'
-            variant='sidenav'
+            className='bg-hero hover:bg-purple-800'
+            onClick={() => setDialogOpen(!dialogOpen)}
           >
-            <Plus className=' h-5 w-5 text-muted-foreground/80 group-hover:text-primary md:mr-2' />
-            <span className='hidden group-hover:text-primary  md:block'>
-              Add Application
-            </span>
+            <span className='hidden md:block'>Add Application</span>
           </Button>
         </DialogTrigger>
         <DialogContent
-          onInteractOutside={(e) => {
-            e.preventDefault();
-          }}
+          onInteractOutside={(e) => e.preventDefault()}
           className='bg-[#1d1d1d] px-8 py-6 lg:min-w-[500px] xl:min-w-[750px]'
         >
           <DialogHeader>

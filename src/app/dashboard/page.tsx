@@ -1,7 +1,10 @@
-import { DashboardApplicationTabs } from '@/components/dashboard/dashboard-apps-tabs';
+import { ApplicationsContent } from '@/components/dashboard/application-content';
+import { getApplicationList } from '../applications/[id]/getApplicationsData';
 
-async function Dashboard() {
-  return <DashboardApplicationTabs />;
+async function DashboardPage() {
+  const applications = await getApplicationList();
+
+  return <ApplicationsContent applications={applications} />;
 }
 
-export default Dashboard;
+export default DashboardPage;
