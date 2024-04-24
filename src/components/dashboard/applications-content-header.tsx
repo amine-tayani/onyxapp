@@ -1,8 +1,8 @@
-import { Grid, TableIcon } from 'lucide-react';
 import { CreateAppButton } from './applications/create-application-button';
 import { buttonVariants } from '../ui/button';
 import { cn } from '@/lib/cn';
 import Link from 'next/link';
+import { Icons } from '../ui/icons';
 
 export function ApplicationsContentHeader() {
   return (
@@ -14,28 +14,26 @@ export function ApplicationsContentHeader() {
       </div>
       <div className='flex items-center gap-x-4'>
         <Link
-          href='/dashboard?view=grid'
+          href='/dashboard'
           className={cn(
             buttonVariants({
-              variant: 'sidenav',
-              size: 'icon',
-              className: 'bg-muted text-muted-foreground/80',
+              className: 'flex items-center text-muted-foreground',
             })
           )}
         >
-          <Grid />
+          <Icons.gridIcon className='h-5 w-5' />
+          <span className='ml-2'>Grid</span>
         </Link>
         <Link
           href='/dashboard?mode=table'
           className={cn(
             buttonVariants({
-              variant: 'sidenav',
-              size: 'icon',
-              className: 'bg-muted text-muted-foreground/80',
+              className: 'flex items-center text-muted-foreground',
             })
           )}
         >
-          <TableIcon />
+          <Icons.tableIcon className='h-5 w-5' />
+          <span className='ml-2 '>Table</span>
         </Link>
         <CreateAppButton />
       </div>

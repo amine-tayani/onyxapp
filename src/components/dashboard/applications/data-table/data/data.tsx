@@ -1,35 +1,35 @@
 import {
-  CircuitBoard,
-  GiftIcon,
-  StopCircle,
-  UserIcon,
-  XCircleIcon,
+  SendIcon,
+  CalendarDays,
+  XIcon,
+  CheckCheck,
+  LockIcon,
 } from 'lucide-react';
 
 export const statuses = [
   {
-    value: 'applied',
+    value: 'APPLIED',
     label: 'Applied',
-    icon: UserIcon,
+    icon: SendIcon,
   },
   {
-    value: 'interview',
+    value: 'INTERVIEW',
     label: 'Interview',
-    icon: CircuitBoard,
+    icon: CalendarDays,
   },
   {
-    value: 'rejected',
+    value: 'REJECTED',
     label: 'Rejected',
-    icon: StopCircle,
+    icon: XIcon,
   },
   {
-    value: 'offer',
+    value: 'OFFER',
     label: 'Offer',
-    icon: GiftIcon,
+    icon: CheckCheck,
   },
   {
-    value: 'closed',
+    value: 'CLOSED',
     label: 'Closed',
-    icon: XCircleIcon,
+    icon: LockIcon,
   },
 ];

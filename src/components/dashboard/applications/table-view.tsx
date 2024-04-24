@@ -10,7 +10,7 @@ interface TableViewProps {
 
 export function TableView({ applications }: TableViewProps) {
   return (
-    <div className='py-4'>
+    <div className='py-4 transition delay-150 duration-300 ease-in-out'>
       <DataTable data={applications} columns={columns} />
     </div>
   );

@@ -23,7 +23,7 @@ export function ApplicationsContent({
         {mode === 'table' ? (
           <TableView applications={applications} />
         ) : (
-          mode === 'grid' || (!mode && <GridView applications={applications} />)
+          <GridView applications={applications} />
         )}
       </div>
     </>
