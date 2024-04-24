@@ -6,7 +6,8 @@ import { Application } from './data/schema';
 import { DataTableColumnHeader } from './data-table-column-header';
 import { DataTableRowActions } from './data-table-row-actions';
 import { getRelativeTime } from '@/utils/time';
-import { Badge } from '@/components/ui/badge';
+import { StatusBadge } from '@/components/ui/status-badge';
+import { ApplicationStatus } from '@/lib/db/types';
 
 export const columns: ColumnDef<Application>[] = [
   {
@@ -72,11 +73,11 @@ export const columns: ColumnDef<Application>[] = [
       <DataTableColumnHeader column={column} title='Status' />
     ),
     cell: ({ row }) => {
-      const status = row.getValue('status') as string;
+      const status = row.getValue('status') as ApplicationStatus;
 
       return (
         <div className='flex w-[100px] items-center'>
-          <Badge variant='destructive'>{status.toLowerCase()}</Badge>
+          <StatusBadge status={status} />
         </div>
       );
     },

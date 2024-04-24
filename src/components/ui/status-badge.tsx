@@ -7,23 +7,23 @@ interface Props {
   className?: string;
 }
 
-const COLORS_BY_STATUS = {
-  APPLIED: 'bg-muted text-neutral-200',
-  INTERVIEW: 'bg-muted text-neutral-200',
-  REJECTED: 'bg-muted text-neutral-200',
-  OFFER: 'bg-muted text-neutral-200',
-  CLOSED: 'bg-muted text-neutral-200',
+const STATUS_COLORS = {
+  APPLIED: 'bg-blue-500',
+  INTERVIEW: 'bg-amber-500',
+  REJECTED: 'bg-red-500',
+  OFFER: 'bg-green-500',
+  CLOSED: 'bg-gray-500',
 };
 
 export function StatusBadge({ className, status }: Props) {
   return (
     <Badge
       className={cn(
-        `duration-300 ${COLORS_BY_STATUS[status]} text-white dark:text-black`,
+        `duration-300 ${STATUS_COLORS[status]} capitalize text-white`,
         className
       )}
     >
-      {status}
+      {status.toLowerCase()}
     </Badge>
   );
 }
