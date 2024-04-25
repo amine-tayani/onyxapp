@@ -1,7 +1,6 @@
 'use client';
 
-import { Row } from '@tanstack/react-table';
-import { Button } from '@/components/ui/button';
+import { useRouter } from 'next/navigation';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,14 +9,16 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { Button } from '@/components/ui/button';
+import { Application } from './data/schema';
 
-interface DataTableRowActionsProps<TData> {
-  row: Row<TData>;
+interface CellActionProps {
+  data: Application;
 }
 
-export function DataTableRowActions<
-  TData,
->({}: DataTableRowActionsProps<TData>) {
+export function CellAction({ data }: CellActionProps) {
+  const router = useRouter();
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -44,7 +45,11 @@ export function DataTableRowActions<
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align='end' className='w-[160px]'>
-        <DropdownMenuItem>Details</DropdownMenuItem>
+        <DropdownMenuItem
+          onClick={() => router.push(`/applications/${data.id}`)}
+        >
+          View
+        </DropdownMenuItem>
         <DropdownMenuItem>Edit</DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem>

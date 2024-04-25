@@ -4,7 +4,7 @@ import { ColumnDef } from '@tanstack/react-table';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Application } from './data/schema';
 import { DataTableColumnHeader } from './data-table-column-header';
-import { DataTableRowActions } from './data-table-row-actions';
+import { CellAction } from './cell-action';
 import { getRelativeTime } from '@/utils/time';
 import { StatusBadge } from '@/components/ui/status-badge';
 import { ApplicationStatus } from '@/lib/db/types';
@@ -88,6 +88,6 @@ export const columns: ColumnDef<Application>[] = [
 
   {
     id: 'actions',
-    cell: ({ row }) => <DataTableRowActions row={row} />,
+    cell: ({ row }) => <CellAction data={row.original} />,
   },
 ];
