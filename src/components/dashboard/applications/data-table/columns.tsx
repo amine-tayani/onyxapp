@@ -77,7 +77,7 @@ export const columns: ColumnDef<Application>[] = [
 
       return (
         <div className='flex w-[100px] items-center'>
-          <StatusBadge status={status} />
+          <StatusBadge status={status} className='font-medium' />
         </div>
       );
     },

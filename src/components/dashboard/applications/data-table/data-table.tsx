@@ -70,9 +70,9 @@ export function DataTable<TData, TValue>({
   return (
     <div className='space-y-4'>
       <DataTableToolbar table={table} />
-      <div className='rounded-md border'>
+      <div className='rounded-lg border'>
         <Table>
-          <TableHeader>
+          <TableHeader className='bg-muted/20'>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
@@ -90,7 +90,7 @@ export function DataTable<TData, TValue>({
               </TableRow>
             ))}
           </TableHeader>
-          <TableBody>
+          <TableBody className='bg-muted/50 '>
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
@@ -98,7 +98,10 @@ export function DataTable<TData, TValue>({
                   data-state={row.getIsSelected() && 'selected'}
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
+                    <TableCell
+                      key={cell.id}
+                      className='text-[13px] text-neutral-100'
+                    >
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext()
