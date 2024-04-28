@@ -4,7 +4,7 @@ import { Separator } from '@/components/ui/separator';
 import { ProfileForm } from './profile-form';
 import { UserProfileProps } from './props';
 
-export default function UserProfile({ user }: UserProfileProps) {
+export default function UserSettings({ user }: UserProfileProps) {
   return (
     <div className='space-y-4'>
       <div>

@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import prisma from '@/lib/db/prisma';
-import UserProfile from './_components/user-profile';
+import UserSettings from './_components/user-settings';
 
 interface Props {
   params: {
@@ -8,7 +8,7 @@ interface Props {
   };
 }
 
-export default async function ProfilePage({ params: { id } }: Props) {
+export default async function SettingPage({ params: { id } }: Props) {
   const user = await prisma.user.findFirst({
     where: {
       id: {
@@ -26,5 +26,5 @@ export default async function ProfilePage({ params: { id } }: Props) {
 
   if (!user) return notFound();
 
-  return <UserProfile user={user} />;
+  return <UserSettings user={user} />;
 }
