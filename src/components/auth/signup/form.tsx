@@ -33,6 +33,7 @@ export function CreateAccountForm({ className, ...props }: UserAuthFormProps) {
     resolver: zodResolver(SignupSchema),
     mode: 'onChange',
     defaultValues: {
+      name: '',
       email: '',
       password: '',
     },
@@ -72,6 +73,27 @@ export function CreateAccountForm({ className, ...props }: UserAuthFormProps) {
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className='mt-2 grid gap-4'>
+            <div className='grid gap-2'>
+              <FormField
+                name='name'
+                control={form.control}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className='text-muted-foreground/80'>
+                      Name
+                    </FormLabel>
+                    <FormControl>
+                      <Input
+                        className='border-none bg-muted hover:bg-muted/70 focus:bg-muted/60'
+                        placeholder='e.g. John Doe'
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
             <div className='grid gap-2'>
               <FormField
                 name='email'

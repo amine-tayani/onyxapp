@@ -1,8 +1,7 @@
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 import { HeartIcon } from 'lucide-react';
-import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 export default async function ProfilePage() {
   return (
@@ -50,30 +49,6 @@ export default async function ProfilePage() {
               projects, including building web applications, mobile apps, and
               desktop software.
             </p>
-
-            <section className='flex flex-col space-y-4'>
-              <h3 className='text-2xl font-bold tracking-tight text-white'>
-                Skills
-              </h3>
-              <ul className='space-x-2 space-y-2'>
-                <Badge variant='secondary'>TypeScript</Badge>
-                <Badge variant='secondary'>React</Badge>
-                <Badge variant='secondary'>Next.js</Badge>
-                <Badge variant='secondary'>Tailwind CSS</Badge>
-                <Badge variant='secondary'>Node.js</Badge>
-                <Badge variant='secondary'>MongoDB</Badge>
-                <Badge variant='secondary'>Express</Badge>
-                <Badge variant='secondary'>Git</Badge>
-                <Badge variant='secondary'>Vue.js</Badge>
-                <Badge variant='secondary'>Angular</Badge>
-                <Badge variant='secondary'>Svelte</Badge>
-                <Badge variant='secondary'>Flutter</Badge>
-                <Badge variant='secondary'>Kotlin</Badge>
-                <Badge variant='secondary'>C#</Badge>
-                <Badge variant='secondary'>Python</Badge>
-                <Badge variant='secondary'>Go</Badge>
-              </ul>
-            </section>
           </section>
         </CardContent>
       </Card>
