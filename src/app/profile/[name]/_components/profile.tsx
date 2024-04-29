@@ -1,9 +1,11 @@
-import { HeartIcon } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Pencil } from 'lucide-react';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { User } from '@/lib/db/types';
+import { buttonVariants } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
+import Link from 'next/link';
+import { cn } from '@/lib/cn';
 
 interface UserProfileProps {
   user: Pick<
@@ -50,12 +52,16 @@ export default function UserProfile({ user }: UserProfileProps) {
               </div>
             </div>
             <div className='flex flex-col space-y-4'>
-              <Button className='w-full'>
-                Follow
-                <span className='ml-2'>
-                  <HeartIcon className='h-4 w-4' />
-                </span>
-              </Button>
+              <Link
+                href='/settings/'
+                className={cn(
+                  buttonVariants(),
+                  'text-neutral-300 outline-none hover:text-primary focus-visible:ring-inset'
+                )}
+              >
+                <Pencil className='mr-2 h-5 w-5' />
+                <span>Edit Profile</span>
+              </Link>
             </div>
           </div>
         </CardHeader>

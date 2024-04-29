@@ -139,41 +139,43 @@ export function ProfileForm({ user }: UserProfileProps) {
           </Button>
         </div>
 
-        <FormField
-          control={form.control}
-          name='name'
-          render={({ field }) => (
-            <FormItem>
-              <Label className='text-neutral-300'>Username</Label>
-              <FormControl>
-                <Input
-                  className='border-none bg-muted hover:bg-muted/70 focus:bg-muted/60'
-                  placeholder='Your name'
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name='email'
-          render={({ field }) => (
-            <FormItem>
-              <Label className='text-neutral-300'>Email</Label>
-              <FormControl>
-                <Input
-                  className='border-none bg-muted hover:bg-muted/70 focus:bg-muted/60'
-                  placeholder='Edit your email'
-                  {...field}
-                />
-              </FormControl>
+        <div className='grid grid-cols-2 gap-x-3'>
+          <FormField
+            control={form.control}
+            name='name'
+            render={({ field }) => (
+              <FormItem>
+                <Label className='text-neutral-300'>Username</Label>
+                <FormControl>
+                  <Input
+                    className='border-none bg-muted hover:bg-muted/70 focus:bg-muted/60'
+                    placeholder='Your name'
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name='email'
+            render={({ field }) => (
+              <FormItem>
+                <Label className='text-neutral-300'>Email</Label>
+                <FormControl>
+                  <Input
+                    className='border-none bg-muted hover:bg-muted/70 focus:bg-muted/60'
+                    placeholder='Edit your email'
+                    {...field}
+                  />
+                </FormControl>
 
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
         <FormField
           control={form.control}
           name='bio'
