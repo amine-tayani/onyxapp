@@ -43,10 +43,9 @@ export function ProfileForm({ user }: UserProfileProps) {
     return { files, displayUrl };
   }
 
-  // This should come from the supabase.
   const defaultValues: Partial<ProfileFormValues> = {
-    name: '',
-    email: `${user.email}`,
+    name: user.name || '',
+    email: user.email || '',
     bio: '',
     urls: [{ value: '' }],
     media: undefined,
@@ -82,7 +81,7 @@ export function ProfileForm({ user }: UserProfileProps) {
                 src={
                   preview
                     ? preview
-                    : 'https://avatars.githubusercontent.com/u/62437851?v=4'
+                    : 'https://avatars.githubusercontent.com/u/104228?v=4'
                 }
                 alt='avatar'
                 className='h-14 w-14 object-cover object-center'

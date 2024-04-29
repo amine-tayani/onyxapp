@@ -40,7 +40,7 @@ export default function UserNav({ align }: UserNavProps) {
               alt={session.user.name ?? 'avatar'}
               src={
                 session.user.image ??
-                'https://avatars.githubusercontent.com/u/62437851?v=4'
+                'https://avatars.githubusercontent.com/u/104228?v=4'
               }
             />
             <AvatarFallback>
@@ -52,7 +52,9 @@ export default function UserNav({ align }: UserNavProps) {
       <DropdownMenuContent className='w-56' align={align} forceMount>
         <DropdownMenuLabel className='font-normal'>
           <div className='flex flex-col space-y-1'>
-            <p className='text-sm font-medium leading-none'>Amine</p>
+            <p className='text-sm font-medium leading-none'>
+              {session.user.name}
+            </p>
             <p className='text-xs leading-none text-muted-foreground'>
               {session.user.email}
             </p>
@@ -60,7 +62,7 @@ export default function UserNav({ align }: UserNavProps) {
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <Link href='/profile'>
+          <Link href={`/profile/${session.user.name}`}>
             <DropdownMenuItem>
               Profile
               <DropdownMenuShortcut>⌘P</DropdownMenuShortcut>

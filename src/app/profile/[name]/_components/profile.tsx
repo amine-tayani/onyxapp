@@ -2,8 +2,25 @@ import { HeartIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { User } from '@/lib/db/types';
+import { Skeleton } from '@/components/ui/skeleton';
 
-export default async function ProfilePage() {
+interface UserProfileProps {
+  user: Pick<
+    User,
+    | 'id'
+    | 'email'
+    | 'createdAt'
+    | 'bio'
+    | 'image'
+    | 'name'
+    | 'skills'
+    | 'location'
+    | 'experience'
+  >;
+}
+
+export default function UserProfile({ user }: UserProfileProps) {
   return (
     <div className='mx-auto max-w-2xl flex-1 space-y-4 rounded-xl bg-[#0E0E0E] p-8 pt-6'>
       <Card className='rounded-xl bg-transparent'>
@@ -13,17 +30,22 @@ export default async function ProfilePage() {
               <Avatar>
                 <AvatarImage
                   className='h-20 w-20'
-                  src='https://pbs.twimg.com/profile_images/1781740852903047168/gMqrfRkz_400x400.png'
-                  alt='Amine Tayani'
+                  src={
+                    user.image ||
+                    'https://avatars.githubusercontent.com/u/104228?v=4'
+                  }
+                  alt={user.name || 'User Avatar'}
                 />
-                <AvatarFallback>AM</AvatarFallback>
+                <AvatarFallback>
+                  <Skeleton className='h-20 w-20 rounded-full' />
+                </AvatarFallback>
               </Avatar>
               <div>
                 <h1 className='text-4xl font-bold tracking-tight text-white'>
-                  Amine Tayani
+                  {user.name}
                 </h1>
                 <span className='text-lg text-muted-foreground/90'>
-                  Software Engineer
+                  {user.email}
                 </span>
               </div>
             </div>
@@ -43,11 +65,7 @@ export default async function ProfilePage() {
               About me
             </h3>
             <p className='text-sm text-muted-foreground/90'>
-              I am a software engineer with a passion for building web
-              applications. I have a degree in Computer Science from the
-              University of California, Berkeley. I have worked on various
-              projects, including building web applications, mobile apps, and
-              desktop software.
+              {user.bio || 'your bio goes here.'}
             </p>
           </section>
         </CardContent>

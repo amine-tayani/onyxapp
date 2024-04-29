@@ -4,7 +4,8 @@ import { Icons } from '@/components/ui/icons';
 
 export const metadata: Metadata = {
   title: 'Profile | Onyx',
-  description: 'User Onyx Profile Page ',
+  description:
+    'View your profile on Onyx, the job tracking app that helps organize your applications.',
 };
 
 export default async function ProfileLayout({
