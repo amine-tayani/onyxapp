@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { useSession } from 'next-auth/react';
 import { cn } from '@/lib/cn';
 import { usePathname } from 'next/navigation';
 import {
@@ -17,6 +18,7 @@ interface SidebarNavProps extends React.HTMLAttributes<HTMLElement> {}
 
 export function DashboardSidebar({ className, ...props }: SidebarNavProps) {
   const pathname = usePathname();
+  const { data: session } = useSession();
 
   const items = [
     {
@@ -31,7 +33,8 @@ export function DashboardSidebar({ className, ...props }: SidebarNavProps) {
     },
     {
       title: 'Profile',
-      href: '/profile',
+      href:
+        session && session.user ? `/profile/${session.user.name}` : '/login',
       icon: User,
     },
     {
