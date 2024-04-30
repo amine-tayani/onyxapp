@@ -1,10 +1,12 @@
+'use client';
+
+import Link from 'next/link';
 import { Pencil } from 'lucide-react';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { User } from '@/lib/db/types';
 import { buttonVariants } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
-import Link from 'next/link';
 import { cn } from '@/lib/cn';
 
 interface UserProfileProps {
@@ -24,14 +26,22 @@ interface UserProfileProps {
 
 export default function UserProfile({ user }: UserProfileProps) {
   return (
-    <div className='mx-auto max-w-2xl flex-1 space-y-4 rounded-xl bg-[#0E0E0E] p-8 pt-6'>
+    <div className='mx-auto max-w-4xl flex-1 space-y-4 rounded-xl bg-[#0E0E0E] p-2'>
       <Card className='rounded-xl bg-transparent'>
+        <div
+          className='w-full rounded-t-xl bg-cover bg-center bg-no-repeat'
+          style={{
+            height: '200px',
+            backgroundImage:
+              'url(https://pbs.twimg.com/profile_banners/1603463890272194582/1714062352/1500x500)',
+          }}
+        />
         <CardHeader>
-          <div className='flex items-center justify-between space-y-2'>
+          <div className='-mt-16 flex items-center justify-between space-y-2'>
             <div className='flex items-center space-x-4'>
-              <Avatar>
+              <Avatar className='ring-4 ring-[#0E0E0E] ring-offset-4 ring-offset-[#0E0E0E]'>
                 <AvatarImage
-                  className='h-20 w-20'
+                  className='h-12 w-12 md:h-16 md:w-16  lg:h-20 lg:w-20'
                   src={
                     user.image ||
                     'https://avatars.githubusercontent.com/u/104228?v=4'
@@ -42,34 +52,32 @@ export default function UserProfile({ user }: UserProfileProps) {
                   <Skeleton className='h-20 w-20 rounded-full' />
                 </AvatarFallback>
               </Avatar>
-              <div>
-                <h1 className='text-4xl font-bold tracking-tight text-white'>
-                  {user.name}
-                </h1>
-                <span className='text-lg text-muted-foreground/90'>
-                  {user.email}
-                </span>
-              </div>
             </div>
             <div className='flex flex-col space-y-4'>
               <Link
                 href='/settings/'
                 className={cn(
                   buttonVariants(),
-                  'text-neutral-300 outline-none hover:text-primary focus-visible:ring-inset'
+                  'flex items-center justify-center text-sm font-medium text-neutral-300 outline-none ring-4 ring-[#0E0E0E] ring-offset-4 ring-offset-[#0E0E0E] hover:text-primary focus-visible:ring-inset'
                 )}
               >
-                <Pencil className='mr-2 h-5 w-5' />
-                <span>Edit Profile</span>
+                <Pencil className='h-5 w-5 md:mr-2' />
+                <span className='hidden md:block'>Edit Profile</span>
               </Link>
             </div>
           </div>
         </CardHeader>
         <CardContent className='mt-4 flex flex-col'>
           <section className='flex flex-col space-y-4'>
-            <h3 className='text-2xl font-bold tracking-tight text-white'>
-              About me
-            </h3>
+            <div>
+              <h1 className='text-xl font-bold tracking-tight text-white md:text-3xl lg:text-4xl'>
+                {user.name}
+              </h1>
+              <span className='text-sm text-muted-foreground/90 lg:text-lg'>
+                {user.email}
+              </span>
+            </div>
+
             <p className='text-sm text-muted-foreground/90'>
               {user.bio || 'your bio goes here.'}
             </p>
