@@ -2,12 +2,12 @@
 
 import Link from 'next/link';
 import { Pencil } from 'lucide-react';
+import { User } from '@/lib/db/types';
+import { cn } from '@/lib/cn';
+import { Skeleton } from '@/components/ui/skeleton';
+import { buttonVariants } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { User } from '@/lib/db/types';
-import { buttonVariants } from '@/components/ui/button';
-import { Skeleton } from '@/components/ui/skeleton';
-import { cn } from '@/lib/cn';
 
 interface UserProfileProps {
   user: Pick<
