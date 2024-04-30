@@ -8,6 +8,7 @@ import {
   LayoutDashboard,
   LineChart,
   Settings,
+  User,
 } from 'lucide-react';
 import { buttonVariants } from '@/components/ui/button';
 import { SearchMenu } from '@/components/ui/search-menu';
@@ -29,10 +30,16 @@ export function DashboardSidebar({ className, ...props }: SidebarNavProps) {
       icon: LineChart,
     },
     {
+      title: 'Profile',
+      href: '/profile',
+      icon: User,
+    },
+    {
       title: 'Settings',
       href: '/settings',
       icon: Settings,
     },
+
     {
       title: 'FAQ',
       href: '/dashboard/faq',
