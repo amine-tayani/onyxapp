@@ -1,13 +1,14 @@
 'use client';
 
 import Link from 'next/link';
-import { Pencil } from 'lucide-react';
+import { CalendarDays, LinkIcon, MapPinIcon, Pencil } from 'lucide-react';
 import { User } from '@/lib/db/types';
 import { cn } from '@/lib/cn';
 import { Skeleton } from '@/components/ui/skeleton';
 import { buttonVariants } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { getRelativeTime } from '@/utils/time';
 
 interface UserProfileProps {
   user: Pick<
@@ -81,6 +82,29 @@ export default function UserProfile({ user }: UserProfileProps) {
             <p className='text-sm text-muted-foreground/90'>
               {user.bio || 'your bio goes here.'}
             </p>
+            <div className='flex space-x-3'>
+              <div className='flex items-center'>
+                <MapPinIcon className='h-5 w-5 text-muted-foreground/90 md:mr-1' />
+                <span className='hidden text-sm text-muted-foreground/90 md:block'>
+                  {user.location || 'Casablanca, Morocco'}
+                </span>
+              </div>
+
+              <div className='flex items-center'>
+                <LinkIcon className='h-5 w-5 text-muted-foreground/90 md:mr-1' />
+                <span className='hidden text-sm text-muted-foreground/90 md:block'>
+                  {/* here render user social media links */}
+                  {user.location || 'amine-tayani.vercel.app'}
+                </span>
+              </div>
+
+              <div className='flex items-center'>
+                <CalendarDays className='h-5 w-5 text-muted-foreground/90 md:mr-1' />
+                <span className='hidden text-sm text-muted-foreground/90 md:block'>
+                  Joined {getRelativeTime(user.createdAt)}
+                </span>
+              </div>
+            </div>
           </section>
         </CardContent>
       </Card>

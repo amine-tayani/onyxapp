@@ -33,8 +33,7 @@ export function DashboardSidebar({ className, ...props }: SidebarNavProps) {
     },
     {
       title: 'Profile',
-      href:
-        session && session.user ? `/profile/${session.user.name}` : '/login',
+      href: session && session.user ? `/profile/${session.user.name}` : '#',
       icon: User,
     },
     {
