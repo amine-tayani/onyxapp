@@ -4,7 +4,7 @@ import * as React from 'react';
 import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useFieldArray, useForm } from 'react-hook-form';
-import { UserProfileProps } from './props';
+import { UserProfileProps } from '@/types/user';
 import { cn } from '@/lib/cn';
 import { Button } from '@/components/ui/button';
 import {
@@ -32,7 +32,6 @@ export function ProfileForm({ user }: UserProfileProps) {
   function getImageData(event: React.ChangeEvent<HTMLInputElement>) {
     const dataTransfer = new DataTransfer();
 
-    // Add newly uploaded images
     Array.from(event.target.files!).forEach((image) =>
       dataTransfer.items.add(image)
     );
@@ -46,7 +45,7 @@ export function ProfileForm({ user }: UserProfileProps) {
   const defaultValues: Partial<ProfileFormValues> = {
     name: user.name || '',
     email: user.email || '',
-    bio: '',
+    bio: user.bio || '',
     urls: [{ value: '' }],
     media: undefined,
   };

@@ -2,7 +2,7 @@
 
 import { Separator } from '@/components/ui/separator';
 import { ProfileForm } from './profile-form';
-import { UserProfileProps } from './props';
+import { UserProfileProps } from '../../../types/user';
 import {
   Breadcrumb,
   BreadcrumbItem,
