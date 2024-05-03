@@ -22,7 +22,7 @@ import { Label } from '@/components/ui/label';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Skeleton } from '@/components/ui/skeleton';
 import { profileFormSchema } from './profile-form-schema';
-import { PlusIcon, Trash2, Upload } from 'lucide-react';
+import { PlusIcon, Upload, X } from 'lucide-react';
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
@@ -56,17 +56,16 @@ export function ProfileForm({ user }: UserProfileProps) {
     mode: 'onChange',
   });
 
-  const { fields, append } = useFieldArray({
+  const { fields, append, remove } = useFieldArray({
     name: 'urls',
     control: form.control,
   });
 
   function onSubmit(data: ProfileFormValues) {
     toast({
+      variant: 'mytheme',
       title: 'You submitted the following values:',
-      description: (
-        <code className='text-white'>{JSON.stringify(data, null, 2)}</code>
-      ),
+      description: <pre>{JSON.stringify(data, null, 2)}</pre>,
     });
   }
 
@@ -131,11 +130,7 @@ export function ProfileForm({ user }: UserProfileProps) {
               )}
             />
           </div>
-          {/* show only when we have image in db otherwise hide it */}
-          <Button type='submit' size='sm'>
-            <Trash2 className='mr-2 h-4 w-4' />
-            <span>delete</span>
-          </Button>
+          {/* show x delete button only when we have image in db otherwise hide it */}
         </div>
 
         <div className='grid grid-cols-2 gap-x-3'>
@@ -208,12 +203,28 @@ export function ProfileForm({ user }: UserProfileProps) {
                   <FormDescription className={cn(index !== 0 && 'sr-only')}>
                     Add links to your website, blog, or social media profiles.
                   </FormDescription>
-                  <FormControl>
-                    <Input
-                      className='border-none bg-muted hover:bg-muted/70 focus:bg-muted/60'
-                      {...field}
-                    />
-                  </FormControl>
+                  <div className='flex items-center space-x-2'>
+                    <FormControl>
+                      <Input
+                        className='border-none bg-muted hover:bg-muted/70 focus:bg-muted/60'
+                        {...field}
+                      />
+                    </FormControl>
+
+                    {fields.length > 1 && (
+                      <div className='flex items-center space-x-2'>
+                        <Button
+                          type='button'
+                          variant='link'
+                          size='icon'
+                          className='hover:scale-110 hover:text-primary'
+                          onClick={() => remove(index)}
+                        >
+                          <X className=' h-4 w-4' />
+                        </Button>
+                      </div>
+                    )}
+                  </div>
                   <FormMessage />
                 </FormItem>
               )}
