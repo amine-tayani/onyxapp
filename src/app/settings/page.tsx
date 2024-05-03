@@ -21,6 +21,10 @@ export default async function SettingPage({ params: { id } }: Props) {
       image: true,
       name: true,
       email: true,
+      bio: true,
+      skills: true,
+      location: true,
+      experience: true,
     },
   });
 

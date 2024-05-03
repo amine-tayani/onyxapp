@@ -3,7 +3,7 @@ import { AppearanceForm } from './appearance-form';
 
 export default function PreferencesPage() {
   return (
-    <div className='space-y-6'>
+    <div className='mt-20 space-y-6'>
       <div>
         <h3 className='text-lg font-semibold tracking-wide'>Display</h3>
         <p className='text-sm text-muted-foreground'>

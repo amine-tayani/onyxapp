@@ -23,6 +23,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Skeleton } from '@/components/ui/skeleton';
 import { profileFormSchema } from './profile-form-schema';
 import { PlusIcon, Upload, X } from 'lucide-react';
+import Image from 'next/image';
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
@@ -130,7 +131,26 @@ export function ProfileForm({ user }: UserProfileProps) {
               )}
             />
           </div>
-          {/* show x delete button only when we have image in db otherwise hide it */}
+          {/* show x delete button only when there image in db otherwise hide it */}
+        </div>
+
+        {/* render banner image here */}
+
+        <div className='mb-4'>
+          <Label className='text-neutral-300'>Banner Image</Label>
+
+          {/* show either the banner from the database or the placeholder */}
+          <div className='relative mt-2 h-[140px] w-full bg-hero'>
+            {preview && (
+              <Image
+                height={120}
+                src={preview}
+                alt='banner'
+                className='object-cover object-center'
+                width={1000}
+              />
+            )}
+          </div>
         </div>
 
         <div className='grid grid-cols-2 gap-x-3'>
