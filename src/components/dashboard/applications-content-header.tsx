@@ -3,16 +3,12 @@ import { buttonVariants } from '../ui/button';
 import { cn } from '@/lib/cn';
 import Link from 'next/link';
 import { Icons } from '../ui/icons';
+import { TableIcon } from 'lucide-react';
 
 export function ApplicationsContentHeader() {
   return (
-    <div className='mt-2 flex items-center justify-between'>
-      <div>
-        <h2 className='text-3xl font-bold tracking-tight'>
-          Jobs you applied to
-        </h2>
-      </div>
-      <div className='flex items-center gap-x-4'>
+    <div className='mt-2 flex items-center justify-end'>
+      <div className='flex items-center gap-x-4 '>
         <Link
           href='/dashboard'
           className={cn(
@@ -22,7 +18,7 @@ export function ApplicationsContentHeader() {
           )}
         >
           <Icons.gridIcon className='h-5 w-5' />
-          <span className='ml-2'>Grid</span>
+          <span className='ml-2 hidden md:inline'>Grid</span>
         </Link>
         <Link
           href='/dashboard?mode=table'
@@ -32,8 +28,8 @@ export function ApplicationsContentHeader() {
             })
           )}
         >
-          <Icons.tableIcon className='h-5 w-5' />
-          <span className='ml-2 '>Table</span>
+          <TableIcon strokeWidth={1} className='h-5 w-5' />
+          <span className='ml-2 hidden md:inline'>Table</span>
         </Link>
         <CreateAppButton />
       </div>

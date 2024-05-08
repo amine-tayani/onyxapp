@@ -15,7 +15,7 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import { CalendarIcon } from 'lucide-react';
+import { CalendarIcon, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
@@ -42,18 +42,19 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
+import Editor from '@/components/editor/rich-editor';
 import { Calendar } from '@/components/ui/calendar';
 import { createApplication } from './_actions';
 import { Spinner } from '@/components/ui/spinner';
-import Editor from '@/components/editor/rich-editor';
+
+const status = ['APPLIED', 'INTERVIEW', 'REJECTED', 'OFFER', 'CLOSED'];
+const today = new Date();
 
 export function CreateAppButton() {
-  const router = useRouter();
-  const [loading, setLoading] = React.useState(false);
-  const { toast } = useToast();
   const [dialogOpen, setDialogOpen] = React.useState(false);
-  const status = ['APPLIED', 'INTERVIEW', 'REJECTED', 'OFFER', 'CLOSED'];
-  const today = new Date();
+  const [loading, setLoading] = React.useState(false);
+  const router = useRouter();
+  const { toast } = useToast();
 
   const form = useForm<CreateOrUpdateApplicationSchema>({
     resolver: zodResolver(createOrUpdateApplicationSchema),
@@ -93,6 +94,7 @@ export function CreateAppButton() {
             className='bg-hero hover:bg-purple-800'
             onClick={() => setDialogOpen(!dialogOpen)}
           >
+            <Plus className='block h-5 w-5 md:hidden' />
             <span className='hidden md:block'>Add Application</span>
           </Button>
         </DialogTrigger>
