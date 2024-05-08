@@ -49,7 +49,7 @@ export function LoginAccountForm({ className, ...props }: UserAuthFormProps) {
       if (res?.error)
         toast({
           variant: 'destructive',
-          description: await res.error,
+          description: 'Oh no! Something went wrong.',
         });
       router.push(callbackUrl);
     } catch (err) {

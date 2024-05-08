@@ -13,13 +13,13 @@ export default async function SettingsLayout({
 }) {
   return (
     <div className=''>
-      <div className='container flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10'>
-        <aside className='h-[calcfull fixed top-14 z-30 -ml-2 hidden shrink-0 md:sticky md:block'>
-          <div className='h-full py-6 pr-6 lg:py-8'>
+      <div className='space-y-6 p-10 pb-16 md:block lg:px-12'>
+        <div className='flex flex-col space-y-8 lg:flex-row lg:space-x-12 lg:space-y-0'>
+          <aside className='fixed top-14 z-30 -ml-2 hidden h-full shrink-0 md:sticky md:block'>
             <SidebarNav />
-          </div>
-        </aside>
-        <div className='flex-1 lg:max-w-3xl '>{children}</div>
+          </aside>
+          <div className='flex-1 lg:max-w-3xl '>{children}</div>
+        </div>
       </div>
     </div>
   );

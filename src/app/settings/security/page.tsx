@@ -3,7 +3,7 @@ import { SecurityForm } from './security-form';
 
 export default function SecurityPage() {
   return (
-    <div className='mt-20 space-y-6'>
+    <div className='space-y-6'>
       <div className='ml-4'>
         <h3 className='text-lg font-semibold tracking-wide'>
           Security & Access
