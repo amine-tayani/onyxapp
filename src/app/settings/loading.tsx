@@ -1,8 +1,8 @@
 import { Skeleton } from '@/components/ui/skeleton';
 
-export default function Loading() {
+export default function SettingsLoadingSkeleton() {
   return (
-    <div className='mt-20'>
+    <div>
       <div className='mt-4 flex flex-col gap-6'>
         <div className='flex items-center space-x-4'>
           <Skeleton className='h-14 w-14 rounded-full bg-muted' />
