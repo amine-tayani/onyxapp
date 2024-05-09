@@ -41,7 +41,7 @@ export function SidebarNav({ className, ...props }: SidebarNavProps) {
   ];
 
   return (
-    <aside className='-mx-4 lg:w-64'>
+    <aside className='fixed inset-y-10 right-auto z-20 hidden overflow-y-auto pb-10 pl-4 pr-6 lg:block lg:w-64'>
       <div className='flex items-center space-x-2'>
         <UserNav align='start' />
         <h1 className='font-display text-sm font-semibold text-primary/80'>
