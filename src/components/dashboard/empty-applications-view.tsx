@@ -10,7 +10,7 @@ export function EmptyApplicationsView() {
           <Image
             width={300}
             height={172}
-            src='/empty/empty-applications.svg'
+            src='/mockup/browser.svg'
             className='block h-[140px] w-full rounded-xl object-contain object-center md:h-[262px]'
             alt=''
           />
