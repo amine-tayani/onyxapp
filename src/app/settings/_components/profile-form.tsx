@@ -22,13 +22,14 @@ import { Label } from '@/components/ui/label';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Skeleton } from '@/components/ui/skeleton';
 import { profileFormSchema } from './profile-form-schema';
-import { PlusIcon, Upload, X } from 'lucide-react';
+import { ImagePlus, PlusIcon, Upload, X } from 'lucide-react';
 import Image from 'next/image';
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
 export function ProfileForm({ user }: UserProfileProps) {
-  const [preview, setPreview] = React.useState('');
+  const [avatarPreview, setAvatarPreview] = React.useState('');
+  const [bannerPreview, setBannerPreview] = React.useState('');
 
   function getImageData(event: React.ChangeEvent<HTMLInputElement>) {
     const dataTransfer = new DataTransfer();
@@ -49,6 +50,7 @@ export function ProfileForm({ user }: UserProfileProps) {
     bio: user.bio || '',
     urls: [{ value: '' }],
     media: undefined,
+    banner: undefined,
   };
 
   const form = useForm<ProfileFormValues>({
@@ -78,8 +80,8 @@ export function ProfileForm({ user }: UserProfileProps) {
             <Avatar>
               <AvatarImage
                 src={
-                  preview
-                    ? preview
+                  avatarPreview
+                    ? avatarPreview
                     : 'https://avatars.githubusercontent.com/u/104228?v=4'
                 }
                 alt='avatar'
@@ -95,7 +97,6 @@ export function ProfileForm({ user }: UserProfileProps) {
               name='media'
               render={({ field }) => (
                 <FormItem>
-                  <Label className='text-neutral-300'>Profile picture</Label>
                   <FormControl>
                     <div className='flex space-x-4'>
                       <Button type='button' size='sm'>
@@ -107,7 +108,7 @@ export function ProfileForm({ user }: UserProfileProps) {
                           disabled={form.formState.isLoading}
                           onChange={(e) => {
                             const { files, displayUrl } = getImageData(e);
-                            setPreview(displayUrl);
+                            setAvatarPreview(displayUrl);
                             field.onChange(files);
                             toast({
                               variant: 'mytheme',
@@ -131,25 +132,59 @@ export function ProfileForm({ user }: UserProfileProps) {
               )}
             />
           </div>
-          {/* show x delete button only when there image in db otherwise hide it */}
         </div>
 
-        {/* render banner image here */}
-
-        <div className='mb-4'>
-          <Label className='text-neutral-300'>Banner Image</Label>
-
-          {/* show either the banner from the database or the placeholder */}
-          <div className='relative mt-2 h-[140px] w-full bg-hero'>
-            {preview && (
-              <Image
-                height={120}
-                src={preview}
-                alt='banner'
-                className='object-cover object-center'
-                width={1000}
-              />
-            )}
+        <div className='flex flex-col items-center justify-center space-y-4'>
+          <div className='group relative w-full'>
+            <div className='mt-2 h-[140px] rounded-lg bg-hero'>
+              {bannerPreview && (
+                <Image
+                  height={400}
+                  src={bannerPreview}
+                  alt='banner'
+                  className='h-[140px] w-full rounded-lg object-cover object-center'
+                  width={1000}
+                />
+              )}
+            </div>
+            <FormField
+              control={form.control}
+              name='banner'
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <div className='flex space-x-4'>
+                      <Input
+                        type='file'
+                        className='hidden'
+                        id='bannerInput'
+                        name={field.name}
+                        disabled={form.formState.isLoading}
+                        onChange={(e) => {
+                          const { files, displayUrl } = getImageData(e);
+                          setBannerPreview(displayUrl);
+                          field.onChange(files);
+                          toast({
+                            variant: 'mytheme',
+                            description: 'Uploading profile banner...',
+                          });
+                        }}
+                        ref={field.ref}
+                      />
+                      <div className='absolute inset-0 flex items-center justify-center opacity-0 transition-opacity group-hover:opacity-100'>
+                        <Label
+                          className='inline-flex cursor-pointer items-center justify-center rounded-full bg-muted p-4 text-muted-foreground/40 transition-all focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50'
+                          htmlFor='bannerInput'
+                        >
+                          <ImagePlus className='h-6 w-6' />
+                        </Label>
+                      </div>
+                    </div>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
           </div>
         </div>
 
