@@ -15,22 +15,21 @@ import { XIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Spinner } from '@/components/ui/spinner';
 import { useToast } from '@/components/toast/use-toast';
-import type { Application } from '@/lib/db/types';
 import { deleteApplication } from './_actions';
 
 interface Props {
-  application: Application;
+  applicationId: string;
 }
 
-export function DeleteApplicationButton({ application }: Props) {
+export function DeleteApplicationButton({ applicationId }: Props) {
+  const [loading, setLoading] = React.useState(false);
   const [dialogOpen, setDialogOpen] = React.useState(false);
   const router = useRouter();
-  const [loading, setLoading] = React.useState(false);
   const { toast } = useToast();
 
   const handleDeleteApplication = async () => {
     try {
-      await deleteApplication(application);
+      await deleteApplication(applicationId);
       setLoading(true);
       toast({
         variant: 'mytheme',

@@ -4,7 +4,6 @@ import { getServerSession } from 'next-auth';
 import { CreateOrUpdateApplicationSchema } from './zod-schema';
 import { authOptions } from '@/lib/nextauth';
 import prisma from '@/lib/db/prisma';
-import type { Application } from '@/lib/db/types';
 
 export async function createApplication(data: CreateOrUpdateApplicationSchema) {
   const session = await getServerSession(authOptions);
@@ -52,7 +51,7 @@ export async function updateApplication(
   });
 }
 
-export async function deleteApplication(applicationToDelete: Application) {
+export async function deleteApplication(applicationId: string) {
   const session = await getServerSession(authOptions);
 
   if (!session || !session.user) {
@@ -61,7 +60,7 @@ export async function deleteApplication(applicationToDelete: Application) {
 
   const application = await prisma.application.findFirstOrThrow({
     where: {
-      id: applicationToDelete.id,
+      id: applicationId,
     },
   });
 
@@ -70,6 +69,6 @@ export async function deleteApplication(applicationToDelete: Application) {
   }
 
   await prisma.application.delete({
-    where: { id: applicationToDelete.id },
+    where: { id: applicationId },
   });
 }
