@@ -1,11 +1,16 @@
 'use client';
 
+import * as React from 'react';
 import { EmptyPlaceholder } from '@/components/ui/empty-placeholder';
 import { Application } from '@/lib/db/types';
-import { EditApplicationButton } from '@/components/dashboard/applications/edit-application-button';
+import { EditApplicationModal } from '@/components/dashboard/applications/edit-application-modal';
 import { DescriptionViewer } from '@/components/editor/description-viewer';
+import { Button } from '@/components/ui/button';
+import { Pencil } from 'lucide-react';
 
 export function ApplicationView({ application }: { application: Application }) {
+  const [isDialogOpen, setIsDialogOpen] = React.useState(false);
+
   if (!application) {
     return (
       <div className='col-span-4 flex h-full flex-col'>
@@ -38,7 +43,20 @@ export function ApplicationView({ application }: { application: Application }) {
             </p>
           </div>
           <div className='text-sm text-primary/80'>
-            <EditApplicationButton application={application} />
+            <Button
+              onClick={() => {
+                setIsDialogOpen(true);
+              }}
+              className='text-neutral-300 outline-none hover:text-primary focus-visible:ring-inset'
+            >
+              <Pencil className='mr-2 h-5 w-5' />
+              <span>Edit</span>
+            </Button>
+            <EditApplicationModal
+              isEditApplicationModalOpen={isDialogOpen}
+              setIsEditApplicationModalOpen={setIsDialogOpen}
+              application={application}
+            />
           </div>
         </div>
 

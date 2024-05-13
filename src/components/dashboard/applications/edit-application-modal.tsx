@@ -15,13 +15,12 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import { CalendarIcon, Pencil } from 'lucide-react';
+import { CalendarIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
   Dialog,
   DialogContent,
-  DialogTrigger,
   DialogFooter,
   DialogTitle,
   DialogHeader,
@@ -48,15 +47,21 @@ import { Spinner } from '@/components/ui/spinner';
 import Editor from '@/components/editor/rich-editor';
 import type { Application } from '@/lib/db/types';
 
-interface Props {
+interface EditApplicationModalProps {
   application: Application;
+  isEditApplicationModalOpen?: boolean;
+  // eslint-disable-next-line no-unused-vars
+  setIsEditApplicationModalOpen: (o: boolean) => void;
 }
 
-export function EditApplicationButton({ application }: Props) {
+export function EditApplicationModal({
+  application,
+  isEditApplicationModalOpen,
+  setIsEditApplicationModalOpen,
+}: EditApplicationModalProps) {
   const router = useRouter();
   const { id } = useParams();
   const [loading, setLoading] = React.useState(false);
-  const [dialogOpen, setDialogOpen] = React.useState(false);
   const { toast } = useToast();
   const status = ['APPLIED', 'INTERVIEW', 'REJECTED', 'OFFER', 'CLOSED'];
   const today = new Date();
@@ -91,24 +96,16 @@ export function EditApplicationButton({ application }: Props) {
       });
     } finally {
       setLoading(false);
-      setDialogOpen(false);
+      setIsEditApplicationModalOpen(false);
     }
   }
 
   return (
     <>
-      <Dialog open={dialogOpen} onOpenChange={(o) => setDialogOpen(o)}>
-        <DialogTrigger asChild>
-          <Button
-            onClick={() => {
-              setDialogOpen(!dialogOpen);
-            }}
-            className='text-neutral-300 outline-none hover:text-primary focus-visible:ring-inset'
-          >
-            <Pencil className='mr-2 h-5 w-5' />
-            <span>Edit</span>
-          </Button>
-        </DialogTrigger>
+      <Dialog
+        open={isEditApplicationModalOpen}
+        onOpenChange={(o) => setIsEditApplicationModalOpen(o)}
+      >
         <DialogContent
           onInteractOutside={(e) => {
             e.preventDefault();
@@ -303,13 +300,9 @@ export function EditApplicationButton({ application }: Props) {
               <DialogFooter className='flex-row items-center justify-end gap-1 pt-4 '>
                 <Button
                   type='button'
-                  onClick={() => {
-                    form.clearErrors();
-                    form.reset();
-                    setDialogOpen(false);
-                  }}
+                  onClick={() => setIsEditApplicationModalOpen(false)}
                 >
-                  Clear
+                  Cancel
                 </Button>
                 <Button
                   disabled={form.formState.isSubmitting || loading}
