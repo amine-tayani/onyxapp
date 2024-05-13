@@ -50,7 +50,11 @@ export function CellAction({ data }: CellActionProps) {
         >
           View
         </DropdownMenuItem>
-        <DropdownMenuItem>Edit</DropdownMenuItem>
+        <DropdownMenuItem>
+          Edit
+          <DropdownMenuShortcut>⌘E</DropdownMenuShortcut>
+        </DropdownMenuItem>
+
         <DropdownMenuSeparator />
         <DropdownMenuItem>
           Delete

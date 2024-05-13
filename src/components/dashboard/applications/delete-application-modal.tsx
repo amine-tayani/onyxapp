@@ -5,27 +5,31 @@ import { useRouter } from 'next/navigation';
 import {
   Dialog,
   DialogContent,
-  DialogTrigger,
   DialogFooter,
   DialogTitle,
   DialogHeader,
   DialogDescription,
 } from '@/components/ui/dialog';
-import { XIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Spinner } from '@/components/ui/spinner';
 import { useToast } from '@/components/toast/use-toast';
 import { deleteApplication } from './_actions';
 
-interface Props {
+interface DeleteApplicationDialogProps {
   applicationId: string;
+  isDeleteApplicationDialogOpen?: boolean;
+  // eslint-disable-next-line no-unused-vars
+  setDeleteApplicationDialogOpen: (o: boolean) => void;
 }
 
-export function DeleteApplicationButton({ applicationId }: Props) {
-  const [loading, setLoading] = React.useState(false);
-  const [dialogOpen, setDialogOpen] = React.useState(false);
+export function DeleteApplicationModal({
+  applicationId,
+  setDeleteApplicationDialogOpen,
+  isDeleteApplicationDialogOpen,
+}: DeleteApplicationDialogProps) {
   const router = useRouter();
   const { toast } = useToast();
+  const [loading, setLoading] = React.useState(false);
 
   const handleDeleteApplication = async () => {
     try {
@@ -46,27 +50,13 @@ export function DeleteApplicationButton({ applicationId }: Props) {
       });
     } finally {
       setLoading(false);
-      setDialogOpen(false);
+      setDeleteApplicationDialogOpen(false);
     }
   };
 
   return (
     <>
-      <Dialog open={dialogOpen} onOpenChange={(o) => setDialogOpen(o)}>
-        <DialogTrigger asChild>
-          <Button
-            onClick={() => {
-              setDialogOpen(!dialogOpen);
-            }}
-            size='icon'
-            variant='link'
-            className='group h-5 w-5 outline-none focus-visible:ring-inset'
-          >
-            <XIcon className='h-5 w-5 text-muted-foreground/80 hover:text-primary' />
-            <span className='sr-only'>Delete</span>
-          </Button>
-        </DialogTrigger>
-
+      <Dialog open={isDeleteApplicationDialogOpen}>
         <DialogContent
           onInteractOutside={(e) => {
             e.preventDefault();
@@ -86,9 +76,7 @@ export function DeleteApplicationButton({ applicationId }: Props) {
           <DialogFooter className='flex-row items-center justify-end gap-1 pt-4 '>
             <Button
               type='button'
-              onClick={() => {
-                setDialogOpen(false);
-              }}
+              onClick={() => setDeleteApplicationDialogOpen(false)}
             >
               Cancel
             </Button>
