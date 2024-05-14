@@ -135,14 +135,14 @@ export function ProfileForm({ user }: UserProfileProps) {
         </div>
 
         <div className='flex flex-col items-center justify-center space-y-4'>
-          <div className='group relative w-full'>
+          <div className='group relative w-full '>
             <div className='mt-2 h-[140px] rounded-lg bg-hero'>
               {bannerPreview && (
                 <Image
                   height={400}
                   src={bannerPreview}
                   alt='banner'
-                  className='h-[140px] w-full rounded-lg object-cover object-center'
+                  className='h-[140px] w-full rounded-lg object-cover object-center group-hover:blur-sm '
                   width={1000}
                 />
               )}
@@ -173,7 +173,7 @@ export function ProfileForm({ user }: UserProfileProps) {
                       />
                       <div className='absolute inset-0 flex items-center justify-center opacity-0 transition-opacity group-hover:opacity-100'>
                         <Label
-                          className='inline-flex cursor-pointer items-center justify-center rounded-full bg-muted p-4 text-muted-foreground/40 transition-all focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50'
+                          className='inline-flex cursor-pointer items-center justify-center rounded-full bg-neutral-800 p-4 text-primary transition-all focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50'
                           htmlFor='bannerInput'
                         >
                           <ImagePlus className='h-6 w-6' />
@@ -256,7 +256,9 @@ export function ProfileForm({ user }: UserProfileProps) {
                     URLs
                   </Label>
                   <FormDescription className={cn(index !== 0 && 'sr-only')}>
-                    Add links to your website, blog, or social media profiles.
+                    {fields.length > 2
+                      ? 'Only 3 social links are allowed.'
+                      : 'Add links to your website, blog, or social media profiles.'}
                   </FormDescription>
                   <div className='flex items-center space-x-2'>
                     <FormControl>
@@ -290,6 +292,7 @@ export function ProfileForm({ user }: UserProfileProps) {
             size='sm'
             className='absolute right-0 top-0 text-neutral-300'
             onClick={() => append({ value: '' })}
+            disabled={fields.length === 3}
           >
             <PlusIcon className='mr-2 h-4 w-4' />
             Add URL
