@@ -16,7 +16,7 @@ export function ApplicationCard({ application }: Props) {
   const [isDialogOpen, setIsDialogOpen] = React.useState(false);
 
   return (
-    <Card className='group w-[360px] space-y-1 rounded-xl shadow-lg'>
+    <Card className='group w-[360px] space-y-1 rounded-xl bg-gradient-to-r from-[#232526] to-[#2e2e2e] shadow-lg'>
       <CardHeader className='flex space-y-0 pb-0'>
         <CardTitle className='font- text-sm font-medium text-muted-foreground '>
           <div className='flex items-center justify-between'>
