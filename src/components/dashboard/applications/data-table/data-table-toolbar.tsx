@@ -9,6 +9,7 @@ import { DataTableViewOptions } from './data-table-view-options';
 
 import { statuses } from './data/data';
 import { DataTableFacetedFilter } from './data-table-faceted-filter';
+import { DataTableSortItems } from '././data-table-sort-items';
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>;
@@ -49,7 +50,10 @@ export function DataTableToolbar<TData>({
           </Button>
         )}
       </div>
-      <DataTableViewOptions table={table} />
+      <div className='flex items-center space-x-2'>
+        <DataTableSortItems table={table} />
+        <DataTableViewOptions table={table} />
+      </div>
     </div>
   );
 }

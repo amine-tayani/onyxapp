@@ -2,12 +2,11 @@
 
 import { ColumnDef } from '@tanstack/react-table';
 import { Checkbox } from '@/components/ui/checkbox';
-import { Application } from './data/schema';
 import { DataTableColumnHeader } from './data-table-column-header';
 import { CellAction } from './cell-action';
 import { getRelativeTime } from '@/utils/time';
 import { StatusBadge } from '@/components/ui/status-badge';
-import { ApplicationStatus } from '@/lib/db/types';
+import type { ApplicationStatus, Application } from '@/lib/db/types';
 
 export const columns: ColumnDef<Application>[] = [
   {
@@ -42,6 +41,7 @@ export const columns: ColumnDef<Application>[] = [
       <DataTableColumnHeader column={column} title='Title' />
     ),
     cell: ({ row }) => <div>{row.getValue('title')}</div>,
+    enableSorting: false,
     enableHiding: false,
   },
   {
@@ -66,6 +66,7 @@ export const columns: ColumnDef<Application>[] = [
       <DataTableColumnHeader column={column} title='Posted' />
     ),
     cell: ({ row }) => <div>{getRelativeTime(row.getValue('datePosted'))}</div>,
+    enableSorting: false,
   },
   {
     accessorKey: 'status',
@@ -84,6 +85,7 @@ export const columns: ColumnDef<Application>[] = [
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id));
     },
+    enableSorting: false,
   },
 
   {
