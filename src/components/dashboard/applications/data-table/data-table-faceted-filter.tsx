@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CheckIcon, SlidersHorizontal } from 'lucide-react';
+import { CheckIcon } from 'lucide-react';
 import { Column } from '@tanstack/react-table';
 
 import { cn } from '@/lib/cn';
@@ -20,6 +20,7 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 import { Separator } from '@/components/ui/separator';
+import { Icons } from '@/components/ui/icons';
 
 interface DataTableFacetedFilterProps<TData, TValue> {
   column?: Column<TData, TValue>;
@@ -43,7 +44,7 @@ export function DataTableFacetedFilter<TData, TValue>({
     <Popover>
       <PopoverTrigger asChild>
         <Button size='sm' className='group h-8 text-muted-foreground/80'>
-          <SlidersHorizontal className='mr-2 h-5 w-5' />
+          <Icons.filterIcon className='mr-2 h-5 w-5' />
           {title}
           {selectedValues?.size > 0 && (
             <>
