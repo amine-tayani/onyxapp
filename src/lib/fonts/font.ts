@@ -10,6 +10,6 @@ export const satoshi = localFont({
 });
 
 export const inter = Inter({
-  variable: '--font-inter',
   subsets: ['latin'],
+  variable: '--font-inter',
 });

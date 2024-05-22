@@ -1,11 +1,10 @@
 import type { Metadata } from 'next';
 import { satoshi, inter } from '@/lib/fonts/font';
-
-import './globals.css';
 import { NextAuthProvider } from '@/components/auth/providers';
 import { Toaster } from '@/components/toast/toaster';
 import { siteConfig } from '@/config/site';
 import { cn } from '@/lib/cn';
+import './globals.css';
 
 export const metadata: Metadata = {
   title: 'Onyx - Manage your job applications',
@@ -18,7 +17,14 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang='en' className={cn(satoshi.variable, inter.variable)}>
+    <html
+      lang='en'
+      className={cn(
+        ' font-inter antialiased',
+        satoshi.variable,
+        inter.variable
+      )}
+    >
       <body>
         <Toaster />
         <NextAuthProvider>{children}</NextAuthProvider>
