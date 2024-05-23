@@ -24,12 +24,28 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { profileFormSchema } from './profile-form-schema';
 import { ImagePlus, PlusIcon, Upload, X } from 'lucide-react';
 import Image from 'next/image';
+// import { useUploadThing } from '@/utils/useUploadthing';
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
 export function ProfileForm({ user }: UserProfileProps) {
   const [avatarPreview, setAvatarPreview] = React.useState('');
   const [bannerPreview, setBannerPreview] = React.useState('');
+
+  // const [avatarFile, setAvatarFile] = React.useState<File>();
+  // const [bannerFile, setBannerFile] = React.useState<File>();
+
+  // const { startUpload } = useUploadThing('imageUploader', {
+  //   onClientUploadComplete: () => {
+  //     alert('uploaded successfully!');
+  //   },
+  //   onUploadError: () => {
+  //     alert('error occurred while uploading');
+  //   },
+  //   onUploadBegin: () => {
+  //     alert('upload has begun');
+  //   },
+  // });
 
   function getImageData(event: React.ChangeEvent<HTMLInputElement>) {
     const dataTransfer = new DataTransfer();
@@ -64,7 +80,8 @@ export function ProfileForm({ user }: UserProfileProps) {
     control: form.control,
   });
 
-  function onSubmit(data: ProfileFormValues) {
+  async function onSubmit(data: ProfileFormValues) {
+    // const uploadResult = await startUpload(files);
     toast({
       variant: 'mytheme',
       title: 'You submitted the following values:',
@@ -108,6 +125,7 @@ export function ProfileForm({ user }: UserProfileProps) {
                           disabled={form.formState.isLoading}
                           onChange={(e) => {
                             const { files, displayUrl } = getImageData(e);
+                            // setAvatarFile(files[0]);
                             setAvatarPreview(displayUrl);
                             field.onChange(files);
                             toast({
@@ -162,6 +180,7 @@ export function ProfileForm({ user }: UserProfileProps) {
                         disabled={form.formState.isLoading}
                         onChange={(e) => {
                           const { files, displayUrl } = getImageData(e);
+                          // setBannerFile(files[0]);
                           setBannerPreview(displayUrl);
                           field.onChange(files);
                           toast({
