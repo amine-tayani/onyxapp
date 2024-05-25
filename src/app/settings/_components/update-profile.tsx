@@ -28,7 +28,7 @@ import Image from 'next/image';
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
-export function ProfileForm({ user }: UserProfileProps) {
+export function UpdateProfileForm({ user }: UserProfileProps) {
   const [avatarPreview, setAvatarPreview] = React.useState('');
   const [bannerPreview, setBannerPreview] = React.useState('');
 

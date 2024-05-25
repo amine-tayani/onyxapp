@@ -1,7 +1,7 @@
 'use client';
 
 import { Separator } from '@/components/ui/separator';
-import { ProfileForm } from './profile-form';
+import { UpdateProfileForm } from './update-profile';
 import { UserProfileProps } from '@/types/user';
 
 export default function UserSettings({ user }: UserProfileProps) {
@@ -14,7 +14,7 @@ export default function UserSettings({ user }: UserProfileProps) {
         </p>
       </div>
       <Separator />
-      <ProfileForm user={user} />
+      <UpdateProfileForm user={user} />
     </div>
   );
 }
