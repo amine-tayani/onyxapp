@@ -5,7 +5,7 @@ import { Toaster } from '@/components/toast/toaster';
 import { siteConfig } from '@/config/site';
 import { cn } from '@/lib/cn';
 import './globals.css';
-import '@uploadthing/react/styles.css';
+// import '@uploadthing/react/styles.css';
 
 export const metadata: Metadata = {
   title: 'Onyx - Manage your job applications',
