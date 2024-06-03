@@ -43,7 +43,8 @@ export const authOptions: NextAuthOptions = {
             name: true,
             email: true,
             hashedPassword: true,
-            image: true,
+            avatar: true,
+            banner: true,
             emailVerified: true,
           },
         });
@@ -60,13 +61,14 @@ export const authOptions: NextAuthOptions = {
           throw new Error('Password you have provided is incorrect.');
         }
 
-        const { id, email, name, image, emailVerified } = user;
+        const { id, email, name, avatar, banner, emailVerified } = user;
 
         return {
           id,
           email,
           name,
-          image,
+          avatar,
+          banner,
           emailVerified,
         };
       },

@@ -27,7 +27,7 @@ export const profileFormSchema = z.object({
       })
     )
     .optional(),
-  media: z
+  avatar: z
     .any()
     .refine((files) => {
       return files?.[0]?.size <= MAX_FILE_SIZE;

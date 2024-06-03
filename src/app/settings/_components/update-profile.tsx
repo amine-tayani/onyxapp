@@ -2,8 +2,10 @@
 
 import * as React from 'react';
 import * as z from 'zod';
+import Image from 'next/image';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useFieldArray, useForm } from 'react-hook-form';
+import { ImagePlus, PlusIcon, Upload, X } from 'lucide-react';
 import { UserProfileProps } from '@/types/user';
 import { cn } from '@/lib/cn';
 import { Button } from '@/components/ui/button';
@@ -22,9 +24,7 @@ import { Label } from '@/components/ui/label';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Skeleton } from '@/components/ui/skeleton';
 import { profileFormSchema } from './profile-form-schema';
-import { ImagePlus, PlusIcon, Upload, X } from 'lucide-react';
-import Image from 'next/image';
-// import { useUploadThing } from '@/utils/useUploadthing';
+import { useUploadThing } from '@/utils/useUploadthing';
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
@@ -32,20 +32,32 @@ export function UpdateProfileForm({ user }: UserProfileProps) {
   const [avatarPreview, setAvatarPreview] = React.useState('');
   const [bannerPreview, setBannerPreview] = React.useState('');
 
-  // const [avatarFile, setAvatarFile] = React.useState<File>();
-  // const [bannerFile, setBannerFile] = React.useState<File>();
+  const [files, setFiles] = React.useState<File[]>([]);
 
-  // const { startUpload } = useUploadThing('imageUploader', {
-  //   onClientUploadComplete: () => {
-  //     alert('uploaded successfully!');
-  //   },
-  //   onUploadError: () => {
-  //     alert('error occurred while uploading');
-  //   },
-  //   onUploadBegin: () => {
-  //     alert('upload has begun');
-  //   },
-  // });
+  console.log(files);
+
+  const { startUpload: startAvatarUpload } = useUploadThing(
+    'avatarImageUploader',
+    {
+      onUploadError: () => {
+        toast({
+          variant: 'destructive',
+          description: 'Error occurred while uploading avatar',
+        });
+      },
+    }
+  );
+  const { startUpload: startBannerUpload } = useUploadThing(
+    'bannerImageUploader',
+    {
+      onUploadError: () => {
+        toast({
+          variant: 'destructive',
+          description: 'Error occurred while uploading the banner',
+        });
+      },
+    }
+  );
 
   function getImageData(event: React.ChangeEvent<HTMLInputElement>) {
     const dataTransfer = new DataTransfer();
@@ -55,6 +67,7 @@ export function UpdateProfileForm({ user }: UserProfileProps) {
     );
 
     const files = dataTransfer.files;
+    setFiles(Array.from(files));
     const displayUrl = URL.createObjectURL(event.target.files![0]);
 
     return { files, displayUrl };
@@ -65,8 +78,8 @@ export function UpdateProfileForm({ user }: UserProfileProps) {
     email: user.email || '',
     bio: user.bio || '',
     urls: [{ value: '' }],
-    media: undefined,
-    banner: undefined,
+    avatar: user.avatar || '',
+    banner: user.banner || '',
   };
 
   const form = useForm<ProfileFormValues>({
@@ -81,7 +94,11 @@ export function UpdateProfileForm({ user }: UserProfileProps) {
   });
 
   async function onSubmit(data: ProfileFormValues) {
-    // const uploadResult = await startUpload(files);
+    const avatarUploadResponse = await startAvatarUpload(data.avatar);
+    const bannerUploadResponse = await startBannerUpload(data.banner);
+
+    console.log(avatarUploadResponse, bannerUploadResponse);
+
     toast({
       variant: 'mytheme',
       title: 'You submitted the following values:',
@@ -111,7 +128,7 @@ export function UpdateProfileForm({ user }: UserProfileProps) {
             </Avatar>
             <FormField
               control={form.control}
-              name='media'
+              name='avatar'
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
@@ -125,13 +142,8 @@ export function UpdateProfileForm({ user }: UserProfileProps) {
                           disabled={form.formState.isLoading}
                           onChange={(e) => {
                             const { files, displayUrl } = getImageData(e);
-                            // setAvatarFile(files[0]);
                             setAvatarPreview(displayUrl);
                             field.onChange(files);
-                            toast({
-                              variant: 'mytheme',
-                              description: 'Uploading Picture...',
-                            });
                           }}
                           ref={field.ref}
                         />
@@ -180,13 +192,8 @@ export function UpdateProfileForm({ user }: UserProfileProps) {
                         disabled={form.formState.isLoading}
                         onChange={(e) => {
                           const { files, displayUrl } = getImageData(e);
-                          // setBannerFile(files[0]);
                           setBannerPreview(displayUrl);
                           field.onChange(files);
-                          toast({
-                            variant: 'mytheme',
-                            description: 'Uploading profile banner...',
-                          });
                         }}
                         ref={field.ref}
                       />

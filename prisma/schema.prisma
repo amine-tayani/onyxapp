@@ -71,7 +71,8 @@ model User {
   emailVerified  DateTime?
   name           String?
   bio            String?       @default("") @db.VarChar(1000)
-  image          String?
+  avatar         String?
+  banner         String?
   location       String?
   experience     Int?
   skills         String[]
