@@ -1,6 +1,6 @@
 import { createUploadthing, type FileRouter } from 'uploadthing/next';
 import { getServerSession } from 'next-auth/next';
-import { authOptions } from '@/lib/nextauth';
+import { authOptions } from '@/lib/auth';
 import prisma from '@/lib/db/prisma';
 
 const f = createUploadthing({

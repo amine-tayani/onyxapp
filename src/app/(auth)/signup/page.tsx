@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { getServerSession } from 'next-auth/next';
-import { authOptions } from '@/lib/nextauth';
+import { authOptions } from '@/lib/auth';
 import { redirect } from 'next/navigation';
 import { CreateAccountForm } from '@/components/auth/signup/form';
 

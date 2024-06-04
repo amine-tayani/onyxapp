@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
-import { LoginAccountForm } from '@/components/auth/login/form';
-import { getServerSession } from 'next-auth/next';
-import { authOptions } from '@/lib/nextauth';
 import { redirect } from 'next/navigation';
+import { getServerSession } from 'next-auth/next';
+import { authOptions } from '@/lib/auth';
+import { LoginAccountForm } from '@/components/auth/login/form';
 
 export const metadata: Metadata = {
   title: 'Login | Onyx',

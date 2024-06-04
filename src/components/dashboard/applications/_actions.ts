@@ -2,7 +2,7 @@
 
 import { getServerSession } from 'next-auth';
 import { CreateOrUpdateApplicationSchema } from './zod-schema';
-import { authOptions } from '@/lib/nextauth';
+import { authOptions } from '@/lib/auth';
 import prisma from '@/lib/db/prisma';
 
 export async function createApplication(data: CreateOrUpdateApplicationSchema) {

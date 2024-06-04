@@ -32,9 +32,8 @@ export function UpdateProfileForm({ user }: UserProfileProps) {
   const [avatarPreview, setAvatarPreview] = React.useState('');
   const [bannerPreview, setBannerPreview] = React.useState('');
 
-  const [files, setFiles] = React.useState<File[]>([]);
-
-  console.log(files);
+  const [avatarFile, setAvatarFile] = React.useState<File | null>(null);
+  const [bannerFile, setBannerFile] = React.useState<File | null>(null);
 
   const { startUpload: startAvatarUpload } = useUploadThing(
     'avatarImageUploader',
@@ -67,7 +66,6 @@ export function UpdateProfileForm({ user }: UserProfileProps) {
     );
 
     const files = dataTransfer.files;
-    setFiles(Array.from(files));
     const displayUrl = URL.createObjectURL(event.target.files![0]);
 
     return { files, displayUrl };
@@ -94,10 +92,13 @@ export function UpdateProfileForm({ user }: UserProfileProps) {
   });
 
   async function onSubmit(data: ProfileFormValues) {
-    const avatarUploadResponse = await startAvatarUpload(data.avatar);
-    const bannerUploadResponse = await startBannerUpload(data.banner);
+    // @ts-ignore
+    const avatarUploadResponse = await startAvatarUpload(avatarFile!);
+    // @ts-ignore
+    const bannerUploadResponse = await startBannerUpload(bannerFile!);
 
-    console.log(avatarUploadResponse, bannerUploadResponse);
+    console.log(avatarUploadResponse);
+    console.log(bannerUploadResponse);
 
     toast({
       variant: 'mytheme',
@@ -142,6 +143,7 @@ export function UpdateProfileForm({ user }: UserProfileProps) {
                           disabled={form.formState.isLoading}
                           onChange={(e) => {
                             const { files, displayUrl } = getImageData(e);
+                            setAvatarFile(files[0]);
                             setAvatarPreview(displayUrl);
                             field.onChange(files);
                           }}
@@ -192,6 +194,7 @@ export function UpdateProfileForm({ user }: UserProfileProps) {
                         disabled={form.formState.isLoading}
                         onChange={(e) => {
                           const { files, displayUrl } = getImageData(e);
+                          setBannerFile(files[0]);
                           setBannerPreview(displayUrl);
                           field.onChange(files);
                         }}

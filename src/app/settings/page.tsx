@@ -18,7 +18,8 @@ export default async function SettingPage({ params: { id } }: Props) {
     select: {
       id: true,
       createdAt: true,
-      image: true,
+      avatar: true,
+      banner: true,
       name: true,
       email: true,
       bio: true,
