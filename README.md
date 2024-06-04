@@ -6,9 +6,9 @@
   <h3 align="center">Onyx.com (formerly Appeo)</h3>
 
   <p align="center">
-    The open-source Job Application Tracking app.
+    The ultimate job search management tool
     <br />
-    <a href="https://github.com/amine-tayani/onyxapp"><strong>Learn more »</strong></a>
+    <a href="https://github.com/amine-tayani/onyxapp"><strong>Check out Repo »</strong></a>
     <br />
     <br />
     <a href="https://github.com/amine-tayani/onyxapp">Discord</a>
@@ -20,7 +20,6 @@
     <a href="https://github.com/amine-tayani/onyxapp">Roadmap</a>
   </p>
 </p>
-
 
 ## About the Project
 
@@ -51,9 +50,7 @@ Onyx is a job search management tool that helps you organize and track your ever
 
 2. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-
 ## UI
-
 
 - **Dashboard Page** :
 
@@ -73,7 +70,7 @@ Onyx is a job search management tool that helps you organize and track your ever
 
 - **Theme settings** :
 
-  ![theme_settings](https://github.com/amine-tayani/onyxapp/blob/main/media/theme_settings.png)  
+  ![theme_settings](https://github.com/amine-tayani/onyxapp/blob/main/media/theme_settings.png)
 
 - **Notifications settings** :
 
