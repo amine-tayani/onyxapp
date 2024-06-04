@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 'use client';
 
 import * as React from 'react';
@@ -25,40 +27,20 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Skeleton } from '@/components/ui/skeleton';
 import { profileFormSchema } from './profile-form-schema';
 import { useUploadThing } from '@/utils/useUploadthing';
+import { set } from 'date-fns';
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
 export function UpdateProfileForm({ user }: UserProfileProps) {
   const [avatarPreview, setAvatarPreview] = React.useState('');
   const [bannerPreview, setBannerPreview] = React.useState('');
-
   const [avatarFile, setAvatarFile] = React.useState<File | null>(null);
   const [bannerFile, setBannerFile] = React.useState<File | null>(null);
 
-  const { startUpload: startAvatarUpload } = useUploadThing(
-    'avatarImageUploader',
-    {
-      onUploadError: () => {
-        toast({
-          variant: 'destructive',
-          description: 'Error occurred while uploading avatar',
-        });
-      },
-    }
-  );
-  const { startUpload: startBannerUpload } = useUploadThing(
-    'bannerImageUploader',
-    {
-      onUploadError: () => {
-        toast({
-          variant: 'destructive',
-          description: 'Error occurred while uploading the banner',
-        });
-      },
-    }
-  );
-
-  function getImageData(event: React.ChangeEvent<HTMLInputElement>) {
+  function getImageData(
+    event: React.ChangeEvent<HTMLInputElement>,
+    setPreview: (url: string) => void
+  ) {
     const dataTransfer = new DataTransfer();
 
     Array.from(event.target.files!).forEach((image) =>
@@ -68,8 +50,51 @@ export function UpdateProfileForm({ user }: UserProfileProps) {
     const files = dataTransfer.files;
     const displayUrl = URL.createObjectURL(event.target.files![0]);
 
-    return { files, displayUrl };
+    setPreview(displayUrl);
+
+    return files;
   }
+
+  const { startUpload: startAvatarUpload, isUploading: isAvatarUploading } =
+    useUploadThing('avatarImageUploader', {
+      onUploadProgress: (progress) => {
+        toast({
+          variant: 'mytheme',
+          title: 'Uploading avatar',
+          description: `${Math.round(progress * 100)}%`,
+        });
+      },
+      onUploadError: () => {
+        toast({
+          variant: 'destructive',
+          description: 'Error occurred while uploading the avatar',
+        });
+      },
+    });
+
+  const { startUpload: startBannerUpload, isUploading: isBannerUploading } =
+    useUploadThing('bannerImageUploader', {
+      onUploadBegin: () => {
+        toast({
+          variant: 'mytheme',
+          title: 'Uploading banner',
+          description: 'Please wait...',
+        });
+      },
+      onClientUploadComplete: () => {
+        toast({
+          variant: 'mytheme',
+          title: 'Uploaded banner',
+          description: 'Your banner has been uploaded successfully.',
+        });
+      },
+      onUploadError: () => {
+        toast({
+          variant: 'destructive',
+          description: 'Error occurred while uploading the banner',
+        });
+      },
+    });
 
   const defaultValues: Partial<ProfileFormValues> = {
     name: user.name || '',
@@ -92,14 +117,11 @@ export function UpdateProfileForm({ user }: UserProfileProps) {
   });
 
   async function onSubmit(data: ProfileFormValues) {
-    // @ts-ignore
-    const avatarUploadResponse = await startAvatarUpload(avatarFile!);
-    // @ts-ignore
-    const bannerUploadResponse = await startBannerUpload(bannerFile!);
+    const avatarUploadResult = await startAvatarUpload([avatarFile!]);
+    const bannerUploadResult = await startBannerUpload([bannerFile!]);
 
-    console.log(avatarUploadResponse);
-    console.log(bannerUploadResponse);
-
+    data.avatar = avatarUploadResult && avatarUploadResult[0]?.url;
+    data.banner = bannerUploadResult && bannerUploadResult[0]?.url;
     toast({
       variant: 'mytheme',
       title: 'You submitted the following values:',
@@ -137,17 +159,16 @@ export function UpdateProfileForm({ user }: UserProfileProps) {
                       <Button type='button' size='sm'>
                         <Input
                           type='file'
-                          className='hidden'
                           id='fileInput'
                           name={field.name}
+                          ref={field.ref}
+                          className='hidden'
                           disabled={form.formState.isLoading}
                           onChange={(e) => {
-                            const { files, displayUrl } = getImageData(e);
-                            setAvatarFile(files[0]);
-                            setAvatarPreview(displayUrl);
+                            const files = getImageData(e, setAvatarPreview);
                             field.onChange(files);
+                            setAvatarFile(e.target.files![0]);
                           }}
-                          ref={field.ref}
                         />
                         <label
                           htmlFor='fileInput'
@@ -188,17 +209,16 @@ export function UpdateProfileForm({ user }: UserProfileProps) {
                     <div className='flex space-x-4'>
                       <Input
                         type='file'
-                        className='hidden'
                         id='bannerInput'
                         name={field.name}
+                        ref={field.ref}
+                        className='hidden'
                         disabled={form.formState.isLoading}
                         onChange={(e) => {
-                          const { files, displayUrl } = getImageData(e);
-                          setBannerFile(files[0]);
-                          setBannerPreview(displayUrl);
+                          const files = getImageData(e, setBannerPreview);
                           field.onChange(files);
+                          setBannerFile(e.target.files![0]);
                         }}
-                        ref={field.ref}
                       />
                       <div className='absolute inset-0 flex items-center justify-center opacity-0 transition-opacity group-hover:opacity-100'>
                         <Label
