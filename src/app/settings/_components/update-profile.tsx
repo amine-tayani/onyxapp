@@ -25,9 +25,9 @@ import { toast } from '@/components/toast/use-toast';
 import { Label } from '@/components/ui/label';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Skeleton } from '@/components/ui/skeleton';
+import { Progress } from '@/components/ui/progress';
 import { profileFormSchema } from './profile-form-schema';
 import { useUploadThing } from '@/utils/useUploadthing';
-import { set } from 'date-fns';
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
@@ -60,8 +60,14 @@ export function UpdateProfileForm({ user }: UserProfileProps) {
       onUploadProgress: (progress) => {
         toast({
           variant: 'mytheme',
-          title: 'Uploading avatar',
-          description: `${Math.round(progress * 100)}%`,
+          title: 'Uploading avatar...',
+          description: <Progress value={progress} className='h-2' />,
+        });
+      },
+      onClientUploadComplete: () => {
+        toast({
+          variant: 'mytheme',
+          title: 'Avatar upload is Complete. ',
         });
       },
       onUploadError: () => {
@@ -74,18 +80,17 @@ export function UpdateProfileForm({ user }: UserProfileProps) {
 
   const { startUpload: startBannerUpload, isUploading: isBannerUploading } =
     useUploadThing('bannerImageUploader', {
-      onUploadBegin: () => {
+      onUploadProgress: (progress) => {
         toast({
           variant: 'mytheme',
-          title: 'Uploading banner',
-          description: 'Please wait...',
+          title: 'Uploading banner...',
+          description: <Progress value={progress} className='h-2' />,
         });
       },
       onClientUploadComplete: () => {
         toast({
           variant: 'mytheme',
-          title: 'Uploaded banner',
-          description: 'Your banner has been uploaded successfully.',
+          title: 'Banner upload is Complete. ',
         });
       },
       onUploadError: () => {
