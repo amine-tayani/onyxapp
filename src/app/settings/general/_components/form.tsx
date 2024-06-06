@@ -26,12 +26,12 @@ import { Label } from '@/components/ui/label';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Progress } from '@/components/ui/progress';
-import { profileFormSchema } from './profile-form-schema';
+import { profileFormSchema } from './profile-schema';
 import { useUploadThing } from '@/utils/useUploadthing';
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
-export function UpdateProfileForm({ user }: UserProfileProps) {
+export function GeneralSettingsForm({ user }: UserProfileProps) {
   const [avatarPreview, setAvatarPreview] = React.useState('');
   const [bannerPreview, setBannerPreview] = React.useState('');
   const [avatarFile, setAvatarFile] = React.useState<File | null>(null);

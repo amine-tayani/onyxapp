@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import prisma from '@/lib/db/prisma';
-import UserSettings from './_components/user-settings';
+import UserGeneralSettings from './general/_components/settings-layout';
 
 interface Props {
   params: {
@@ -31,5 +31,5 @@ export default async function SettingPage({ params: { id } }: Props) {
 
   if (!user) return notFound();
 
-  return <UserSettings user={user} />;
+  return <UserGeneralSettings user={user} />;
 }

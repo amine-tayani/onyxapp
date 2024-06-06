@@ -1,10 +1,10 @@
 'use client';
 
 import { Separator } from '@/components/ui/separator';
-import { UpdateProfileForm } from './update-profile';
+import { GeneralSettingsForm } from './form';
 import { UserProfileProps } from '@/types/user';
 
-export default function UserSettings({ user }: UserProfileProps) {
+export default function UserGeneralSettings({ user }: UserProfileProps) {
   return (
     <div className='space-y-4'>
       <div>
@@ -14,7 +14,7 @@ export default function UserSettings({ user }: UserProfileProps) {
         </p>
       </div>
       <Separator />
-      <UpdateProfileForm user={user} />
+      <GeneralSettingsForm user={user} />
     </div>
   );
 }
