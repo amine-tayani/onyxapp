@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { getServerSession } from 'next-auth/next';
-import { authOptions } from '@/lib/auth';
+import { AuthConfig } from '@/config/auth';
 import { redirect } from 'next/navigation';
 import { CreateAccountForm } from '@/components/auth/signup/form';
 
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: 'Sign up to Onyx and Manage your job applications.',
 };
 export default async function Signup() {
-  const session = await getServerSession(authOptions);
+  const session = await getServerSession(AuthConfig);
   if (session && session?.user) redirect('/dashboard');
   return (
     <div className='container relative mt-8 flex-col items-center justify-center lg:max-w-none lg:px-0'>

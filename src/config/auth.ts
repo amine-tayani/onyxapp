@@ -2,9 +2,9 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 import { hash, compare } from 'bcrypt';
 import { NextAuthOptions } from 'next-auth';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
-import prisma from './db/prisma';
+import prisma from '../lib/db/prisma';
 
-export const authOptions: NextAuthOptions = {
+export const AuthConfig: NextAuthOptions = {
   cookies: {
     sessionToken: {
       name: 'next-auth.session-token',

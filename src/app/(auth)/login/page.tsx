@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import { getServerSession } from 'next-auth/next';
-import { authOptions } from '@/lib/auth';
+import { AuthConfig } from '@/config/auth';
 import { LoginAccountForm } from '@/components/auth/login/form';
 
 export const metadata: Metadata = {
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: 'Sign in to Onyx and Manage your job applications.',
 };
 export default async function LoginPage() {
-  const session = await getServerSession(authOptions);
+  const session = await getServerSession(AuthConfig);
   if (session && session?.user) redirect('/dashboard');
 
   return (
