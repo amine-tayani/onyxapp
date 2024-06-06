@@ -105,7 +105,7 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
     name: user.name || '',
     email: user.email || '',
     bio: user.bio || '',
-    urls: [{ value: '' }],
+    socialLinks: user.socialLinks || [],
     avatar: user.avatar || '',
     banner: user.banner || '',
   };
@@ -301,7 +301,7 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
             <FormField
               control={form.control}
               key={field.id}
-              name={`urls.${index}.value`}
+              name={`socialLinks.${index}.url`}
               render={({ field }) => (
                 <FormItem>
                   <Label

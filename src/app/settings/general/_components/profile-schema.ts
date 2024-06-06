@@ -20,10 +20,11 @@ export const profileFormSchema = z.object({
   bio: z.string().max(160, {
     message: 'Bio is too long, 160 characters max.',
   }),
-  urls: z
+  socialLinks: z
     .array(
       z.object({
-        value: z.string().url({ message: 'Please enter a valid URL.' }),
+        id: z.union([z.string(), z.null()]),
+        url: z.string().url(),
       })
     )
     .optional(),
