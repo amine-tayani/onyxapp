@@ -26,6 +26,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { profileFormSchema } from './profile-schema';
 import { useUploadThing } from '@/utils/use-upload-thing';
 import { getImageData } from '@/utils/image';
+import { Spinner } from '@/components/ui/spinner';
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
@@ -75,9 +76,9 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
     name: user.name || '',
     email: user.email || '',
     bio: user.bio || '',
-    socialLinks: user.socialLinks || [],
-    avatar: user.avatar || '',
-    banner: user.banner || '',
+    links: user.socialLinks || [],
+    avatar: user.avatar || undefined,
+    banner: user.banner || undefined,
   };
 
   const form = useForm<ProfileFormValues>({
@@ -87,7 +88,7 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
   });
 
   const { fields, append, remove } = useFieldArray({
-    name: 'urls',
+    name: 'links',
     control: form.control,
   });
 
@@ -267,11 +268,11 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
           )}
         />
         <div className='relative'>
-          {fields.map((field, index) => (
+          {fields.map((item, index) => (
             <FormField
               control={form.control}
-              key={field.id}
-              name={`socialLinks.${index}.url`}
+              key={item.id}
+              name={`links.${index}.url`}
               render={({ field }) => (
                 <FormItem>
                   <Label
@@ -288,6 +289,7 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
                     <FormControl>
                       <Input
                         className='border-none bg-muted hover:bg-muted/70 focus:bg-muted/60'
+                        placeholder='https://example.com'
                         {...field}
                       />
                     </FormControl>
@@ -315,15 +317,19 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
             type='button'
             size='sm'
             className='absolute right-0 top-0 text-neutral-300'
-            onClick={() => append({ value: '' })}
+            onClick={() => append({ url: '' })}
             disabled={fields.length === 3}
           >
             <PlusIcon className='mr-2 h-4 w-4' />
             Add URL
           </Button>
         </div>
-        <Button className='text-neutral-300' type='submit'>
-          Save Changes
+        <Button
+          className='text-neutral-300'
+          type='submit'
+          disabled={form.formState.isSubmitting}
+        >
+          {form.formState.isSubmitting ? <Spinner /> : 'Save Changes'}
         </Button>
       </form>
     </Form>
