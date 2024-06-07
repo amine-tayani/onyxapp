@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-
 'use client';
 
 import * as React from 'react';
@@ -25,9 +23,9 @@ import { toast } from '@/components/toast/use-toast';
 import { Label } from '@/components/ui/label';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Skeleton } from '@/components/ui/skeleton';
-import { Progress } from '@/components/ui/progress';
 import { profileFormSchema } from './profile-schema';
-import { useUploadThing } from '@/utils/useUploadthing';
+import { useUploadThing } from '@/utils/use-upload-thing';
+import { getImageData } from '@/utils/image';
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
@@ -37,33 +35,9 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
   const [avatarFile, setAvatarFile] = React.useState<File | null>(null);
   const [bannerFile, setBannerFile] = React.useState<File | null>(null);
 
-  function getImageData(
-    event: React.ChangeEvent<HTMLInputElement>,
-    setPreview: (url: string) => void
-  ) {
-    const dataTransfer = new DataTransfer();
-
-    Array.from(event.target.files!).forEach((image) =>
-      dataTransfer.items.add(image)
-    );
-
-    const files = dataTransfer.files;
-    const displayUrl = URL.createObjectURL(event.target.files![0]);
-
-    setPreview(displayUrl);
-
-    return files;
-  }
-
-  const { startUpload: startAvatarUpload, isUploading: isAvatarUploading } =
-    useUploadThing('avatarImageUploader', {
-      onUploadProgress: (progress) => {
-        toast({
-          variant: 'mytheme',
-          title: 'Uploading avatar...',
-          description: <Progress value={progress} className='h-2' />,
-        });
-      },
+  const { startUpload: startAvatarUpload } = useUploadThing(
+    'avatarImageUploader',
+    {
       onClientUploadComplete: () => {
         toast({
           variant: 'mytheme',
@@ -76,17 +50,12 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
           description: 'Error occurred while uploading the avatar',
         });
       },
-    });
+    }
+  );
 
-  const { startUpload: startBannerUpload, isUploading: isBannerUploading } =
-    useUploadThing('bannerImageUploader', {
-      onUploadProgress: (progress) => {
-        toast({
-          variant: 'mytheme',
-          title: 'Uploading banner...',
-          description: <Progress value={progress} className='h-2' />,
-        });
-      },
+  const { startUpload: startBannerUpload } = useUploadThing(
+    'bannerImageUploader',
+    {
       onClientUploadComplete: () => {
         toast({
           variant: 'mytheme',
@@ -99,7 +68,8 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
           description: 'Error occurred while uploading the banner',
         });
       },
-    });
+    }
+  );
 
   const defaultValues: Partial<ProfileFormValues> = {
     name: user.name || '',
