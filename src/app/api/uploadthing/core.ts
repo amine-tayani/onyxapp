@@ -13,11 +13,12 @@ const f = createUploadthing({
   },
 });
 
+const session = await getServerSession(AuthConfig);
+
 export const ourFileRouter = {
   avatarImageUploader: f({ image: { maxFileCount: 1, maxFileSize: '4MB' } })
     // Set permissions and file types for this FileRoute
     .middleware(async () => {
-      const session = await getServerSession(AuthConfig);
       // If you throw, the user will not be able to upload
       if (!session?.user?.id) throw new Error('Unauthorized');
 
@@ -25,6 +26,8 @@ export const ourFileRouter = {
       return { userId: session.user.id };
     })
     .onUploadComplete(async ({ metadata, file }) => {
+      // use utapi to delete old files if they exist
+
       // save to db
       await prisma.imageUpload.create({
         data: {
@@ -44,6 +47,7 @@ export const ourFileRouter = {
       return { userId: session.user.id };
     })
     .onUploadComplete(async ({ metadata, file }) => {
+      // use utapi to delete old banner files if they exist
       // save to db
       await prisma.imageUpload.create({
         data: {

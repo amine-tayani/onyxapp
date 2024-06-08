@@ -1,13 +1,13 @@
 'use server';
 
+import { revalidatePath } from 'next/cache';
 import { getServerSession } from 'next-auth';
 import { AuthConfig } from '@/config/auth';
+import prisma from '@/lib/db/prisma';
 import {
   ProfileFormSchema,
   profileFormSchema,
 } from './_components/profile-schema';
-import prisma from '@/lib/db/prisma';
-import { revalidatePath } from 'next/cache';
 
 export async function updateGeneralSettings(data: ProfileFormSchema) {
   const session = await getServerSession(AuthConfig);
