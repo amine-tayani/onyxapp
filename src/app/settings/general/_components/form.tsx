@@ -5,14 +5,12 @@ import * as z from 'zod';
 import Image from 'next/image';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useFieldArray, useForm } from 'react-hook-form';
-import { ImagePlus, PlusIcon, Upload, X } from 'lucide-react';
+import { ImagePlus, Upload } from 'lucide-react';
 import { UserProfileProps } from '@/types/user';
-import { cn } from '@/lib/cn';
 import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormMessage,
@@ -72,11 +70,20 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
     }
   );
 
+  const socialLinksLength = user.socialLinks?.length || 0;
+  const socialLinks = (user.socialLinks = [
+    ...user.socialLinks,
+    ...Array(3 - socialLinksLength).fill({
+      id: null,
+      url: '',
+    }),
+  ]).sort((a, b) => b.url.localeCompare(a.url));
+
   const defaultValues: Partial<ProfileFormValues> = {
     name: user.name || '',
     email: user.email || '',
     bio: user.bio || '',
-    links: user.socialLinks || [],
+    links: socialLinks,
     avatar: user.avatar || undefined,
     banner: user.banner || undefined,
   };
@@ -87,7 +94,7 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
     mode: 'onChange',
   });
 
-  const { fields, append, remove } = useFieldArray({
+  const { fields } = useFieldArray({
     name: 'links',
     control: form.control,
   });
@@ -267,63 +274,35 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
             </FormItem>
           )}
         />
-        <div className='relative'>
-          {fields.map((item, index) => (
-            <FormField
-              control={form.control}
-              key={item.id}
-              name={`links.${index}.url`}
-              render={({ field }) => (
-                <FormItem>
-                  <Label
-                    className={cn(index !== 0 && 'sr-only', 'text-neutral-300')}
-                  >
-                    URLs
-                  </Label>
-                  <FormDescription className={cn(index !== 0 && 'sr-only')}>
-                    {fields.length > 2
-                      ? 'Only 3 social links are allowed.'
-                      : 'Add links to your website, blog, or social media profiles.'}
-                  </FormDescription>
-                  <div className='flex items-center space-x-2'>
-                    <FormControl>
-                      <Input
-                        className='border-none bg-muted hover:bg-muted/70 focus:bg-muted/60'
-                        placeholder='https://example.com'
-                        {...field}
-                      />
-                    </FormControl>
-
-                    {fields.length > 1 && (
-                      <div className='flex items-center space-x-2'>
-                        <Button
-                          type='button'
-                          variant='link'
-                          size='icon'
-                          className='hover:scale-110 hover:text-primary'
-                          onClick={() => remove(index)}
-                        >
-                          <X className=' h-4 w-4' />
-                        </Button>
-                      </div>
-                    )}
-                  </div>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          ))}
-          <Button
-            type='button'
-            size='sm'
-            className='absolute right-0 top-0 text-neutral-300'
-            onClick={() => append({ url: '' })}
-            disabled={fields.length === 3}
-          >
-            <PlusIcon className='mr-2 h-4 w-4' />
-            Add URL
-          </Button>
+        <div>
+          <p className='text-sm font-medium text-neutral-300'>Links</p>
+          <p className='mt-1 text-sm text-muted-foreground'>
+            Add your Portfolio, Github, Twitter, LinkedIn, or any other socials.
+          </p>
         </div>
+
+        {fields.map((item, index) => (
+          <FormField
+            control={form.control}
+            key={item.id}
+            name={`links.${index}.url`}
+            render={({ field }) => (
+              <FormItem>
+                <div className='flex items-center space-x-2'>
+                  <FormControl>
+                    <Input
+                      className='border-none bg-muted hover:bg-muted/70 focus:bg-muted/60'
+                      placeholder='https://example.com'
+                      {...field}
+                    />
+                  </FormControl>
+                </div>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        ))}
+
         <Button
           className='text-neutral-300'
           type='submit'
