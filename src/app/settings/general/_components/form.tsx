@@ -101,13 +101,13 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
   });
 
   async function onSubmit(data: ProfileFormValues) {
-    const avatarUploadResult = await startAvatarUpload([avatarFile!]);
-    const bannerUploadResult = await startBannerUpload([bannerFile!]);
-
-    data.avatar = avatarUploadResult && avatarUploadResult[0]?.url;
-    data.banner = bannerUploadResult && bannerUploadResult[0]?.url;
-
     try {
+      const avatarUploadResult = await startAvatarUpload([avatarFile!]);
+      const bannerUploadResult = await startBannerUpload([bannerFile!]);
+
+      data.avatar = avatarUploadResult && avatarUploadResult[0]?.url;
+      data.banner = bannerUploadResult && bannerUploadResult[0]?.url;
+
       await updateGeneralSettings(data);
       toast({
         variant: 'mytheme',
@@ -184,7 +184,7 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
         <div className='flex flex-col items-center justify-center space-y-4'>
           <div className='group relative w-full '>
             <div className='mt-2 h-[140px] rounded-lg bg-hero'>
-              {bannerPreview && (
+              {bannerPreview ? (
                 <Image
                   height={400}
                   src={bannerPreview}
@@ -192,6 +192,16 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
                   className='h-[140px] w-full rounded-lg object-cover object-center group-hover:blur-sm '
                   width={1000}
                 />
+              ) : user.banner ? (
+                <Image
+                  height={400}
+                  src={user.banner}
+                  alt='banner'
+                  className='h-[140px] w-full rounded-lg object-cover object-center group-hover:blur-sm '
+                  width={1000}
+                />
+              ) : (
+                <Skeleton className='h-[140px] w-full rounded-lg bg-background' />
               )}
             </div>
             <FormField
