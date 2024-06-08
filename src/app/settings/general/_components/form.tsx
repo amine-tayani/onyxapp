@@ -25,6 +25,7 @@ import { profileFormSchema } from './profile-schema';
 import { useUploadThing } from '@/utils/use-upload-thing';
 import { getImageData } from '@/utils/image';
 import { Spinner } from '@/components/ui/spinner';
+import { updateGeneralSettings } from '../actions';
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
@@ -105,11 +106,19 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
 
     data.avatar = avatarUploadResult && avatarUploadResult[0]?.url;
     data.banner = bannerUploadResult && bannerUploadResult[0]?.url;
-    toast({
-      variant: 'mytheme',
-      title: 'You submitted the following values:',
-      description: <pre>{JSON.stringify(data, null, 2)}</pre>,
-    });
+
+    try {
+      await updateGeneralSettings(data);
+      toast({
+        variant: 'mytheme',
+        title: 'Your profile Settings has been successfully updated.',
+      });
+    } catch (error) {
+      toast({
+        variant: 'destructive',
+        title: 'Something went wrong while updating your profile.',
+      });
+    }
   }
 
   return (
@@ -120,9 +129,11 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
             <Avatar>
               <AvatarImage
                 src={
-                  avatarPreview
-                    ? avatarPreview
-                    : 'https://avatars.githubusercontent.com/u/104228?v=4'
+                  user.avatar
+                    ? user.avatar
+                    : avatarPreview
+                      ? avatarPreview
+                      : 'https://avatars.githubusercontent.com/u/104228?v=4'
                 }
                 alt='avatar'
                 className='h-14 w-14 object-cover object-center'

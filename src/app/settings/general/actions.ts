@@ -41,7 +41,7 @@ export async function updateGeneralSettings(data: ProfileFormSchema) {
     },
   });
 
-  const userLinksToCreate = data.socialLinks?.map((link) => ({
+  const userLinksToCreate = data.links?.map((link) => ({
     url: link.url,
     user: {
       connect: { id: session.user?.id },
@@ -50,7 +50,6 @@ export async function updateGeneralSettings(data: ProfileFormSchema) {
 
   try {
     await prisma.$transaction([
-      // 4. Delete all existing user links for the user
       prisma.userLink.deleteMany({
         where: {
           user: {
