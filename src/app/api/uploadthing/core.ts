@@ -2,6 +2,7 @@ import { createUploadthing, type FileRouter } from 'uploadthing/next';
 import { getServerSession } from 'next-auth/next';
 import { AuthConfig } from '@/config/auth';
 import prisma from '@/lib/db/prisma';
+import { UTApi } from 'uploadthing/server';
 
 const f = createUploadthing({
   errorFormatter: (err) => {
@@ -52,5 +53,7 @@ export const ourFileRouter = {
       });
     }),
 } satisfies FileRouter;
+
+export const utapi = new UTApi();
 
 export type OurFileRouter = typeof ourFileRouter;

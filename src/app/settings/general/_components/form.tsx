@@ -44,7 +44,8 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
           title: 'Avatar upload is Complete. ',
         });
       },
-      onUploadError: () => {
+      onUploadError: (e) => {
+        if (e.code === 'INTERNAL_CLIENT_ERROR') return;
         toast({
           variant: 'destructive',
           description: 'Error occurred while uploading the avatar',
@@ -62,7 +63,8 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
           title: 'Banner upload is Complete. ',
         });
       },
-      onUploadError: () => {
+      onUploadError: (e) => {
+        if (e.code === 'INTERNAL_CLIENT_ERROR') return;
         toast({
           variant: 'destructive',
           description: 'Error occurred while uploading the banner',
@@ -184,25 +186,13 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
         <div className='flex flex-col items-center justify-center space-y-4'>
           <div className='group relative w-full '>
             <div className='mt-2 h-[140px] rounded-lg bg-hero'>
-              {bannerPreview ? (
-                <Image
-                  height={400}
-                  src={bannerPreview}
-                  alt='banner'
-                  className='h-[140px] w-full rounded-lg object-cover object-center group-hover:blur-sm '
-                  width={1000}
-                />
-              ) : user.banner ? (
-                <Image
-                  height={400}
-                  src={user.banner}
-                  alt='banner'
-                  className='h-[140px] w-full rounded-lg object-cover object-center group-hover:blur-sm '
-                  width={1000}
-                />
-              ) : (
-                <Skeleton className='h-[140px] w-full rounded-lg bg-background' />
-              )}
+              <Image
+                width={1000}
+                height={400}
+                src={user.banner ? user.banner : bannerPreview}
+                alt='banner'
+                className='h-[140px] w-full rounded-lg object-cover object-center group-hover:blur-sm '
+              />
             </div>
             <FormField
               control={form.control}
