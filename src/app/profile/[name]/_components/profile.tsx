@@ -18,8 +18,9 @@ export default function UserProfile({ user }: UserProfileProps) {
           className='w-full rounded-t-xl bg-cover bg-center bg-no-repeat'
           style={{
             height: '200px',
-            backgroundImage:
-              'url(https://pbs.twimg.com/profile_banners/1603463890272194582/1714062352/1500x500)',
+            backgroundImage: user.banner
+              ? `url(${user.banner})`
+              : 'url(https://pbs.twimg.com/profile_banners/1603463890272194582/1714062352/1500x500)',
           }}
         />
         <CardHeader>
@@ -29,7 +30,7 @@ export default function UserProfile({ user }: UserProfileProps) {
                 <AvatarImage
                   className='h-12 w-12 md:h-16 md:w-16  lg:h-20 lg:w-20'
                   src={
-                    user.image ||
+                    user.avatar ||
                     'https://avatars.githubusercontent.com/u/104228?v=4'
                   }
                   alt={user.name || 'User Avatar'}
