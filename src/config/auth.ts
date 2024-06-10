@@ -86,11 +86,32 @@ export const AuthConfig: NextAuthOptions = {
     },
 
     async session({ session, token }) {
+      const user = await prisma.user.findUnique({
+        where: {
+          id: token.id,
+        },
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          avatar: true,
+          banner: true,
+        },
+      });
+
+      if (!user) {
+        throw new Error('User not found');
+      }
+
       return {
         ...session,
         user: {
           ...session.user,
           id: token.id,
+          name: user.name,
+          email: user.email,
+          avatar: user.avatar,
+          banner: user.banner,
         },
       };
     },

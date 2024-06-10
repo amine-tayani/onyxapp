@@ -39,7 +39,7 @@ export default function UserNav({ align }: UserNavProps) {
             <AvatarImage
               alt={session.user.name ?? 'avatar'}
               src={
-                session.user.image ??
+                session.user.avatar ??
                 'https://avatars.githubusercontent.com/u/104228?v=4'
               }
             />
