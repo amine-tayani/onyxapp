@@ -299,12 +299,48 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
             )}
           />
         </div>
+        <div className='grid grid-cols-2 gap-x-3'>
+          <FormField
+            control={form.control}
+            name='location'
+            render={({ field }) => (
+              <FormItem>
+                <Label className='text-neutral-300'>Location</Label>
+                <FormControl>
+                  <Input
+                    className='border-none bg-muted hover:bg-muted/70 focus:bg-muted/60'
+                    placeholder='Your Location'
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name='experience'
+            render={({ field }) => (
+              <FormItem>
+                <Label className='text-neutral-300'>Experience</Label>
+                <FormControl>
+                  <Input
+                    className='border-none bg-muted hover:bg-muted/70 focus:bg-muted/60'
+                    placeholder='How many years of experience do you have?'
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
         <FormField
           control={form.control}
           name='bio'
           render={({ field }) => (
             <FormItem>
-              <Label className='text-neutral-300'>About</Label>
+              <Label className='text-neutral-300'>Bio</Label>
               <FormControl>
                 <Textarea
                   className='resize-none border-none bg-muted hover:bg-muted/70 focus:bg-muted/60'
@@ -316,6 +352,7 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
             </FormItem>
           )}
         />
+
         <div>
           <p className='text-sm font-medium text-neutral-300'>Links</p>
           <p className='mt-1 text-sm text-muted-foreground'>
