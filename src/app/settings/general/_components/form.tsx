@@ -5,6 +5,7 @@ import * as z from 'zod';
 import Image from 'next/image';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useFieldArray, useForm } from 'react-hook-form';
+import { Tag, TagInput } from 'emblor';
 import { Upload } from 'lucide-react';
 import { UserProfileProps } from '@/types/user';
 import { Button } from '@/components/ui/button';
@@ -41,6 +42,10 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
   const [bannerPreview, setBannerPreview] = React.useState('');
   const [avatarFile, setAvatarFile] = React.useState<File | null>(null);
   const [bannerFile, setBannerFile] = React.useState<File | null>(null);
+  const [tags, setTags] = React.useState<Tag[]>([]);
+  const [activeTagIndex, setActiveTagIndex] = React.useState<number | null>(
+    null
+  );
 
   const { startUpload: startAvatarUpload } = useUploadThing(
     'avatarImageUploader',
@@ -96,6 +101,8 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
     links: socialLinks,
     avatar: user.avatar || undefined,
     banner: user.banner || undefined,
+    experience: user.experience || 0,
+    location: user.location || '',
   };
 
   const form = useForm<ProfileFormValues>({
@@ -138,11 +145,9 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
             <Avatar>
               <AvatarImage
                 src={
-                  user.avatar
-                    ? user.avatar
-                    : avatarPreview
-                      ? avatarPreview
-                      : 'https://avatars.githubusercontent.com/u/104228?v=4'
+                  avatarPreview ||
+                  user.avatar ||
+                  'https://avatars.githubusercontent.com/u/104228?v=4'
                 }
                 alt='avatar'
                 className='h-14 w-14 object-cover object-center'
@@ -210,7 +215,7 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
               <Image
                 width={1000}
                 height={400}
-                src={bannerPreview ? bannerPreview : user.banner || ''}
+                src={bannerPreview || user.banner || ''}
                 alt='banner'
                 className='h-[140px] w-full rounded-lg object-cover object-center group-hover:blur-sm '
               />
@@ -326,7 +331,7 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
                 <FormControl>
                   <Input
                     className='border-none bg-muted hover:bg-muted/70 focus:bg-muted/60'
-                    placeholder='How many years of experience do you have?'
+                    placeholder='Years of experience?'
                     {...field}
                   />
                 </FormControl>
@@ -346,6 +351,30 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
                   className='resize-none border-none bg-muted hover:bg-muted/70 focus:bg-muted/60'
                   placeholder='Tell us a bit about yourself'
                   {...field}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name='skills'
+          render={({ field }) => (
+            <FormItem className='flex flex-col items-start'>
+              <Label className='text-left'>Topics</Label>
+              <FormControl className='w-full'>
+                <TagInput
+                  {...field}
+                  placeholder='Enter a topic'
+                  tags={tags}
+                  className='sm:min-w-[450px]'
+                  setTags={(newTags) => {
+                    setTags(newTags);
+                    form.setValue('skills', newTags as [Tag, ...Tag[]]);
+                  }}
+                  activeTagIndex={activeTagIndex}
+                  setActiveTagIndex={setActiveTagIndex}
                 />
               </FormControl>
               <FormMessage />

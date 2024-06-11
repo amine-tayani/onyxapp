@@ -17,13 +17,12 @@ export const profileFormSchema = z.object({
     .optional(),
   experience: z.number().optional(),
   location: z.string().optional(),
-  skills: z
-    .array(
-      z.string().min(2, {
-        message: 'Skill must be at least 2 characters.',
-      })
-    )
-    .optional(),
+  skills: z.array(
+    z.object({
+      id: z.string(),
+      text: z.string(),
+    })
+  ),
   links: z
     .array(
       z.object({
