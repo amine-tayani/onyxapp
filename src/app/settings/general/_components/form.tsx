@@ -5,7 +5,7 @@ import * as z from 'zod';
 import Image from 'next/image';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useFieldArray, useForm } from 'react-hook-form';
-import { ImagePlus, Upload } from 'lucide-react';
+import { Upload } from 'lucide-react';
 import { UserProfileProps } from '@/types/user';
 import { Button } from '@/components/ui/button';
 import {
@@ -20,12 +20,19 @@ import { Textarea } from '@/components/ui/textarea';
 import { toast } from '@/components/toast/use-toast';
 import { Label } from '@/components/ui/label';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
 import { Skeleton } from '@/components/ui/skeleton';
 import { profileFormSchema } from './profile-schema';
 import { useUploadThing } from '@/utils/use-upload-thing';
 import { getImageData } from '@/utils/image';
 import { Spinner } from '@/components/ui/spinner';
 import { updateGeneralSettings } from '../actions';
+import { Icons } from '@/components/ui/icons';
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
@@ -152,28 +159,42 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
                 <FormItem>
                   <FormControl>
                     <div className='flex space-x-4'>
-                      <Button type='button' size='sm'>
-                        <Input
-                          type='file'
-                          id='fileInput'
-                          name={field.name}
-                          ref={field.ref}
-                          className='hidden'
-                          disabled={form.formState.isLoading}
-                          onChange={(e) => {
-                            const files = getImageData(e, setAvatarPreview);
-                            field.onChange(files);
-                            setAvatarFile(e.target.files![0]);
-                          }}
-                        />
-                        <label
-                          htmlFor='fileInput'
-                          className='flex items-center space-x-2'
-                        >
-                          <Upload className='h-4 w-4' />
-                          <span className='whitespace-nowrap'>Upload</span>
-                        </label>
-                      </Button>
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Button type='button' size='sm'>
+                              <Input
+                                type='file'
+                                id='fileInput'
+                                name={field.name}
+                                ref={field.ref}
+                                className='hidden'
+                                disabled={form.formState.isLoading}
+                                onChange={(e) => {
+                                  const files = getImageData(
+                                    e,
+                                    setAvatarPreview
+                                  );
+                                  field.onChange(files);
+                                  setAvatarFile(e.target.files![0]);
+                                }}
+                              />
+                              <label
+                                htmlFor='fileInput'
+                                className='flex items-center space-x-2'
+                              >
+                                <Upload className='h-4 w-4' />
+                                <span className='whitespace-nowrap'>
+                                  Upload
+                                </span>
+                              </label>
+                            </Button>
+                          </TooltipTrigger>
+                          <TooltipContent side='right'>
+                            <p>Add photo</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
                     </div>
                   </FormControl>
                   <FormMessage />
@@ -189,7 +210,7 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
               <Image
                 width={1000}
                 height={400}
-                src={user.banner ? user.banner : bannerPreview}
+                src={bannerPreview ? bannerPreview : user.banner || ''}
                 alt='banner'
                 className='h-[140px] w-full rounded-lg object-cover object-center group-hover:blur-sm '
               />
@@ -214,13 +235,23 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
                           setBannerFile(e.target.files![0]);
                         }}
                       />
+
                       <div className='absolute inset-0 flex items-center justify-center opacity-0 transition-opacity group-hover:opacity-100'>
-                        <Label
-                          className='inline-flex cursor-pointer items-center justify-center rounded-full bg-neutral-800 p-4 text-primary transition-all focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50'
-                          htmlFor='bannerInput'
-                        >
-                          <ImagePlus className='h-6 w-6' />
-                        </Label>
+                        <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger asChild>
+                              <Label
+                                className='group inline-flex cursor-pointer items-center justify-center rounded-full bg-muted p-2.5 text-primary transition-all focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50'
+                                htmlFor='bannerInput'
+                              >
+                                <Icons.cameraPlus className='h-6 w-6 text-neutral-200' />
+                              </Label>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p>Add photo</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
                       </div>
                     </div>
                   </FormControl>
