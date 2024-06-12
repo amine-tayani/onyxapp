@@ -362,11 +362,11 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
           name='skills'
           render={({ field }) => (
             <FormItem className='flex flex-col items-start'>
-              <Label className='text-left'>Topics</Label>
+              <Label className='text-left'>Skills</Label>
               <FormControl className='w-full'>
                 <TagInput
                   {...field}
-                  placeholder='Enter a topic'
+                  placeholder='What skills do you have?'
                   tags={tags}
                   className='sm:min-w-[450px]'
                   setTags={(newTags) => {
@@ -375,6 +375,8 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
                   }}
                   activeTagIndex={activeTagIndex}
                   setActiveTagIndex={setActiveTagIndex}
+                  maxTags={20}
+                  showCount
                 />
               </FormControl>
               <FormMessage />
