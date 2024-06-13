@@ -1,15 +1,15 @@
 import type { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import { getServerSession } from 'next-auth/next';
-import { AuthConfig } from '@/config/auth';
 import { LoginAccountForm } from '@/components/auth/login/form';
+import { AUTH_OPTIONS } from '@/lib/next-auth-options';
 
 export const metadata: Metadata = {
   title: 'Login | Onyx',
   description: 'Sign in to Onyx and Manage your job applications.',
 };
 export default async function LoginPage() {
-  const session = await getServerSession(AuthConfig);
+  const session = await getServerSession(AUTH_OPTIONS);
   if (session && session?.user) redirect('/dashboard');
 
   return (

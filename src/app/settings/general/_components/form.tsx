@@ -377,6 +377,7 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
                   setActiveTagIndex={setActiveTagIndex}
                   maxTags={20}
                   showCount
+                  inputFieldPosition='bottom'
                 />
               </FormControl>
               <FormMessage />

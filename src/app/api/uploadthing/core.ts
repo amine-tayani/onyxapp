@@ -1,8 +1,8 @@
 import { createUploadthing, type FileRouter } from 'uploadthing/next';
-import { getServerSession } from 'next-auth/next';
-import { AuthConfig } from '@/config/auth';
-import prisma from '@/lib/db/prisma';
 import { UTApi, UploadThingError } from 'uploadthing/server';
+import { getServerSession } from 'next-auth/next';
+import prisma from '@/lib/db/prisma';
+import { AUTH_OPTIONS } from '@/lib/next-auth-options';
 
 const f = createUploadthing();
 
@@ -11,7 +11,7 @@ export const utapi = new UTApi();
 export const ourFileRouter = {
   avatarImageUploader: f({ image: { maxFileCount: 1, maxFileSize: '4MB' } })
     .middleware(async () => {
-      const session = await getServerSession(AuthConfig);
+      const session = await getServerSession(AUTH_OPTIONS);
       if (!session?.user?.id) throw new UploadThingError('Unauthorized');
 
       return { userId: session.user.id };
@@ -26,7 +26,7 @@ export const ourFileRouter = {
     }),
   bannerImageUploader: f({ image: { maxFileCount: 1, maxFileSize: '4MB' } })
     .middleware(async () => {
-      const session = await getServerSession(AuthConfig);
+      const session = await getServerSession(AUTH_OPTIONS);
       if (!session?.user?.id) throw new Error('Unauthorized');
 
       return { userId: session.user.id };

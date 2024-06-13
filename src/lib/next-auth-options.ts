@@ -1,10 +1,10 @@
 import CredentialsProvider from 'next-auth/providers/credentials';
-import { hash, compare } from 'bcrypt';
-import { NextAuthOptions } from 'next-auth';
+import { NextAuthOptions, Session } from 'next-auth';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
-import prisma from '../lib/db/prisma';
+import prisma from './db/prisma';
+import { comparePassword } from './hash-password';
 
-export const AuthConfig: NextAuthOptions = {
+export const AUTH_OPTIONS: NextAuthOptions = {
   cookies: {
     sessionToken: {
       name: 'next-auth.session-token',
@@ -25,34 +25,32 @@ export const AuthConfig: NextAuthOptions = {
         email: {
           label: 'Email',
           type: 'email',
-          placeholder: 'Your email address',
         },
         password: {
           label: 'Password',
           type: 'password',
-          placeholder: 'Your password',
         },
       },
       async authorize(credentials) {
         const user = await prisma.user.findUnique({
           where: {
-            email: credentials?.email.toLowerCase(),
+            email: credentials?.email.trim().toLowerCase(),
           },
           select: {
             id: true,
             name: true,
             email: true,
-            hashedPassword: true,
             avatar: true,
             banner: true,
             emailVerified: true,
+            hashedPassword: true,
           },
         });
         if (!user) {
           throw new Error('Account or Email does not Exists.');
         }
 
-        const isCorrectPassword = await compare(
+        const isCorrectPassword = await comparePassword(
           credentials!.password,
           user.hashedPassword as string
         );
@@ -86,34 +84,15 @@ export const AuthConfig: NextAuthOptions = {
     },
 
     async session({ session, token }) {
-      const user = await prisma.user.findUnique({
-        where: {
-          id: token.id,
-        },
-        select: {
-          id: true,
-          name: true,
-          email: true,
-          avatar: true,
-          banner: true,
-        },
-      });
-
-      if (!user) {
-        throw new Error('User not found');
-      }
-
-      return {
+      const onyxSession: Session = {
         ...session,
         user: {
           ...session.user,
           id: token.id,
-          name: user.name,
-          email: user.email,
-          avatar: user.avatar,
-          banner: user.banner,
         },
       };
+
+      return onyxSession;
     },
   },
   session: {
@@ -126,7 +105,3 @@ export const AuthConfig: NextAuthOptions = {
 
   debug: process.env.NODE_ENV === 'development',
 };
-
-export async function hashPassword(password: string): Promise<string> {
-  return await hash(password, 12);
-}
