@@ -366,18 +366,34 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
               <FormControl className='w-full'>
                 <TagInput
                   {...field}
-                  placeholder='What skills do you have?'
                   tags={tags}
-                  className='sm:min-w-[450px]'
+                  activeTagIndex={activeTagIndex}
+                  setActiveTagIndex={setActiveTagIndex}
+                  className='bg-muted sm:min-w-[450px]'
+                  placeholder='What skills do you have?'
+                  maxTags={25}
+                  showCount
+                  size='sm'
+                  interaction='clickable'
+                  inlineTags={false}
+                  inputFieldPosition='bottom'
+                  animation='fadeIn'
+                  shape='pill'
+                  borderStyle='none'
                   setTags={(newTags) => {
                     setTags(newTags);
                     form.setValue('skills', newTags as [Tag, ...Tag[]]);
                   }}
-                  activeTagIndex={activeTagIndex}
-                  setActiveTagIndex={setActiveTagIndex}
-                  maxTags={20}
-                  showCount
-                  inputFieldPosition='bottom'
+                  customTagRenderer={(tag, isActiveTag) => (
+                    <div
+                      key={tag.id}
+                      className={`rounded-full bg-muted/50 px-2 py-1 ${isActiveTag ? 'ring-2 ring-muted/60 ring-offset-2 ring-offset-neutral-600' : ''}`}
+                    >
+                      <span className='mr-1 font-display font-medium'>
+                        {tag.text}
+                      </span>
+                    </div>
+                  )}
                 />
               </FormControl>
               <FormMessage />
