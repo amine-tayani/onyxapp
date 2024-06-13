@@ -84,6 +84,9 @@ export const AUTH_OPTIONS: NextAuthOptions = {
     },
 
     async session({ session, token }) {
+      // TODO : Add user avatar to session object so that we can use it in the header
+      // use prisma to get user avatar and add it to session object without the bug of redirecing to the login page
+
       const onyxSession: Session = {
         ...session,
         user: {
