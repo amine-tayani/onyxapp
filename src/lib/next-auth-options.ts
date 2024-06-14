@@ -84,18 +84,39 @@ export const AUTH_OPTIONS: NextAuthOptions = {
     },
 
     async session({ session, token }) {
-      // TODO : Add user avatar to session object so that we can use it in the header
-      // use prisma to get user avatar and add it to session object without the bug of redirecing to the login page
+      const userId = token.id;
 
-      const onyxSession: Session = {
-        ...session,
-        user: {
-          ...session.user,
-          id: token.id,
-        },
-      };
+      if (userId) {
+        const user = await prisma.user.findUnique({
+          where: {
+            id: userId,
+          },
+          select: {
+            id: true,
+            name: true,
+            email: true,
+            avatar: true,
+            banner: true,
+            emailVerified: true,
+          },
+        });
 
-      return onyxSession;
+        if (user) {
+          const onyxSession: Session = {
+            ...session,
+            user: {
+              ...session.user,
+              id: user.id,
+              avatar: user.avatar,
+              banner: user.banner,
+            },
+          };
+
+          return onyxSession;
+        }
+      }
+
+      return session;
     },
   },
   session: {

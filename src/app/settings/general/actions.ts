@@ -38,6 +38,9 @@ export async function updateGeneralSettings(data: ProfileFormSchema) {
       bio: data.bio,
       avatar: data.avatar,
       banner: data.banner,
+      location: data.location,
+      experience: data.experience,
+      skills: data.skills.map((skill) => skill.text),
     },
   });
 
