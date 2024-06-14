@@ -101,10 +101,9 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
     links: socialLinks,
     avatar: user.avatar || undefined,
     banner: user.banner || undefined,
-    experience: user.experience || 0,
+    experience: user.experience || undefined,
     location: user.location || '',
-    // @ts-ignore
-    skills: user.skills || [],
+    skills: (user.skills as any) || [],
   };
 
   const form = useForm<ProfileFormValues>({
@@ -214,13 +213,16 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
         <div className='flex flex-col items-center justify-center space-y-4'>
           <div className='group relative w-full '>
             <div className='mt-2 h-[140px] rounded-lg bg-hero'>
-              <Image
-                width={1000}
-                height={400}
-                src={bannerPreview || user.banner || ''}
-                alt='banner'
-                className='h-[140px] w-full rounded-lg object-cover object-center group-hover:blur-sm '
-              />
+              {bannerPreview ||
+                (user.banner && (
+                  <Image
+                    width={1000}
+                    height={400}
+                    src={bannerPreview || user.banner}
+                    alt='banner'
+                    className='h-[140px] w-full rounded-lg object-cover object-center group-hover:blur-sm '
+                  />
+                ))}
             </div>
             <FormField
               control={form.control}
