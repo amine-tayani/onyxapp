@@ -15,16 +15,7 @@ export const profileFormSchema = z.object({
       message: 'Bio is too long, 160 characters max.',
     })
     .optional(),
-  experience: z.preprocess(
-    (e) => parseInt(z.string().parse(e), 10),
-    z
-      .number({
-        required_error: 'Please type your experience.',
-        invalid_type_error: 'You must type a number.',
-      })
-      .lte(30, 'You must have less than 30 years of experience.')
-      .optional()
-  ),
+  experience: z.number().int().optional(),
   location: z.string().optional(),
   skills: z.array(
     z.object({

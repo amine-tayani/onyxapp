@@ -64,6 +64,11 @@ model ImageUpload {
   @@index([userId])
 }
 
+model Skill {
+  id             String?
+  text           String?   
+}
+
 model User {
   id             String        @id @default(cuid())
   hashedPassword String?
@@ -74,8 +79,8 @@ model User {
   avatar         String?
   banner         String?
   location       String?
-  experience     Int?
-  skills         String[]
+  experience     Int?          @default(0)
+  skills         Skill[]
   createdAt      DateTime      @default(now())
   updatedAt      DateTime      @updatedAt
   accounts       Account[]
