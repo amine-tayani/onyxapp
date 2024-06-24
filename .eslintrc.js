@@ -6,7 +6,13 @@ module.exports = {
     'next/core-web-vitals',
     'plugin:tailwindcss/recommended',
   ],
-  plugins: ['react', 'react-hooks', 'prettier'],
+  plugins: [
+    'react',
+    'react-hooks',
+    'prettier',
+    'unused-imports',
+    'simple-import-sort',
+  ],
   rules: {
     'prefer-const': 'error',
     'react-hooks/exhaustive-deps': 'error',
@@ -14,6 +20,18 @@ module.exports = {
     'react/jsx-key': 'off',
     'tailwindcss/no-custom-classname': 'off',
     'tailwindcss/classnames-order': 'off',
+    'unused-imports/no-unused-imports': 'error',
+    'unused-imports/no-unused-vars': [
+      'warn',
+      {
+        vars: 'all',
+        varsIgnorePattern: '^_',
+        args: 'after-used',
+        argsIgnorePattern: '^_',
+      },
+    ],
+    'simple-import-sort/imports': 'error',
+    'simple-import-sort/exports': 'error',
     quotes: ['error', 'single'],
     semi: ['error', 'always'],
     'no-unused-vars': [
