@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+
 import { Navigation } from '@/components/ui/navigation';
 import { siteConfig } from '@/config/site';
 

@@ -1,10 +1,12 @@
+import './globals.css';
+
 import type { Metadata } from 'next';
-import { satoshi, inter } from '@/lib/fonts/font';
+
 import { NextAuthProvider } from '@/components/auth/providers';
 import { Toaster } from '@/components/toast/toaster';
 import { siteConfig } from '@/config/site';
 import { cn } from '@/lib/cn';
-import './globals.css';
+import { inter } from '@/lib/fonts/font';
 // import '@uploadthing/react/styles.css';
 
 export const metadata: Metadata = {
@@ -18,14 +20,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang='en'
-      className={cn(
-        ' font-inter antialiased',
-        satoshi.variable,
-        inter.variable
-      )}
-    >
+    <html lang='en' className={cn('antialiased', inter.className)}>
       <body>
         <Toaster />
         <NextAuthProvider>{children}</NextAuthProvider>

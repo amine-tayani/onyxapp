@@ -31,6 +31,7 @@ module.exports = {
       },
     ],
     'simple-import-sort/imports': 'error',
+    'tailwindcss/enforces-negative-arbitrary-values': 'off',
     'simple-import-sort/exports': 'error',
     quotes: ['error', 'single'],
     semi: ['error', 'always'],

@@ -2,12 +2,14 @@
 
 import { revalidatePath } from 'next/cache';
 import { getServerSession } from 'next-auth';
+
 import prisma from '@/lib/db/prisma';
+import { AUTH_OPTIONS } from '@/lib/next-auth-options';
+
 import {
   ProfileFormSchema,
   profileFormSchema,
 } from './_components/profile-schema';
-import { AUTH_OPTIONS } from '@/lib/next-auth-options';
 
 export async function updateGeneralSettings(data: ProfileFormSchema) {
   const session = await getServerSession(AUTH_OPTIONS);
@@ -40,7 +42,13 @@ export async function updateGeneralSettings(data: ProfileFormSchema) {
       banner: data.banner,
       location: data.location,
       experience: data.experience,
-      skills: data.skills.map((skill) => skill.text),
+      skills: {
+        deleteMany: {},
+        create: data.skills.map((skill) => ({
+          id: skill.id,
+          text: skill.text,
+        })),
+      },
     },
   });
 

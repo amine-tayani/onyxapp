@@ -26,7 +26,7 @@ export const profileFormSchema = z.object({
   links: z
     .array(
       z.object({
-        url: z.string().url().optional(),
+        url: z.string().url().or(z.literal('')),
       })
     )
     .optional(),

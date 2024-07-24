@@ -1,11 +1,12 @@
 'use client';
 
-import Link from 'next/link';
-import { siteConfig } from '@/config/site';
-import { Icons } from '@/components/ui/icons';
 import { Moon, Sun } from 'lucide-react';
-import { NavLink } from '@/components/ui/navigation/nav-link';
+import Link from 'next/link';
+
 import { Button } from '@/components/ui/button';
+import { Icons } from '@/components/ui/icons';
+import { NavLink } from '@/components/ui/navigation/nav-link';
+import { siteConfig } from '@/config/site';
 
 export default function Footer() {
   return (

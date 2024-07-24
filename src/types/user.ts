@@ -6,5 +6,9 @@ export interface UserProfileProps {
       id: string;
       url: string;
     }[];
+    skills: {
+      id: string;
+      text: string;
+    }[];
   };
 }

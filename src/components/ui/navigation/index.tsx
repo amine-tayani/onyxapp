@@ -1,16 +1,18 @@
 'use client';
 
-import * as React from 'react';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
-import { NavLink } from './nav-link';
+import * as React from 'react';
+
 import UserNav from '@/components/ui/navigation/user-nav';
-import AuthenticationLinks from './auth-links';
-import { MobileNav } from './mobile-nav';
-import { Icons } from '../icons';
 import useScroll from '@/hooks/use-scroll';
 import { cn } from '@/lib/cn';
+
+import { Icons } from '../icons';
 import { Skeleton } from '../skeleton';
+import AuthenticationLinks from './auth-links';
+import { MobileNav } from './mobile-nav';
+import { NavLink } from './nav-link';
 
 export function Navigation() {
   const { status, data: session } = useSession();

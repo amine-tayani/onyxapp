@@ -1,13 +1,15 @@
 'use client';
 
-import * as React from 'react';
-import * as z from 'zod';
-import Image from 'next/image';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useFieldArray, useForm } from 'react-hook-form';
 import { Tag, TagInput } from 'emblor';
 import { Upload } from 'lucide-react';
-import { UserProfileProps } from '@/types/user';
+import Image from 'next/image';
+import * as React from 'react';
+import { useFieldArray, useForm } from 'react-hook-form';
+import * as z from 'zod';
+
+import { toast } from '@/components/toast/use-toast';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -16,24 +18,24 @@ import {
   FormItem,
   FormMessage,
 } from '@/components/ui/form';
+import { Icons } from '@/components/ui/icons';
 import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { toast } from '@/components/toast/use-toast';
 import { Label } from '@/components/ui/label';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Skeleton } from '@/components/ui/skeleton';
+import { Spinner } from '@/components/ui/spinner';
+import { Textarea } from '@/components/ui/textarea';
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
-import { Skeleton } from '@/components/ui/skeleton';
-import { profileFormSchema } from './profile-schema';
-import { useUploadThing } from '@/utils/use-upload-thing';
+import { UserProfileProps } from '@/types/user';
 import { getImageData } from '@/utils/image';
-import { Spinner } from '@/components/ui/spinner';
+import { useUploadThing } from '@/utils/use-upload-thing';
+
 import { updateGeneralSettings } from '../actions';
-import { Icons } from '@/components/ui/icons';
+import { profileFormSchema } from './profile-schema';
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
@@ -103,7 +105,7 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
     banner: user.banner || undefined,
     experience: user.experience || undefined,
     location: user.location || '',
-    skills: (user.skills as any) || [],
+    skills: user.skills || [],
   };
 
   const form = useForm<ProfileFormValues>({

@@ -1,7 +1,7 @@
 'use client';
 
-import UserNav from '@/components/ui/navigation/user-nav';
 import TeamSwitcher from '@/components/dashboard/team-switcher';
+import UserNav from '@/components/ui/navigation/user-nav';
 
 export default function NavHeader() {
   return (
