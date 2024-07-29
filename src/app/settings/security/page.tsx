@@ -1,4 +1,5 @@
 import { Separator } from '@/components/ui/separator';
+
 import { SecurityForm } from './security-form';
 
 export default function SecurityPage() {

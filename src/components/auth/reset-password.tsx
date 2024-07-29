@@ -1,10 +1,12 @@
 'use client';
 
+import Link from 'next/link';
 import * as React from 'react';
-import { cn } from '@/lib/cn';
+
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import Link from 'next/link';
+import { cn } from '@/lib/cn';
+
 import { Spinner } from '../ui/spinner';
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}

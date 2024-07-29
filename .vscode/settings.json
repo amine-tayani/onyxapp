@@ -16,6 +16,7 @@
   },
   "files.autoSave": "off",
   "[prisma]": {
-    "editor.defaultFormatter": "Prisma.prisma"
-  }
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "eslint.validate": ["json", { "language": "typescript", "autoFix": true }]
 }

@@ -1,4 +1,5 @@
 import { Application } from '@/lib/db/types';
+
 import { ApplicationView } from './_components/application-view';
 import { getApplicationById } from './getApplicationsData';
 

@@ -1,6 +1,7 @@
-import CredentialsProvider from 'next-auth/providers/credentials';
-import { NextAuthOptions, Session } from 'next-auth';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
+import { NextAuthOptions, Session } from 'next-auth';
+import CredentialsProvider from 'next-auth/providers/credentials';
+
 import prisma from './db/prisma';
 import { comparePassword } from './hash-password';
 

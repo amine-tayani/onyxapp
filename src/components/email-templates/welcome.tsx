@@ -39,12 +39,7 @@ const WelcomeEmail = ({ name, to }: WelcomeEmailProps) => {
             your dream job.
           </Text>
           <Section style={btnContainer}>
-            <Button
-              pX={12}
-              pY={12}
-              style={button}
-              href='http://localhost:3000/login'
-            >
+            <Button style={button} href='http://localhost:3000/login'>
               Get started
             </Button>
           </Section>

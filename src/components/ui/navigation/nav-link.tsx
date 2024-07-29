@@ -1,7 +1,8 @@
 'use client';
-import { cn } from '@/lib/cn';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+
+import { cn } from '@/lib/cn';
 
 export function NavLink({ href, slug }: { href: string; slug: string }) {
   const pathname = usePathname();

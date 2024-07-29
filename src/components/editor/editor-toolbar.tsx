@@ -2,14 +2,15 @@
 import { type Editor } from '@tiptap/react';
 import {
   BoldIcon,
-  ItalicIcon,
   Heading1Icon,
   Heading2Icon,
-  Undo,
+  ItalicIcon,
+  ListIcon,
   Redo,
   TextIcon,
-  ListIcon,
+  Undo,
 } from 'lucide-react';
+
 import { Toggle } from '../ui/toggle';
 
 type Props = {

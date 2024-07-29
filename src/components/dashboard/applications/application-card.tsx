@@ -1,12 +1,14 @@
 'use client';
 
-import * as React from 'react';
-import Link from 'next/link';
 import { XIcon } from 'lucide-react';
+import Link from 'next/link';
+import * as React from 'react';
+
 import { Button } from '@/components/ui/button';
-import { Application } from '@/lib/db/types';
-import { DeleteApplicationModal } from './delete-application-modal';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Application } from '@/lib/db/types';
+
+import { DeleteApplicationModal } from './delete-application-modal';
 
 interface Props {
   application: Application;

@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
-import { siteConfig } from '@/config/site';
-import UserNav from '@/components/ui/navigation/user-nav';
-import { Icons } from '@/components/ui/icons';
+
 import { DashboardSidebar } from '@/components/dashboard/sidebar';
+import { Icons } from '@/components/ui/icons';
+import UserNav from '@/components/ui/navigation/user-nav';
+import { siteConfig } from '@/config/site';
 
 export const metadata: Metadata = {
   title: 'Dashboard | Onyx',

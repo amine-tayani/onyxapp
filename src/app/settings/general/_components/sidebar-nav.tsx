@@ -1,11 +1,12 @@
 'use client';
 
+import { Bell, Settings, Shield, User2, Wrench } from 'lucide-react';
 import Link from 'next/link';
-import { cn } from '@/lib/cn';
 import { usePathname } from 'next/navigation';
-import { Bell, Wrench, Settings, User2, Shield } from 'lucide-react';
+
 import { buttonVariants } from '@/components/ui/button';
 import UserNav from '@/components/ui/navigation/user-nav';
+import { cn } from '@/lib/cn';
 
 interface SidebarNavProps extends React.HTMLAttributes<HTMLElement> {}
 

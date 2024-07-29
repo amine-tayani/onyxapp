@@ -1,12 +1,14 @@
 'use client';
 
 import { ColumnDef } from '@tanstack/react-table';
+
 import { Checkbox } from '@/components/ui/checkbox';
-import { DataTableColumnHeader } from './data-table-column-header';
-import { CellAction } from './cell-action';
-import { getRelativeTime } from '@/utils/time';
 import { StatusBadge } from '@/components/ui/status-badge';
-import type { ApplicationStatus, Application } from '@/lib/db/types';
+import type { Application, ApplicationStatus } from '@/lib/db/types';
+import { getRelativeTime } from '@/utils/time';
+
+import { CellAction } from './cell-action';
+import { DataTableColumnHeader } from './data-table-column-header';
 
 export const columns: ColumnDef<Application>[] = [
   {

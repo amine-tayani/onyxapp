@@ -1,18 +1,19 @@
 'use client';
 
-import Link from 'next/link';
-import { useSession } from 'next-auth/react';
-import { cn } from '@/lib/cn';
-import { usePathname } from 'next/navigation';
 import {
-  MessageCircle,
   LayoutDashboard,
   LineChart,
+  MessageCircle,
   Settings,
   User,
 } from 'lucide-react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { useSession } from 'next-auth/react';
+
 import { buttonVariants } from '@/components/ui/button';
 import { SearchMenu } from '@/components/ui/search-menu';
+import { cn } from '@/lib/cn';
 
 interface SidebarNavProps extends React.HTMLAttributes<HTMLElement> {}
 

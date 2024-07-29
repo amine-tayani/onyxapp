@@ -1,8 +1,9 @@
 'use client';
 
-import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
+import * as z from 'zod';
+
 import { toast } from '@/components/toast/use-toast';
 import { Button } from '@/components/ui/button';
 import {
@@ -15,8 +16,9 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { LightDisplay } from './display/light';
+
 import { DarkDisplay } from './display/dark';
+import { LightDisplay } from './display/light';
 import { SystemDisplay } from './display/system';
 
 const appearanceFormSchema = z.object({

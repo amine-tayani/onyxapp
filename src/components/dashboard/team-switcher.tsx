@@ -1,9 +1,8 @@
 'use client';
 
+import { CheckIcon, ChevronsUpDown, Plus } from 'lucide-react';
 import * as React from 'react';
-import { CheckIcon, Plus, ChevronsUpDown } from 'lucide-react';
 
-import { cn } from '@/lib/cn';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import {
@@ -38,6 +37,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { cn } from '@/lib/cn';
 
 const groups = [
   {

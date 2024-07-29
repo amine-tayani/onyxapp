@@ -1,13 +1,14 @@
 'use client';
 
-import Link from 'next/link';
-import { getRelativeTime } from '@/utils/time';
-import { cn } from '@/lib/cn';
-import { ScrollArea } from '@/components/ui/scroll-area';
-import { Application } from '@/lib/db/types';
 import { Avatar } from '@radix-ui/react-avatar';
+import Link from 'next/link';
+
 import { AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import { Skeleton } from '@/components/ui/skeleton';
+import { cn } from '@/lib/cn';
+import { Application } from '@/lib/db/types';
+import { getRelativeTime } from '@/utils/time';
 
 interface ApplicationListProps {
   items: Application[];

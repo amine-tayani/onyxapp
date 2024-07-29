@@ -1,17 +1,14 @@
 'use client';
 
-import * as React from 'react';
+import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { signIn } from 'next-auth/react';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { cn } from '@/lib/cn';
-import { FormSchema, loginSchema } from './validators';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { useToast } from '@/components/toast/use-toast';
+import * as React from 'react';
 import { useForm } from 'react-hook-form';
-import { Spinner } from '@/components/ui/spinner';
+
+import { useToast } from '@/components/toast/use-toast';
+import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
@@ -20,6 +17,11 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Spinner } from '@/components/ui/spinner';
+import { cn } from '@/lib/cn';
+
+import { FormSchema, loginSchema } from './validators';
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 

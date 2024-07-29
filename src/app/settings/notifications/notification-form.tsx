@@ -1,8 +1,11 @@
 'use client';
 
-import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
+import * as z from 'zod';
+
+import { toast } from '@/components/toast/use-toast';
+import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
@@ -10,10 +13,8 @@ import {
   FormField,
   FormItem,
 } from '@/components/ui/form';
-import { Switch } from '@/components/ui/switch';
-import { toast } from '@/components/toast/use-toast';
 import { Label } from '@/components/ui/label';
-import { Button } from '@/components/ui/button';
+import { Switch } from '@/components/ui/switch';
 
 const notificationsFormSchema = z.object({
   add_application: z.boolean().default(false).optional(),

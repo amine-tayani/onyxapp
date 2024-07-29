@@ -1,12 +1,11 @@
+/* eslint-disable unused-imports/no-unused-vars */
 /* eslint-disable no-unused-vars */
+// eslint-disable-next-line unused-imports/no-unused-vars
 
-import { DefaultSession, DefaultUser } from 'next-auth';
+import { DefaultUser } from 'next-auth';
 
 interface IUser extends DefaultUser {
   id: string;
-  /**
-   * Add additionnal fields to User
-   */
 }
 declare module 'next-auth' {
   interface User extends IUser {}

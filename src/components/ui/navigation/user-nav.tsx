@@ -2,6 +2,8 @@
 
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
+
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -13,9 +15,9 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+
 import { Skeleton } from '../skeleton';
 import { LogoutButton } from './logout-button';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 interface UserNavProps {
   align?: 'center' | 'end' | 'start';

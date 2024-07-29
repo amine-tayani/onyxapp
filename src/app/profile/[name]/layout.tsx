@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
-import UserNav from '@/components/ui/navigation/user-nav';
+
 import { Icons } from '@/components/ui/icons';
+import UserNav from '@/components/ui/navigation/user-nav';
 
 export const metadata: Metadata = {
   title: 'Profile | Onyx',

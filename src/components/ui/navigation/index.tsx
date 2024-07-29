@@ -32,16 +32,18 @@ export function Navigation() {
 
   return (
     <header
-      className={cn('sticky inset-x-0 top-0 z-30 w-full transition-all', {
-        'border-b border-neutral-800 bg-background/75 pt-0.5 drop-shadow-sm backdrop-blur-lg':
-          scrolled,
-      })}
+      className={cn(
+        'sticky inset-x-0 top-0 z-30 w-full bg-gradient-to-r from-neutral-900 via-neutral-950 to-black text-center  transition-all',
+        {
+          'opacity-50 lg:blur-sm  ': scrolled,
+        }
+      )}
     >
-      <nav className=' m-4 flex h-10 items-center p-2 text-sm font-medium lg:mx-32 lg:p-3'>
+      <nav className='mx-4 flex h-20 items-center text-sm font-medium lg:mx-32 '>
         <div className='flex w-full items-center justify-between'>
           <div className='relative flex items-center gap-3'>
             <Link className='mx-4 focus:outline-none' href='/'>
-              <Icons.logo className='h-10 w-10' />
+              <Icons.logo className='h-8 w-8' />
             </Link>
             <div className='hidden items-center md:flex md:space-x-6'>
               <NavLinks />

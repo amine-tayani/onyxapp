@@ -1,9 +1,24 @@
 import prisma from '@/lib/db/prisma';
-import { applications } from './data';
 
 async function main() {
+  const user = await prisma.user.create({
+    data: {
+      name: 'John Doe',
+      email: 'john@doe.com',
+    },
+  });
+
   await prisma.application.createMany({
-    data: applications,
+    data: {
+      company: 'Google',
+      title: 'Software Engineer',
+      description:
+        ' This is a description for the Software Engineer position at Google.',
+      location: 'San Francisco, CA',
+      datePosted: new Date(),
+      status: 'APPLIED',
+      userId: user.id,
+    },
   });
   console.log('Added applications data');
 }

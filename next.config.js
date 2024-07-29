@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['pbs.twimg.com', 'utfs.io', 'images.unsplash.com'],
     remotePatterns: [
       {
         protocol: 'https',

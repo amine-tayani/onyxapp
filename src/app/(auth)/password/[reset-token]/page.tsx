@@ -1,5 +1,6 @@
-import { ChangePasswordForm } from '@/components/auth/change-password';
 import { Metadata } from 'next';
+
+import { ChangePasswordForm } from '@/components/auth/change-password';
 
 export const metadata: Metadata = {
   title: 'Request Password Reset | Onyx',

@@ -1,6 +1,7 @@
-import { createUploadthing, type FileRouter } from 'uploadthing/next';
-import { UTApi, UploadThingError } from 'uploadthing/server';
 import { getServerSession } from 'next-auth/next';
+import { createUploadthing, type FileRouter } from 'uploadthing/next';
+import { UploadThingError, UTApi } from 'uploadthing/server';
+
 import prisma from '@/lib/db/prisma';
 import { AUTH_OPTIONS } from '@/lib/next-auth-options';
 

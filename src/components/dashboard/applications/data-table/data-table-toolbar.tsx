@@ -1,15 +1,15 @@
 'use client';
 
-import { RotateCwIcon } from 'lucide-react';
 import { Table } from '@tanstack/react-table';
+import { RotateCwIcon } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { DataTableViewOptions } from './data-table-view-options';
 
+import { DataTableSortItems } from '././data-table-sort-items';
 import { statuses } from './data/data';
 import { DataTableFacetedFilter } from './data-table-faceted-filter';
-import { DataTableSortItems } from '././data-table-sort-items';
+import { DataTableViewOptions } from './data-table-view-options';
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>;

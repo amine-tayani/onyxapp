@@ -1,9 +1,11 @@
 'use server';
 
 import { getServerSession } from 'next-auth';
+
 import prisma from '@/lib/db/prisma';
-import { CreateOrUpdateApplicationSchema } from './zod-schema';
 import { AUTH_OPTIONS } from '@/lib/next-auth-options';
+
+import { CreateOrUpdateApplicationSchema } from './zod-schema';
 
 export async function createApplication(data: CreateOrUpdateApplicationSchema) {
   const session = await getServerSession(AUTH_OPTIONS);

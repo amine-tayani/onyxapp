@@ -1,16 +1,17 @@
+/* eslint-disable unused-imports/no-unused-vars */
 'use client';
 
-// import Highlight from "@tiptap/extension-highlight";
-import { EditorContent, useEditor } from '@tiptap/react';
-import Placeholder from '@tiptap/extension-placeholder';
-import Paragraph from '@tiptap/extension-paragraph';
 import Heading from '@tiptap/extension-heading';
-import StarterKit from '@tiptap/starter-kit';
+import Paragraph from '@tiptap/extension-paragraph';
+import Placeholder from '@tiptap/extension-placeholder';
 import Text from '@tiptap/extension-text';
+import { EditorContent, useEditor } from '@tiptap/react';
+import StarterKit from '@tiptap/starter-kit';
+
 import { Toolbar } from './editor-toolbar';
 
-/* eslint-disable no-unused-vars */
 interface RichEditorProps {
+  /* eslint-disable no-unused-vars */
   onChange: (body: string) => void;
   value: string;
 }

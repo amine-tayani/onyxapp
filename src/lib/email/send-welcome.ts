@@ -1,5 +1,7 @@
-import WelcomeEmail from '@/components/email-templates/welcome';
 import { render } from '@react-email/render';
+
+import WelcomeEmail from '@/components/email-templates/welcome';
+
 import { sendEmail } from './sendmail';
 
 export async function sendWelcomeEmail({

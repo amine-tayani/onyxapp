@@ -105,7 +105,6 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
     banner: user.banner || undefined,
     experience: user.experience || undefined,
     location: user.location || '',
-    skills: user.skills || [],
   };
 
   const form = useForm<ProfileFormValues>({

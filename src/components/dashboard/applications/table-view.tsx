@@ -1,8 +1,9 @@
 'use client';
 
 import { Application } from '@/lib/db/types';
-import { DataTable } from './data-table/data-table';
+
 import { columns } from './data-table/columns';
+import { DataTable } from './data-table/data-table';
 
 interface TableViewProps {
   applications: Application[];

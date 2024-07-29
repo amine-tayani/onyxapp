@@ -1,6 +1,7 @@
-import { type ApplicationStatus } from '@/lib/db/types';
-import { Badge } from './badge';
 import { cn } from '@/lib/cn';
+import { type ApplicationStatus } from '@/lib/db/types';
+
+import { Badge } from './badge';
 
 interface Props {
   status: ApplicationStatus;

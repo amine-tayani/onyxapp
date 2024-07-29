@@ -1,8 +1,9 @@
 'use client';
 
-import { cn } from '@/lib/cn';
-import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
+import React, { useEffect } from 'react';
+
+import { cn } from '@/lib/cn';
 
 interface Props {
   children: React.ReactNode;

@@ -1,14 +1,15 @@
 'use client';
 
-import Link from 'next/link';
 import { CalendarDays, LinkIcon, MapPinIcon, Pencil } from 'lucide-react';
-import { cn } from '@/lib/cn';
-import { Skeleton } from '@/components/ui/skeleton';
+import Link from 'next/link';
+
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { buttonVariants } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { getRelativeTime } from '@/utils/time';
+import { Skeleton } from '@/components/ui/skeleton';
+import { cn } from '@/lib/cn';
 import { UserProfileProps } from '@/types/user';
+import { getRelativeTime } from '@/utils/time';
 
 export default function UserProfile({ user }: UserProfileProps) {
   return (

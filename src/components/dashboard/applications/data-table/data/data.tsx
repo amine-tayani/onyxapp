@@ -1,9 +1,9 @@
 import {
-  SendIcon,
   CalendarDays,
-  XIcon,
   CheckCheck,
   LockIcon,
+  SendIcon,
+  XIcon,
 } from 'lucide-react';
 
 export const statuses = [

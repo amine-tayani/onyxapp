@@ -1,8 +1,9 @@
 'use client';
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { ApplicationCard } from './application-card';
 import { Application, ApplicationStatus } from '@/lib/db/types';
+
+import { ApplicationCard } from './application-card';
 
 interface GridViewProps {
   applications: Application[];

@@ -1,8 +1,7 @@
-import * as React from 'react';
-import { CheckIcon } from 'lucide-react';
 import { Column } from '@tanstack/react-table';
+import { CheckIcon } from 'lucide-react';
+import * as React from 'react';
 
-import { cn } from '@/lib/cn';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
@@ -14,13 +13,14 @@ import {
   CommandList,
   CommandSeparator,
 } from '@/components/ui/command';
+import { Icons } from '@/components/ui/icons';
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
 import { Separator } from '@/components/ui/separator';
-import { Icons } from '@/components/ui/icons';
+import { cn } from '@/lib/cn';
 
 interface DataTableFacetedFilterProps<TData, TValue> {
   column?: Column<TData, TValue>;

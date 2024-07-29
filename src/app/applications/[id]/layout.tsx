@@ -1,35 +1,31 @@
 import TeamSwitcher from '@/components/dashboard/team-switcher';
 import UserNav from '@/components/ui/navigation/user-nav';
+import { Application } from '@/lib/db/types';
+
 import { ApplicationList } from './_components/application-list';
 import { getApplicationById, getApplicationList } from './getApplicationsData';
 
-interface ApplicationsLayoutProps {
+interface Props {
   children?: React.ReactNode;
   params: { id: string };
 }
 
-export async function generateMetadata({
-  params: { id },
-}: ApplicationsLayoutProps) {
-  if (!id) return {};
-  const job = await getApplicationById(id);
+export async function generateMetadata({ params }: Props) {
+  const id = params.id;
 
-  const title = job.title;
-  const company = job.company;
-  const description = job.description;
+  const application: Application = await getApplicationById(id);
 
-  if (id) {
-    return {
-      title: `${title} - ${company} - Onyx.com`,
-      description: `${description}`,
-    };
-  }
+  const title = application.title;
+  const company = application.company;
+  const description = application.description;
+
+  return {
+    title: `${title} - ${company} - Onyx.com`,
+    description: `${description}`,
+  };
 }
 
-async function ApplicationsLayout({
-  children,
-  params: { id },
-}: ApplicationsLayoutProps) {
+async function ApplicationsLayout({ children, params: { id } }: Props) {
   const applications = await getApplicationList();
   return (
     <main>

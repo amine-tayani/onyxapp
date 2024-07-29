@@ -1,10 +1,12 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
+
 import { Application } from '@/lib/db/types';
-import { ApplicationsContentHeader } from './applications-content-header';
+
 import { GridView } from './applications/grid-view';
 import { TableView } from './applications/table-view';
+import { ApplicationsContentHeader } from './applications-content-header';
 import { EmptyApplicationsView } from './empty-applications-view';
 
 interface ApplicationsContentProps {

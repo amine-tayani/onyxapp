@@ -8,7 +8,8 @@ export interface UserProfileProps {
     }[];
     skills: {
       id: string;
-      text: string;
+      text: string | null;
+      userId: string | null;
     }[];
   };
 }

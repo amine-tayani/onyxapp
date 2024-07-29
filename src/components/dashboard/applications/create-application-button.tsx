@@ -1,12 +1,24 @@
 'use client';
 
-import * as React from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
-import { useToast } from '@/components/toast/use-toast';
-import { cn } from '@/lib/cn';
 import { format } from 'date-fns';
+import { CalendarIcon, Plus } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import * as React from 'react';
+import { useForm } from 'react-hook-form';
+
+import Editor from '@/components/editor/rich-editor';
+import { useToast } from '@/components/toast/use-toast';
+import { Button } from '@/components/ui/button';
+import { Calendar } from '@/components/ui/calendar';
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
 import {
   Form,
   FormControl,
@@ -15,21 +27,12 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import { CalendarIcon, Plus } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
-  Dialog,
-  DialogContent,
-  DialogTrigger,
-  DialogFooter,
-  DialogTitle,
-  DialogHeader,
-} from '@/components/ui/dialog';
-import {
-  CreateOrUpdateApplicationSchema,
-  createOrUpdateApplicationSchema,
-} from './zod-schema';
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
 import {
   Select,
   SelectContent,
@@ -37,15 +40,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/components/ui/popover';
-import Editor from '@/components/editor/rich-editor';
-import { Calendar } from '@/components/ui/calendar';
-import { createApplication } from './_actions';
 import { Spinner } from '@/components/ui/spinner';
+import { cn } from '@/lib/cn';
+
+import { createApplication } from './_actions';
+import {
+  CreateOrUpdateApplicationSchema,
+  createOrUpdateApplicationSchema,
+} from './zod-schema';
 
 const status = ['APPLIED', 'INTERVIEW', 'REJECTED', 'OFFER', 'CLOSED'];
 const today = new Date();

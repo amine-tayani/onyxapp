@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+
 import { Icons } from './icons';
 
 export const Spinner: React.FC = () => {

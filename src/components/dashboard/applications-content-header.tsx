@@ -1,9 +1,11 @@
-import { CreateAppButton } from './applications/create-application-button';
-import { buttonVariants } from '../ui/button';
-import { cn } from '@/lib/cn';
-import Link from 'next/link';
-import { Icons } from '../ui/icons';
 import { TableIcon } from 'lucide-react';
+import Link from 'next/link';
+
+import { cn } from '@/lib/cn';
+
+import { buttonVariants } from '../ui/button';
+import { Icons } from '../ui/icons';
+import { CreateAppButton } from './applications/create-application-button';
 
 export function ApplicationsContentHeader() {
   return (

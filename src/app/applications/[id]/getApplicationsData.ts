@@ -1,4 +1,5 @@
 import prisma from '@/lib/db/prisma';
+import { Application } from '@/lib/db/types';
 
 export async function getApplicationList() {
   const applications = await prisma.application.findMany({
@@ -12,9 +13,9 @@ export async function getApplicationList() {
   return applications;
 }
 
-export async function getApplicationById(id: string) {
+export const getApplicationById = async (id: string): Promise<Application> => {
   try {
-    const applications = await prisma.application.findFirstOrThrow({
+    const app = await prisma.application.findFirstOrThrow({
       where: {
         id,
       },
@@ -25,9 +26,13 @@ export async function getApplicationById(id: string) {
       ],
     });
 
-    return applications;
+    if (!app) {
+      throw new Error('Application not found');
+    }
+
+    return app;
   } catch (error) {
     console.log(error);
-    return [];
+    throw new Error('Application not found');
   }
-}
+};

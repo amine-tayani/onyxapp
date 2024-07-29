@@ -1,7 +1,9 @@
 'use client';
 
-import * as React from 'react';
 import { useRouter } from 'next/navigation';
+import * as React from 'react';
+
+import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,10 +12,10 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Button } from '@/components/ui/button';
 import type { Application } from '@/lib/db/types';
-import { EditApplicationModal } from '../edit-application-modal';
+
 import { DeleteApplicationModal } from '../delete-application-modal';
+import { EditApplicationModal } from '../edit-application-modal';
 
 interface CellActionProps {
   data: Application;

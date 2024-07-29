@@ -1,8 +1,9 @@
 'use client';
 
 import { Separator } from '@/components/ui/separator';
-import { GeneralSettingsForm } from './form';
 import { UserProfileProps } from '@/types/user';
+
+import { GeneralSettingsForm } from './form';
 
 export default function UserGeneralSettings({ user }: UserProfileProps) {
   return (

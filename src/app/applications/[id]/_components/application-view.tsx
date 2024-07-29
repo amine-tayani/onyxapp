@@ -1,12 +1,13 @@
 'use client';
 
+import { Pencil } from 'lucide-react';
 import * as React from 'react';
-import { EmptyPlaceholder } from '@/components/ui/empty-placeholder';
-import { Application } from '@/lib/db/types';
+
 import { EditApplicationModal } from '@/components/dashboard/applications/edit-application-modal';
 import { DescriptionViewer } from '@/components/editor/description-viewer';
 import { Button } from '@/components/ui/button';
-import { Pencil } from 'lucide-react';
+import { EmptyPlaceholder } from '@/components/ui/empty-placeholder';
+import { Application } from '@/lib/db/types';
 
 export function ApplicationView({ application }: { application: Application }) {
   const [isDialogOpen, setIsDialogOpen] = React.useState(false);

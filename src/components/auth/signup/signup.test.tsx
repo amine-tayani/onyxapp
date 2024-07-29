@@ -1,6 +1,8 @@
-import React from 'react';
-import { render, screen, fireEvent, act } from '@testing-library/react';
 import '@testing-library/jest-dom';
+
+import { act, fireEvent, render, screen } from '@testing-library/react';
+import React from 'react';
+
 import { CreateAccountForm } from './form';
 
 global.fetch = jest.fn(() =>

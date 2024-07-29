@@ -1,6 +1,8 @@
 import { notFound } from 'next/navigation';
-import UserProfile from './_components/profile';
+
 import prisma from '@/lib/db/prisma';
+
+import UserProfile from './_components/profile';
 
 interface ProfilePageProps {
   params: {

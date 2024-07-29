@@ -1,12 +1,24 @@
+/* eslint-disable unused-imports/no-unused-vars */
 'use client';
 
-import * as React from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
-import { useToast } from '@/components/toast/use-toast';
-import { cn } from '@/lib/cn';
 import { format } from 'date-fns';
+import { CalendarIcon } from 'lucide-react';
 import { useParams, useRouter } from 'next/navigation';
+import * as React from 'react';
+import { useForm } from 'react-hook-form';
+
+import Editor from '@/components/editor/rich-editor';
+import { useToast } from '@/components/toast/use-toast';
+import { Button } from '@/components/ui/button';
+import { Calendar } from '@/components/ui/calendar';
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog';
 import {
   Form,
   FormControl,
@@ -15,20 +27,12 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import { CalendarIcon } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
-  Dialog,
-  DialogContent,
-  DialogFooter,
-  DialogTitle,
-  DialogHeader,
-} from '@/components/ui/dialog';
-import {
-  CreateOrUpdateApplicationSchema,
-  createOrUpdateApplicationSchema,
-} from './zod-schema';
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
 import {
   Select,
   SelectContent,
@@ -36,16 +40,15 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/components/ui/popover';
-import { Calendar } from '@/components/ui/calendar';
-import { updateApplication } from './_actions';
 import { Spinner } from '@/components/ui/spinner';
-import Editor from '@/components/editor/rich-editor';
+import { cn } from '@/lib/cn';
 import type { Application } from '@/lib/db/types';
+
+import { updateApplication } from './_actions';
+import {
+  CreateOrUpdateApplicationSchema,
+  createOrUpdateApplicationSchema,
+} from './zod-schema';
 
 interface EditApplicationModalProps {
   application: Application;

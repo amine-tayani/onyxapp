@@ -1,7 +1,8 @@
-import { NextResponse, NextRequest } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
+
 import prisma from '@/lib/db/prisma';
-import { hashPassword } from '@/lib/hash-password';
 import { sendWelcomeEmail } from '@/lib/email/send-welcome';
+import { hashPassword } from '@/lib/hash-password';
 
 export async function POST(request: NextRequest) {
   try {

@@ -1,18 +1,21 @@
+/* eslint-disable unused-imports/no-unused-vars */
 'use client';
 
-import * as React from 'react';
 import { useRouter } from 'next/navigation';
+import * as React from 'react';
+
+import { useToast } from '@/components/toast/use-toast';
+import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
-  DialogFooter,
-  DialogTitle,
-  DialogHeader,
   DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
 } from '@/components/ui/dialog';
-import { Button } from '@/components/ui/button';
 import { Spinner } from '@/components/ui/spinner';
-import { useToast } from '@/components/toast/use-toast';
+
 import { deleteApplication } from './_actions';
 
 interface DeleteApplicationDialogProps {

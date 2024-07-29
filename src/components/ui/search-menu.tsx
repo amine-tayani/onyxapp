@@ -1,12 +1,10 @@
 'use client';
 
-import * as React from 'react';
-import { useRouter } from 'next/navigation';
 import { DialogProps } from '@radix-ui/react-alert-dialog';
 import { CircleIcon, FileIcon, Search } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import * as React from 'react';
 
-import { menuConfig } from '@/config/site';
-import { cn } from '@/lib/cn';
 import { Button } from '@/components/ui/button';
 import {
   CommandDialog,
@@ -17,6 +15,8 @@ import {
   CommandList,
   CommandSeparator,
 } from '@/components/ui/command';
+import { menuConfig } from '@/config/site';
+import { cn } from '@/lib/cn';
 
 export function SearchMenu({ ...props }: DialogProps) {
   const router = useRouter();
