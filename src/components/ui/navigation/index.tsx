@@ -33,9 +33,9 @@ export function Navigation() {
   return (
     <header
       className={cn(
-        'sticky inset-x-0 top-0 z-30 w-full bg-gradient-to-r from-neutral-900 via-neutral-950 to-black text-center  transition-all',
+        'sticky inset-x-0 top-0 z-30 w-full bg-gradient-to-r from-neutral-900 via-neutral-950 to-black text-center transition-all',
         {
-          'opacity-50 lg:blur-sm  ': scrolled,
+          'opacity-95': scrolled,
         }
       )}
     >
