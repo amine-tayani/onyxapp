@@ -79,6 +79,7 @@ model User {
   name           String?
   bio            String?       @default("") @db.VarChar(1000)
   avatar         String?
+  isSubscribed   Boolean?      @default(false)
   banner         String?
   location       String?
   experience     Int?          @default(0)

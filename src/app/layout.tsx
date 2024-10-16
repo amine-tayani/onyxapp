@@ -1,13 +1,14 @@
 import './globals.css';
 
 import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
 
 import { NextAuthProvider } from '@/components/auth/providers';
 import { Toaster } from '@/components/toast/toaster';
 import { siteConfig } from '@/config/site';
 import { cn } from '@/lib/cn';
-import { inter } from '@/lib/fonts/font';
-// import '@uploadthing/react/styles.css';
+
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Onyx - Manage your job applications',
