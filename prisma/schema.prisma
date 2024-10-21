@@ -18,6 +18,12 @@ enum ApplicationStatus {
   CLOSED
 }
 
+enum SubscriptionPlan {
+  FREE
+  PRO
+  BUSINESS
+}
+
 model Account {
   id                 String    @id @default(cuid())
   userId             String
@@ -71,6 +77,8 @@ model Skill {
   userId String?
 }
 
+
+
 model User {
   id             String        @id @default(cuid())
   hashedPassword String?
@@ -79,7 +87,14 @@ model User {
   name           String?
   bio            String?       @default("") @db.VarChar(1000)
   avatar         String?
-  isSubscribed   Boolean?      @default(false)
+
+  stripeCustomerId       String?   @unique @map(name: "stripe_customer_id")
+  stripeSubscriptionId   String?   @unique @map(name: "stripe_subscription_id")
+  stripePriceId          String?   @map(name: "stripe_price_id")
+  stripeCurrentPeriodEnd DateTime? @map(name: "stripe_current_period_end")
+
+  plan       SubscriptionPlan? @default(FREE)
+
   banner         String?
   location       String?
   experience     Int?          @default(0)
@@ -92,6 +107,7 @@ model User {
   imageUpload    ImageUpload[]
   applications   Application[]
 }
+
 
 model Application {
   id           String            @id @default(uuid())

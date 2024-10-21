@@ -2,13 +2,15 @@
 
 import * as React from 'react';
 
-import { Icons } from './icons';
+import { cn } from '@/lib/cn';
 
-export const Spinner: React.FC = () => {
+export function Spinner({ className }: { className?: string }) {
   return (
-    <div role='status'>
-      <Icons.spinner className='inline h-6 w-6 animate-spin fill-gray-600 text-gray-200' />
-      <span className='sr-only'>Loading...</span>
-    </div>
+    <div
+      className={cn(
+        'inline h-6 w-6 animate-spin fill-gray-600 text-gray-200',
+        className
+      )}
+    />
   );
-};
+}

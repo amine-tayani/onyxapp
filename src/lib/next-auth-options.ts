@@ -120,6 +120,7 @@ export const AUTH_OPTIONS: NextAuthOptions = {
       return session;
     },
   },
+
   session: {
     strategy: 'jwt',
   },
