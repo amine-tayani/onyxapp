@@ -27,10 +27,14 @@ export async function POST(req: Request) {
   if (event.type === 'checkout.session.completed') {
     const session = event.data.object as Stripe.Checkout.Session;
 
+    console.log('stripe checkout session completed', session);
+
     // Retrieve the subscription details from Stripe.
     const subscription = await stripe.subscriptions.retrieve(
       session.subscription as string
     );
+
+    console.log('stripe subscription', subscription);
 
     // Update the user stripe into in our database.
     // Since this is the initial subscription, we need to update
@@ -53,6 +57,8 @@ export async function POST(req: Request) {
   if (event.type === 'invoice.payment_succeeded') {
     const session = event.data.object as Stripe.Invoice;
 
+    console.log('stripe invoice payment succeeded', session);
+
     // If the billing reason is not subscription_create, it means the customer has updated their subscription.
     // If it is subscription_create, we don't need to update the subscription id and it will handle by the checkout.session.completed event.
     if (session.billing_reason != 'subscription_create') {
@@ -60,6 +66,8 @@ export async function POST(req: Request) {
       const subscription = await stripe.subscriptions.retrieve(
         session.subscription as string
       );
+
+      console.log('stripe subscription from invoice', subscription);
 
       // Update the price id and set the new period end.
       await prisma.user.update({

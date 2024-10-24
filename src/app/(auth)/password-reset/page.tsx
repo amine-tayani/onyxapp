@@ -11,7 +11,7 @@ export default function ResetPassword() {
     <div className='container relative mt-8 flex-col items-center justify-center lg:max-w-none lg:px-0'>
       <div className='lg:p-8'>
         <div className='mx-auto flex w-full flex-col justify-center space-y-4 sm:w-[400px]'>
-          <h1 className='font-display text-2xl font-extrabold text-neutral-100'>
+          <h1 className='text-2xl font-extrabold text-neutral-100'>
             Reset your password
           </h1>
           <p className='text-sm text-muted-foreground/80'>

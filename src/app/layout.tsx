@@ -1,14 +1,12 @@
 import './globals.css';
 
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 
 import { NextAuthProvider } from '@/components/auth/providers';
 import { Toaster } from '@/components/toast/toaster';
 import { siteConfig } from '@/config/site';
 import { cn } from '@/lib/cn';
-
-const inter = Inter({ subsets: ['latin'] });
+import { fontSans } from '@/lib/font';
 
 export const metadata: Metadata = {
   title: 'Onyx - Manage your job applications',
@@ -21,8 +19,8 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang='en' className={cn('antialiased', inter.className)}>
-      <body>
+    <html lang='en' suppressHydrationWarning>
+      <body className={cn('font-sans antialiased', fontSans.variable)}>
         <Toaster />
         <NextAuthProvider>{children}</NextAuthProvider>
       </body>

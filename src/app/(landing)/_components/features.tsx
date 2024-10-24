@@ -67,7 +67,10 @@ export default function Features() {
   ];
 
   return (
-    <div className='mx-4 my-32 rounded-3xl border border-muted-foreground/20 bg-muted/70 text-center lg:pb-20'>
+    <div
+      id='features'
+      className='mx-4 my-32 rounded-3xl border border-muted-foreground/20 bg-muted/70 text-center lg:pb-20'
+    >
       <div className='relative overflow-hidden py-16 md:pt-28'>
         <div className='relative z-20 px-6'>
           <div className='w-full'>
@@ -75,7 +78,7 @@ export default function Features() {
               <Rocket className='h-5 w-5' />
               <span>Features</span>
             </div>
-            <div className='mt-5 flex justify-center font-display text-[1.7rem] font-extrabold leading-[1.3] text-primary md:text-5xl md:leading-[1.15]'>
+            <div className='mt-5 flex justify-center text-[1.7rem] font-extrabold leading-[1.3] text-primary md:text-5xl md:leading-[1.15]'>
               <h1 className='max-w-2xl'>
                 Job search{' '}
                 <span className='bg-gradient-to-l from-purple-800 via-violet-900 to-purple-800 bg-clip-text text-transparent'>

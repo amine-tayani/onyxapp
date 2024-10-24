@@ -33,11 +33,13 @@
   * {
     @apply border-border;
   }
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     @apply bg-background text-foreground;
-    font-feature-settings:
-      'rlig' 1,
-      'calt' 1;
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
   }
   body.mobile-nav-active {
     overflow: hidden;
@@ -171,24 +173,6 @@
   height: 0;
   pointer-events: none;
 }
-/* .scrollbar::-webkit-scrollbar {
-  width: 6px;
-}
-.scrollbar::-webkit-scrollbar-track {
-  @apply bg-muted-foreground/10;
-}
-
-.scrollbar::-webkit-scrollbar-thumb {
-  @apply rounded-[2px] bg-muted-foreground/30;
-}
-
-.scrollbar::-webkit-scrollbar-thumb:hover {
-  @apply bg-muted-foreground/20;
-}
-
-.scrollbar::-webkit-scrollbar-thumb:active {
-  @apply bg-muted-foreground/40;
-} */
 
 @media (max-width: 640px) {
   .container {

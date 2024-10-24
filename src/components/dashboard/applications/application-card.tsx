@@ -45,9 +45,7 @@ export function ApplicationCard({ application }: Props) {
       <CardContent>
         <Link href={`/applications/${application.id}`}>
           <div className='text-2xl font-bold'>{application.title}</div>
-          <p className='font-display text-sm text-neutral-400'>
-            {application.location}
-          </p>
+          <p className='text-sm text-neutral-400'>{application.location}</p>
         </Link>
       </CardContent>
     </Card>

@@ -34,17 +34,17 @@ export function BillingFormButton({
 
   return (
     <Button
-      variant={userOffer ? 'default' : 'outline'}
-      className={cn('w-full', userOffer ? 'text-primary' : 'text-neutral-900')}
+      variant='outline'
+      className={cn('w-ful rounded-xl text-primary-foreground')}
       disabled={isPending}
       onClick={stripeSessionAction}
     >
       {isPending ? (
-        <>
-          <Spinner className='mr-2 h-4 w-4' /> Loading...
-        </>
+        <Spinner className='mr-2 text-primary-foreground' size='xs' />
+      ) : userOffer ? (
+        'Manage Subscription'
       ) : (
-        <>{userOffer ? 'Manage Subscription' : 'Upgrade'}</>
+        'Upgrade'
       )}
     </Button>
   );

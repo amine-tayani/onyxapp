@@ -394,9 +394,7 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
                       key={tag.id}
                       className={`rounded-full bg-muted/50 px-2 py-1 ${isActiveTag ? 'ring-2 ring-muted/60 ring-offset-2 ring-offset-neutral-600' : ''}`}
                     >
-                      <span className='mr-1 font-display font-medium'>
-                        {tag.text}
-                      </span>
+                      <span className='mr-1 font-medium'>{tag.text}</span>
                     </div>
                   )}
                 />

@@ -1,9 +1,11 @@
 'use client';
 
 import { ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 import React from 'react';
 
-import { Button } from '@/components/ui/button';
+import { Button, buttonVariants } from '@/components/ui/button';
+import { cn } from '@/lib/cn';
 
 export default function Hero() {
   return (
@@ -36,13 +38,19 @@ export default function Hero() {
           >
             Start for free
           </Button>
-          <Button
-            variant='ghost'
-            className='group rounded-lg bg-transparent px-6 py-3 text-[15px] font-semibold text-white hover:bg-neutral-900/50 hover:text-white'
+          <Link
+            href='#features'
+            className={cn(
+              buttonVariants({
+                variant: 'ghost',
+                className:
+                  ' group rounded-lg bg-transparent px-6 py-3 text-[15px] font-semibold text-white hover:bg-neutral-900/50 hover:text-white',
+              })
+            )}
           >
             Browse features{' '}
             <ArrowRight className='ml-2 h-4 w-4 transition-transform duration-300 ease-in-out group-hover:translate-x-1' />
-          </Button>
+          </Link>
         </div>
       </div>
     </div>

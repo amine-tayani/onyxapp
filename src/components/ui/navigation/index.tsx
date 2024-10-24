@@ -4,10 +4,10 @@ import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import * as React from 'react';
 
-import UserNav from '@/components/ui/navigation/user-nav';
 import useScroll from '@/hooks/use-scroll';
 import { cn } from '@/lib/cn';
 
+import { buttonVariants } from '../button';
 import { Icons } from '../icons';
 import { Skeleton } from '../skeleton';
 import AuthenticationLinks from './auth-links';
@@ -15,7 +15,7 @@ import { MobileNav } from './mobile-nav';
 import { NavLink } from './nav-link';
 
 export function Navigation() {
-  const { status, data: session } = useSession();
+  const { data: session, status } = useSession();
   const scrolled = useScroll(80);
 
   const NavLinks = () => (
@@ -25,8 +25,7 @@ export function Navigation() {
       <NavLink slug='Blog' href='/blog' />
       <NavLink slug='Customers' href='/customers' />
       <NavLink slug='Pricing' href='/pricing' />
-      {session?.user ? <NavLink slug='Dashboard' href='/dashboard' /> : null}
-      {status === 'unauthenticated' && <NavLink slug='Login' href='/login' />}
+      {!session?.user && <NavLink slug='Login' href='/login' />}
     </>
   );
 
@@ -52,10 +51,18 @@ export function Navigation() {
 
           <div className='flex'>
             <div className='flex items-center justify-end gap-2'>
-              {status === 'authenticated' && session ? (
-                <UserNav />
-              ) : status === 'loading' ? (
+              {status === 'loading' ? (
                 <Skeleton className='w-28 rounded-lg bg-muted py-4' />
+              ) : session?.user ? (
+                <Link
+                  className={cn(
+                    buttonVariants({ variant: 'default' }),
+                    'text-muted-foreground'
+                  )}
+                  href='/dashboard'
+                >
+                  Go to Dashboard
+                </Link>
               ) : (
                 <AuthenticationLinks />
               )}

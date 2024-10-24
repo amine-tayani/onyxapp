@@ -15,9 +15,7 @@ export default function Footer() {
         <div className='grid flex-1 grid-cols-2 gap-8 sm:flex sm:flex-col'>
           <Link className='flex items-center gap-x-2' href='/'>
             <Icons.logo className='h-10 w-10' />
-            <span className='font-display text-lg font-extrabold text-primary'>
-              Onyx
-            </span>
+            <span className='text-lg font-extrabold text-primary'>Onyx</span>
           </Link>
           <div className='flex flex-1 space-x-4 sm:items-end'>
             <Link target='_blank' href={`${siteConfig.links.linkedin}`}>
