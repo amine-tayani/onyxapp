@@ -1,9 +1,22 @@
 import type { Metadata } from 'next';
 
-import { DashboardSidebar } from '@/components/dashboard/sidebar';
-import { Icons } from '@/components/ui/icons';
-import UserNav from '@/components/ui/navigation/user-nav';
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from '@/components/ui/breadcrumb';
+import { Separator } from '@/components/ui/separator';
+import {
+  SidebarInset,
+  SidebarProvider,
+  SidebarTrigger,
+} from '@/components/ui/sidebar';
 import { siteConfig } from '@/config/site';
+
+import { DashboardSidebar } from './components/sidebar';
 
 export const metadata: Metadata = {
   title: 'Dashboard | Onyx',
@@ -16,21 +29,30 @@ export default async function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <main>
-      <div className='flex-1 space-y-4 p-8 pt-6'>
-        <div className='flex h-16 items-center justify-between px-4'>
-          <div className='flex items-center space-x-4'>
-            <Icons.logo className='h-8 w-8' />
+    <SidebarProvider>
+      <DashboardSidebar />
+      <SidebarInset>
+        <header className='group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12 flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear'>
+          <div className='flex items-center gap-2 px-4'>
+            <SidebarTrigger className='-ml-1' />
+            <Separator orientation='vertical' className='mr-2 h-4' />
+            <Breadcrumb>
+              <BreadcrumbList>
+                <BreadcrumbItem className='hidden md:block'>
+                  <BreadcrumbLink href='#'>Home</BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator className='hidden md:block'>
+                  /
+                </BreadcrumbSeparator>
+                <BreadcrumbItem>
+                  <BreadcrumbPage>Dashboard</BreadcrumbPage>
+                </BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
           </div>
-          <div className='ml-auto'>
-            <UserNav align='end' />
-          </div>
-        </div>
-        <div className='flex flex-1'>
-          <DashboardSidebar />
-          {children}
-        </div>
-      </div>
-    </main>
+        </header>
+        <div className='flex flex-1 flex-col gap-4 p-4 pt-0'>{children}</div>
+      </SidebarInset>
+    </SidebarProvider>
   );
 }
