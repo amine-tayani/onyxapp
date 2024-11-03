@@ -6,8 +6,8 @@ import { useRouter } from 'next/navigation';
 import { signIn } from 'next-auth/react';
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 
-import { useToast } from '@/components/toast/use-toast';
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -36,7 +36,6 @@ export function LoginAccountForm({ className, ...props }: UserAuthFormProps) {
   });
   const [loading, setLoading] = React.useState(false);
   const router = useRouter();
-  const { toast } = useToast();
   const callbackUrl = '/dashboard';
 
   const onSubmit = async (data: FormSchema) => {
@@ -48,13 +47,10 @@ export function LoginAccountForm({ className, ...props }: UserAuthFormProps) {
         ...data,
       });
 
-      if (res?.error)
-        toast({
-          variant: 'destructive',
-          description: 'Oh no! Something went wrong.',
-        });
+      if (res?.error) toast.error(res.error);
       router.push(callbackUrl);
     } catch (err) {
+      toast.error(' Oh no! Something went wrong.');
       console.log(err);
     } finally {
       setLoading(false);

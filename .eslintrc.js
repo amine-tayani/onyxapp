@@ -8,13 +8,14 @@ module.exports = {
   ],
   plugins: [
     'react',
-    'react-hooks',
+    // Remove 'react-hooks' from here since it's already included in next/core-web-vitals
     'prettier',
     'unused-imports',
     'simple-import-sort',
   ],
   rules: {
     'prefer-const': 'error',
+    // Keep the react-hooks rule if you want to enforce it as error
     'react-hooks/exhaustive-deps': 'error',
     '@next/next/no-html-link-for-pages': 'off',
     'react/jsx-key': 'off',

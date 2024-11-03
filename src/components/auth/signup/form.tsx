@@ -5,9 +5,9 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 import * as z from 'zod';
 
-import { useToast } from '@/components/toast/use-toast';
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -29,7 +29,6 @@ export type SignupFormSchema = z.infer<typeof SignupSchema>;
 
 export function CreateAccountForm({ className, ...props }: UserAuthFormProps) {
   const [loading, setLoading] = React.useState(false);
-  const { toast } = useToast();
   const router = useRouter();
   const form = useForm<SignupFormSchema>({
     resolver: zodResolver(SignupSchema),
@@ -51,16 +50,9 @@ export function CreateAccountForm({ className, ...props }: UserAuthFormProps) {
       });
 
       if (!response.ok) {
-        toast({
-          variant: 'destructive',
-          description: await response.json(),
-        });
+        toast.error(await response.json());
       } else {
-        toast({
-          variant: 'mytheme',
-          title: 'Account created.',
-          description: 'Check you email for more infos.',
-        });
+        toast.success('Account created.Check you email');
         router.push('/login');
       }
     } catch (err) {

@@ -3,8 +3,8 @@
 
 import { useRouter } from 'next/navigation';
 import * as React from 'react';
+import { toast } from 'sonner';
 
-import { useToast } from '@/components/toast/use-toast';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -31,26 +31,16 @@ export function DeleteApplicationModal({
   isDeleteApplicationDialogOpen,
 }: DeleteApplicationDialogProps) {
   const router = useRouter();
-  const { toast } = useToast();
   const [loading, setLoading] = React.useState(false);
 
   const handleDeleteApplication = async () => {
     try {
       await deleteApplication(applicationId);
       setLoading(true);
-      toast({
-        variant: 'mytheme',
-        title: 'Application Deleted',
-        description: 'The Application was successfully deleted.',
-      });
+      toast.info('Application is deleted now.');
       router.refresh();
     } catch (err) {
-      toast({
-        title: 'Uh Oh!',
-        variant: 'destructive',
-        description:
-          'An error occurred while trying to delete your application.',
-      });
+      toast.error('Error occured while deleting application');
     } finally {
       setLoading(false);
       setDeleteApplicationDialogOpen(false);

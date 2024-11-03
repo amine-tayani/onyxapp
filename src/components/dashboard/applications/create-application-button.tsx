@@ -6,9 +6,9 @@ import { CalendarIcon, Plus } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 
 import Editor from '@/components/editor/rich-editor';
-import { useToast } from '@/components/toast/use-toast';
 import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
 import {
@@ -56,7 +56,6 @@ export function CreateAppButton() {
   const [dialogOpen, setDialogOpen] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
   const router = useRouter();
-  const { toast } = useToast();
 
   const form = useForm<CreateOrUpdateApplicationSchema>({
     resolver: zodResolver(createOrUpdateApplicationSchema),
@@ -71,14 +70,10 @@ export function CreateAppButton() {
   });
 
   async function onSubmit(data: CreateOrUpdateApplicationSchema) {
-    const { id } = await createApplication(data);
+    await createApplication(data);
     try {
       setLoading(true);
-      toast({
-        variant: 'mytheme',
-        title: 'Success',
-        description: `Your Application has been created with the id : ${id}`,
-      });
+      toast.success('Woah! Your Application has been created');
       router.refresh();
     } catch (err) {
       console.error(err);

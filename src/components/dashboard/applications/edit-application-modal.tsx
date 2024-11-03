@@ -7,9 +7,9 @@ import { CalendarIcon } from 'lucide-react';
 import { useParams, useRouter } from 'next/navigation';
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 
 import Editor from '@/components/editor/rich-editor';
-import { useToast } from '@/components/toast/use-toast';
 import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
 import {
@@ -65,7 +65,6 @@ export function EditApplicationModal({
   const router = useRouter();
   const { id } = useParams();
   const [loading, setLoading] = React.useState(false);
-  const { toast } = useToast();
   const status = ['APPLIED', 'INTERVIEW', 'REJECTED', 'OFFER', 'CLOSED'];
   const today = new Date();
 
@@ -87,16 +86,10 @@ export function EditApplicationModal({
     try {
       await updateApplication(data, id as string);
       setLoading(true);
-      toast({
-        variant: 'mytheme',
-        title: 'This Application has been updated.',
-      });
+      toast.success('Application has been updated.');
       router.refresh();
     } catch (err) {
-      toast({
-        variant: 'destructive',
-        title: 'Uh oh! Something went wrong. Please try again.',
-      });
+      toast.error('Uh oh! Something went wrong. Please try again.');
     } finally {
       setLoading(false);
       setIsEditApplicationModalOpen(false);
