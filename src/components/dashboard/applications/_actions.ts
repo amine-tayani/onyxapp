@@ -2,13 +2,13 @@
 
 import { getServerSession } from 'next-auth';
 
+import { AuthOptions } from '@/lib/auth/authjs-conf';
 import prisma from '@/lib/db/prisma';
-import { AUTH_OPTIONS } from '@/lib/next-auth-options';
 
 import { CreateOrUpdateApplicationSchema } from './zod-schema';
 
 export async function createApplication(data: CreateOrUpdateApplicationSchema) {
-  const session = await getServerSession(AUTH_OPTIONS);
+  const session = await getServerSession(AuthOptions);
 
   if (!session || !session.user) {
     throw new Error('User is not logged in');
@@ -29,7 +29,7 @@ export async function updateApplication(
   data: CreateOrUpdateApplicationSchema,
   id: string
 ) {
-  const session = await getServerSession(AUTH_OPTIONS);
+  const session = await getServerSession(AuthOptions);
 
   if (!session || !session.user) {
     throw new Error('User is not logged in');
@@ -54,7 +54,7 @@ export async function updateApplication(
 }
 
 export async function deleteApplication(applicationId: string) {
-  const session = await getServerSession(AUTH_OPTIONS);
+  const session = await getServerSession(AuthOptions);
 
   if (!session || !session.user) {
     throw new Error('User is not logged in');

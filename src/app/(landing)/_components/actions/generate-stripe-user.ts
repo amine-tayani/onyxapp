@@ -3,7 +3,7 @@
 import { redirect } from 'next/navigation';
 import { getServerSession } from 'next-auth';
 
-import { AUTH_OPTIONS } from '@/lib/next-auth-options';
+import { AuthOptions } from '@/lib/auth/authjs-conf';
 import { stripe } from '@/lib/payments/stripe';
 import { getUserSubscriptionPlan } from '@/lib/payments/subscription';
 
@@ -21,7 +21,7 @@ export async function generateUserStripe(
   let redirectUrl: string = '';
 
   try {
-    const session = await getServerSession(AUTH_OPTIONS);
+    const session = await getServerSession(AuthOptions);
     const user = session?.user;
 
     if (!user || !user.email || !user.id) {

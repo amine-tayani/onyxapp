@@ -2,10 +2,11 @@ import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import { NextAuthOptions, Session } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
-import prisma from './db/prisma';
-import { comparePassword } from './hash-password';
+import prisma from '@/lib/db/prisma';
 
-export const AUTH_OPTIONS: NextAuthOptions = {
+import { Match } from './password';
+
+export const AuthOptions: NextAuthOptions = {
   cookies: {
     sessionToken: {
       name: 'next-auth.session-token',
@@ -51,7 +52,7 @@ export const AUTH_OPTIONS: NextAuthOptions = {
           throw new Error('Account or Email does not Exists.');
         }
 
-        const isCorrectPassword = await comparePassword(
+        const isCorrectPassword = await Match(
           credentials!.password,
           user.hashedPassword as string
         );
@@ -128,6 +129,5 @@ export const AUTH_OPTIONS: NextAuthOptions = {
   jwt: {
     secret: process.env.NEXTAUTH_SECRET,
   },
-
   debug: process.env.NODE_ENV === 'development',
 };
