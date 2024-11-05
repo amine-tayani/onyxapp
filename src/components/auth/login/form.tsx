@@ -123,7 +123,13 @@ export function LoginAccountForm({ className, ...props }: UserAuthFormProps) {
               type='submit'
               disabled={loading}
             >
-              {loading ? <Spinner /> : 'Login'}
+              {loading ? (
+                <>
+                  <Spinner /> logging
+                </>
+              ) : (
+                'Login'
+              )}
             </Button>
             <p className='text-sm text-muted-foreground'>
               Don&apos;t have an account?{' '}

@@ -79,7 +79,13 @@ export function DeleteApplicationModal({
                 void handleDeleteApplication();
               }}
             >
-              {loading ? <Spinner /> : 'Delete'}
+              {loading ? (
+                <>
+                  <Spinner /> Deleting
+                </>
+              ) : (
+                'Delete'
+              )}
             </Button>
           </DialogFooter>
         </DialogContent>

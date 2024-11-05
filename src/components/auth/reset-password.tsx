@@ -39,7 +39,13 @@ export function ResetPasswordForm({ className, ...props }: UserAuthFormProps) {
             className='bg-hero hover:bg-hero/90 disabled:cursor-not-allowed disabled:opacity-50'
             disabled={isLoading}
           >
-            {isLoading ? <Spinner /> : 'Recover Password'}
+            {isLoading ? (
+              <>
+                <Spinner /> loading
+              </>
+            ) : (
+              'Recover Password'
+            )}
           </Button>
           <Link
             href='/login'

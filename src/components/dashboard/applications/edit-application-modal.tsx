@@ -306,7 +306,9 @@ export function EditApplicationModal({
                   type='submit'
                 >
                   {form.formState.isSubmitting || loading ? (
-                    <Spinner />
+                    <>
+                      <Spinner /> Updating
+                    </>
                   ) : (
                     'Update'
                   )}

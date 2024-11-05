@@ -22,7 +22,13 @@ export function DeleteAccountForm() {
         type='submit'
         disabled={loading}
       >
-        {loading ? <Spinner /> : 'Delete My Account'}
+        {loading ? (
+          <>
+            <Spinner /> deleting
+          </>
+        ) : (
+          'Delete My Account'
+        )}
       </Button>
     </div>
   );

@@ -6,9 +6,9 @@ import { Upload } from 'lucide-react';
 import Image from 'next/image';
 import * as React from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 import * as z from 'zod';
 
-import { toast } from '@/components/toast/use-toast';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import {
@@ -53,17 +53,11 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
     'avatarImageUploader',
     {
       onClientUploadComplete: () => {
-        toast({
-          variant: 'mytheme',
-          title: 'Avatar upload is Complete. ',
-        });
+        toast.success('Avatar upload is Complete. ');
       },
       onUploadError: (e) => {
         if (e.code === 'INTERNAL_CLIENT_ERROR') return;
-        toast({
-          variant: 'destructive',
-          description: 'Error occurred while uploading the avatar',
-        });
+        toast.error('Error occurred while uploading the avatar');
       },
     }
   );
@@ -72,17 +66,11 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
     'bannerImageUploader',
     {
       onClientUploadComplete: () => {
-        toast({
-          variant: 'mytheme',
-          title: 'Banner upload is Complete. ',
-        });
+        toast.success('Banner upload is Complete. ');
       },
       onUploadError: (e) => {
         if (e.code === 'INTERNAL_CLIENT_ERROR') return;
-        toast({
-          variant: 'destructive',
-          description: 'Error occurred while uploading the banner',
-        });
+        toast.error('Error occurred while uploading the banner');
       },
     }
   );
@@ -127,15 +115,9 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
       data.banner = bannerUploadResult && bannerUploadResult[0]?.url;
 
       await updateGeneralSettings(data);
-      toast({
-        variant: 'mytheme',
-        title: 'Your profile Settings has been successfully updated.',
-      });
+      toast.success('Your Settings has been updated.');
     } catch (error) {
-      toast({
-        variant: 'destructive',
-        title: 'Something went wrong while updating your profile.',
-      });
+      toast.error('Something went wrong while updating your profile.');
     }
   }
 
@@ -440,7 +422,13 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
           type='submit'
           disabled={form.formState.isSubmitting}
         >
-          {form.formState.isSubmitting ? <Spinner /> : 'Save Changes'}
+          {form.formState.isSubmitting ? (
+            <>
+              <Spinner /> Saving
+            </>
+          ) : (
+            'Save Changes'
+          )}
         </Button>
       </form>
     </Form>

@@ -141,7 +141,13 @@ export function CreateAccountForm({ className, ...props }: UserAuthFormProps) {
               type='submit'
               disabled={loading}
             >
-              {loading ? <Spinner /> : 'Sign up'}
+              {loading ? (
+                <>
+                  <Spinner /> signing
+                </>
+              ) : (
+                'Sign up'
+              )}
             </Button>
             <p className='text-sm text-muted-foreground'>
               Already have an account?{' '}

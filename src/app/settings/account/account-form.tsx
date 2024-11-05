@@ -3,9 +3,9 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 import * as z from 'zod';
 
-import { toast } from '@/components/toast/use-toast';
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -37,12 +37,7 @@ export function AccountForm() {
   });
 
   function onSubmit(data: AccountFormValues) {
-    toast({
-      title: 'You submitted the following values:',
-      description: (
-        <code className='text-white'>{JSON.stringify(data, null, 2)}</code>
-      ),
-    });
+    toast.info(JSON.stringify(data, null, 2));
   }
 
   return (
@@ -91,7 +86,13 @@ export function AccountForm() {
           type='submit'
           disabled={loading}
         >
-          {loading ? <Spinner /> : 'Save Changes'}
+          {loading ? (
+            <>
+              <Spinner /> Saving
+            </>
+          ) : (
+            'Save Changes'
+          )}
         </Button>
       </form>
     </Form>

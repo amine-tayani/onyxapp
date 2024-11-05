@@ -50,7 +50,6 @@ import {
 } from './zod-schema';
 
 const status = ['APPLIED', 'INTERVIEW', 'REJECTED', 'OFFER', 'CLOSED'];
-const today = new Date();
 
 export function CreateAppButton() {
   const [dialogOpen, setDialogOpen] = React.useState(false);
@@ -159,7 +158,7 @@ export function CreateAppButton() {
                       <FormLabel className='text-muted-foreground/80'>
                         Posted in
                       </FormLabel>
-                      <Popover>
+                      <Popover modal>
                         <PopoverTrigger asChild>
                           <FormControl>
                             <Button
@@ -182,9 +181,10 @@ export function CreateAppButton() {
                             mode='single'
                             selected={field.value}
                             onSelect={field.onChange}
+                            disabled={(date) =>
+                              date > new Date() || date < new Date('1900-01-01')
+                            }
                             initialFocus
-                            defaultMonth={today}
-                            toDate={today}
                           />
                         </PopoverContent>
                       </Popover>
@@ -298,7 +298,9 @@ export function CreateAppButton() {
                   type='submit'
                 >
                   {form.formState.isSubmitting || loading ? (
-                    <Spinner />
+                    <>
+                      <Spinner /> Creating
+                    </>
                   ) : (
                     'Create'
                   )}
