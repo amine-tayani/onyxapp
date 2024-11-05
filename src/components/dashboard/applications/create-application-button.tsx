@@ -90,7 +90,7 @@ export function CreateAppButton() {
             className='bg-hero hover:bg-purple-800'
             onClick={() => setDialogOpen(!dialogOpen)}
           >
-            <Plus className='block h-5 w-5 md:hidden' />
+            <Plus className='block size-5 md:hidden' />
             <span className='hidden md:block'>Add Application</span>
           </Button>
         </DialogTrigger>
@@ -172,7 +172,7 @@ export function CreateAppButton() {
                               ) : (
                                 <span>Choose a date</span>
                               )}
-                              <CalendarIcon className='ml-auto h-4 w-4 opacity-50' />
+                              <CalendarIcon className='ml-auto size-4 opacity-50' />
                             </Button>
                           </FormControl>
                         </PopoverTrigger>

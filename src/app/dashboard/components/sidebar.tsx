@@ -2,7 +2,7 @@
 
 'use client';
 
-import { BookOpen, SettingsIcon } from 'lucide-react';
+import { SettingsIcon } from 'lucide-react';
 import Link from 'next/link';
 import * as React from 'react';
 
@@ -43,30 +43,6 @@ const data = {
         },
       ],
     },
-
-    {
-      title: 'Documentation',
-      url: '#',
-      icon: BookOpen,
-      items: [
-        {
-          title: 'Introduction',
-          url: '#',
-        },
-        {
-          title: 'Get Started',
-          url: '#',
-        },
-        {
-          title: 'Tutorials',
-          url: '#',
-        },
-        {
-          title: 'Changelog',
-          url: '#',
-        },
-      ],
-    },
   ],
 };
 
@@ -80,9 +56,9 @@ export function DashboardSidebar({
           <SidebarMenuItem>
             <SidebarMenuButton size='lg' asChild>
               <Link href='/' className=''>
-                <Icons.logo className='h-8 w-8' />
+                <Icons.logo className='size-8' />
                 <span className='truncate text-sm font-semibold leading-tight'>
-                  Onyx dashboard
+                  Onyx
                 </span>
               </Link>
             </SidebarMenuButton>

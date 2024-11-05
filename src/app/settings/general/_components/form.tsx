@@ -134,11 +134,11 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
                   'https://avatars.githubusercontent.com/u/104228?v=4'
                 }
                 alt='avatar'
-                className='h-14 w-14 object-cover object-center'
+                className='size-14 object-cover object-center'
                 width={40}
               />
               <AvatarFallback>
-                <Skeleton className='h-14 w-14 rounded-full bg-background' />
+                <Skeleton className='size-14 rounded-full bg-background' />
               </AvatarFallback>
             </Avatar>
             <FormField
@@ -172,7 +172,7 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
                                 htmlFor='fileInput'
                                 className='flex items-center space-x-2'
                               >
-                                <Upload className='h-4 w-4' />
+                                <Upload className='size-4' />
                                 <span className='whitespace-nowrap'>
                                   Upload
                                 </span>
@@ -236,7 +236,7 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
                                 className='group inline-flex cursor-pointer items-center justify-center rounded-full bg-muted p-2.5 text-primary transition-all focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50'
                                 htmlFor='bannerInput'
                               >
-                                <Icons.cameraPlus className='h-6 w-6 text-neutral-200' />
+                                <Icons.cameraPlus className='size-6 text-neutral-200' />
                               </Label>
                             </TooltipTrigger>
                             <TooltipContent>
