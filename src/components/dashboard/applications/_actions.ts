@@ -5,7 +5,7 @@ import { getServerSession } from 'next-auth';
 import { AuthOptions } from '@/lib/auth/authjs-conf';
 import prisma from '@/lib/db/prisma';
 
-import { CreateOrUpdateApplicationSchema } from './zod-schema';
+import { CreateOrUpdateApplicationSchema } from './schema';
 
 export async function createApplication(data: CreateOrUpdateApplicationSchema) {
   const session = await getServerSession(AuthOptions);
@@ -53,7 +53,7 @@ export async function updateApplication(
   });
 }
 
-export async function deleteApplication(applicationId: string) {
+export async function removeApplication(applicationId: string) {
   const session = await getServerSession(AuthOptions);
 
   if (!session || !session.user) {

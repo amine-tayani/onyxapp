@@ -1,9 +1,10 @@
+/* eslint-disable unused-imports/no-unused-vars */
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { format } from 'date-fns';
-import { CalendarIcon, Plus } from 'lucide-react';
-import { useRouter } from 'next/navigation';
+import { CalendarIcon } from 'lucide-react';
+import { useParams, useRouter } from 'next/navigation';
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
@@ -17,7 +18,6 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from '@/components/ui/dialog';
 import {
   Form,
@@ -42,65 +42,72 @@ import {
 } from '@/components/ui/select';
 import { Spinner } from '@/components/ui/spinner';
 import { cn } from '@/lib/cn';
+import type { Application } from '@/lib/db/types';
 
-import { createApplication } from './_actions';
+import { updateApplication } from './_actions';
 import {
   CreateOrUpdateApplicationSchema,
   createOrUpdateApplicationSchema,
-} from './zod-schema';
+} from './schema';
 
-const status = ['APPLIED', 'INTERVIEW', 'REJECTED', 'OFFER', 'CLOSED'];
+interface EditApplicationModalProps {
+  application: Application;
+  isOpen?: boolean;
+  // eslint-disable-next-line no-unused-vars
+  setOpen: (o: boolean) => void;
+}
 
-export function CreateAppButton() {
-  const [dialogOpen, setDialogOpen] = React.useState(false);
-  const [loading, setLoading] = React.useState(false);
+export function EditApplicationModal({
+  application,
+  isOpen,
+  setOpen,
+}: EditApplicationModalProps) {
   const router = useRouter();
+  const { id } = useParams();
+  const [loading, setLoading] = React.useState(false);
+  const status = ['APPLIED', 'INTERVIEW', 'REJECTED', 'OFFER', 'CLOSED'];
+  const today = new Date();
 
   const form = useForm<CreateOrUpdateApplicationSchema>({
     resolver: zodResolver(createOrUpdateApplicationSchema),
     mode: 'onChange',
     defaultValues: {
-      title: '',
-      company: '',
-      description: '',
-      Url: '',
-      location: '',
+      title: application.title,
+      company: application.company,
+      description: application.description,
+      Url: application.Url as string,
+      location: application.location,
+      datePosted: application.datePosted,
+      status: application.status,
     },
   });
 
   async function onSubmit(data: CreateOrUpdateApplicationSchema) {
-    await createApplication(data);
     try {
+      await updateApplication(data, (id as string) || application.id);
       setLoading(true);
-      toast.success('Woah! Your Application has been created');
+      toast.success('Application has been updated.');
       router.refresh();
     } catch (err) {
-      console.error(err);
+      toast.error('Uh oh! Something went wrong. Please try again.');
     } finally {
       setLoading(false);
-      setDialogOpen(false);
+      setOpen(false);
     }
   }
 
   return (
     <>
-      <Dialog open={dialogOpen} onOpenChange={(o) => setDialogOpen(o)}>
-        <DialogTrigger asChild>
-          <Button
-            className='bg-hero hover:bg-purple-800'
-            onClick={() => setDialogOpen(!dialogOpen)}
-          >
-            <Plus className='block size-5 md:hidden' />
-            <span className='hidden md:block'>Add Application</span>
-          </Button>
-        </DialogTrigger>
+      <Dialog open={isOpen} onOpenChange={(o) => setOpen(o)}>
         <DialogContent
-          onInteractOutside={(e) => e.preventDefault()}
+          onInteractOutside={(e) => {
+            e.preventDefault();
+          }}
           className='bg-[#1d1d1d] px-8 py-6 lg:min-w-[500px] xl:min-w-[750px]'
         >
           <DialogHeader>
             <DialogTitle className='text-2xl font-semibold text-neutral-100'>
-              Add Application
+              Edit Application
             </DialogTitle>
           </DialogHeader>
           <Form {...form}>
@@ -158,7 +165,7 @@ export function CreateAppButton() {
                       <FormLabel className='text-muted-foreground/80'>
                         Posted in
                       </FormLabel>
-                      <Popover modal>
+                      <Popover>
                         <PopoverTrigger asChild>
                           <FormControl>
                             <Button
@@ -181,10 +188,9 @@ export function CreateAppButton() {
                             mode='single'
                             selected={field.value}
                             onSelect={field.onChange}
-                            disabled={(date) =>
-                              date > new Date() || date < new Date('1900-01-01')
-                            }
                             initialFocus
+                            defaultMonth={today}
+                            toDate={today}
                           />
                         </PopoverContent>
                       </Popover>
@@ -224,10 +230,13 @@ export function CreateAppButton() {
                       <FormLabel className='text-muted-foreground/80'>
                         Status
                       </FormLabel>
-                      <Select onValueChange={field.onChange}>
+                      <Select
+                        value={field.value}
+                        onValueChange={field.onChange}
+                      >
                         <FormControl>
                           <SelectTrigger className='text-muted-foreground/70'>
-                            <SelectValue placeholder='Select status' />
+                            <SelectValue />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
@@ -268,13 +277,13 @@ export function CreateAppButton() {
               <FormField
                 control={form.control}
                 name='description'
-                render={({ field: { onChange, value } }) => (
+                render={({ field }) => (
                   <FormItem>
                     <FormLabel className='text-muted-foreground/80'>
                       Description
                     </FormLabel>
                     <FormControl>
-                      <Editor onChange={onChange} value={value} />
+                      <Editor value={field.value} onChange={field.onChange} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -282,15 +291,8 @@ export function CreateAppButton() {
               />
 
               <DialogFooter className='flex-row items-center justify-end gap-1 pt-4 '>
-                <Button
-                  type='button'
-                  onClick={() => {
-                    form.clearErrors();
-                    form.reset();
-                    setDialogOpen(false);
-                  }}
-                >
-                  Clear
+                <Button type='button' onClick={() => setOpen(false)}>
+                  Cancel
                 </Button>
                 <Button
                   disabled={form.formState.isSubmitting || loading}
@@ -299,10 +301,10 @@ export function CreateAppButton() {
                 >
                   {form.formState.isSubmitting || loading ? (
                     <>
-                      <Spinner /> Creating
+                      <Spinner /> Updating
                     </>
                   ) : (
-                    'Create'
+                    'Update'
                   )}
                 </Button>
               </DialogFooter>

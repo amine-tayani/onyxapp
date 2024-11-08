@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 
-export function EmptyApplicationsView() {
+export function EmptyPlaceholder() {
   return (
     <div className='mt-12 flex flex-col items-center justify-center gap-y-4 md:items-start md:justify-start md:gap-y-8'>
       <div className='relative mx-auto h-[172px] max-w-[301px] rounded-t-xl md:h-[294px] md:max-w-[512px]'>

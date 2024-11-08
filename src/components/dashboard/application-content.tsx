@@ -4,10 +4,10 @@ import { useSearchParams } from 'next/navigation';
 
 import { Application } from '@/lib/db/types';
 
-import { GridView } from './applications/grid-view';
-import { TableView } from './applications/table-view';
-import { ApplicationsContentHeader } from './applications-content-header';
-import { EmptyApplicationsView } from './empty-applications-view';
+import { GridView } from './applications/grid';
+import { TableView } from './applications/table';
+import { ApplicationsContentHeader } from './content-header';
+import { EmptyPlaceholder } from './empty-placeholder';
 
 interface ApplicationsContentProps {
   applications: Application[];
@@ -23,7 +23,7 @@ export function ApplicationsContent({
     <div className='flex-1 px-6'>
       <ApplicationsContentHeader />
       {applications.length === 0 ? (
-        <EmptyApplicationsView />
+        <EmptyPlaceholder />
       ) : mode === 'table' ? (
         <TableView applications={applications} />
       ) : (

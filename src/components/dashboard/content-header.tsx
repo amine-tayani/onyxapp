@@ -5,7 +5,7 @@ import { cn } from '@/lib/cn';
 
 import { buttonVariants } from '../ui/button';
 import { Icons } from '../ui/icons';
-import { CreateAppButton } from './applications/create-application-button';
+import { CreateAppButton } from './applications/create';
 
 export function ApplicationsContentHeader() {
   return (
@@ -19,7 +19,7 @@ export function ApplicationsContentHeader() {
             })
           )}
         >
-          <Icons.gridIcon className='h-5 w-5' />
+          <Icons.gridIcon className='size-5' />
           <span className='ml-2 hidden md:inline'>Grid</span>
         </Link>
         <Link
@@ -30,7 +30,7 @@ export function ApplicationsContentHeader() {
             })
           )}
         >
-          <TableIcon strokeWidth={1} className='h-5 w-5' />
+          <TableIcon strokeWidth={1} className='size-5' />
           <span className='ml-2 hidden md:inline'>Table</span>
         </Link>
         <CreateAppButton />

@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Application } from '@/lib/db/types';
 
-import { DeleteApplicationModal } from './delete-application-modal';
+import { RemoveApplicationDialog } from './remove';
 
 interface Props {
   application: Application;
@@ -28,15 +28,15 @@ export function ApplicationCard({ application }: Props) {
                 onClick={() => setIsDialogOpen(true)}
                 size='icon'
                 variant='link'
-                className='group h-5 w-5 outline-none focus-visible:ring-inset'
+                className='group size-5 outline-none focus-visible:ring-inset'
               >
-                <XIcon className='h-5 w-5 text-muted-foreground/80 hover:text-primary' />
+                <XIcon className='size-5 text-muted-foreground/80 hover:text-primary' />
                 <span className='sr-only'>Delete</span>
               </Button>
-              <DeleteApplicationModal
+              <RemoveApplicationDialog
                 applicationId={application.id}
-                isDeleteApplicationDialogOpen={isDialogOpen}
-                setDeleteApplicationDialogOpen={setIsDialogOpen}
+                isOpen={isDialogOpen}
+                setOpen={setIsDialogOpen}
               />
             </div>
           </div>

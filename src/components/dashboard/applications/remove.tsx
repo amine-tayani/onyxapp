@@ -16,40 +16,40 @@ import {
 } from '@/components/ui/dialog';
 import { Spinner } from '@/components/ui/spinner';
 
-import { deleteApplication } from './_actions';
+import { removeApplication } from './_actions';
 
-interface DeleteApplicationDialogProps {
+interface RemoveApplicationDialogProps {
   applicationId: string;
-  isDeleteApplicationDialogOpen?: boolean;
+  isOpen?: boolean;
   // eslint-disable-next-line no-unused-vars
-  setDeleteApplicationDialogOpen: (o: boolean) => void;
+  setOpen: (o: boolean) => void;
 }
 
-export function DeleteApplicationModal({
+export function RemoveApplicationDialog({
   applicationId,
-  setDeleteApplicationDialogOpen,
-  isDeleteApplicationDialogOpen,
-}: DeleteApplicationDialogProps) {
+  setOpen,
+  isOpen,
+}: RemoveApplicationDialogProps) {
   const router = useRouter();
   const [loading, setLoading] = React.useState(false);
 
   const handleDeleteApplication = async () => {
     try {
-      await deleteApplication(applicationId);
+      await removeApplication(applicationId);
       setLoading(true);
-      toast.info('Application is deleted now.');
+      toast.success('Application is deleted now.');
       router.refresh();
     } catch (err) {
       toast.error('Error occured while deleting application');
     } finally {
       setLoading(false);
-      setDeleteApplicationDialogOpen(false);
+      setOpen(false);
     }
   };
 
   return (
     <>
-      <Dialog open={isDeleteApplicationDialogOpen}>
+      <Dialog open={isOpen}>
         <DialogContent
           onInteractOutside={(e) => {
             e.preventDefault();
@@ -67,10 +67,7 @@ export function DeleteApplicationModal({
           </DialogHeader>
 
           <DialogFooter className='flex-row items-center justify-end gap-1 pt-4 '>
-            <Button
-              type='button'
-              onClick={() => setDeleteApplicationDialogOpen(false)}
-            >
+            <Button type='button' onClick={() => setOpen(false)}>
               Cancel
             </Button>
             <Button

@@ -14,8 +14,8 @@ import {
 } from '@/components/ui/dropdown-menu';
 import type { Application } from '@/lib/db/types';
 
-import { DeleteApplicationModal } from '../delete-application-modal';
-import { EditApplicationModal } from '../edit-application-modal';
+import { EditApplicationModal } from '../edit';
+import { RemoveApplicationDialog } from '../remove';
 
 interface CellActionProps {
   data: Application;
@@ -32,7 +32,7 @@ export function CellAction({ data }: CellActionProps) {
         <DropdownMenuTrigger asChild>
           <Button
             variant='link'
-            className='flex h-8 w-8 p-0 data-[state=open]:bg-muted'
+            className='flex size-8 p-0 data-[state=open]:bg-muted'
           >
             <svg
               xmlns='http://www.w3.org/2000/svg'
@@ -40,7 +40,7 @@ export function CellAction({ data }: CellActionProps) {
               viewBox='0 0 24 24'
               strokeWidth={1.5}
               stroke='currentColor'
-              className='h-6 w-6'
+              className='size-6'
             >
               <path
                 strokeLinecap='round'
@@ -71,14 +71,14 @@ export function CellAction({ data }: CellActionProps) {
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
-      <DeleteApplicationModal
+      <RemoveApplicationDialog
         applicationId={data.id}
-        isDeleteApplicationDialogOpen={isDeleteDialogOpen}
-        setDeleteApplicationDialogOpen={setIsDeleteDialogOpen}
+        isOpen={isDeleteDialogOpen}
+        setOpen={setIsDeleteDialogOpen}
       />
       <EditApplicationModal
-        isEditApplicationModalOpen={isEditDialogOpen}
-        setIsEditApplicationModalOpen={setIsEditDialogOpen}
+        isOpen={isEditDialogOpen}
+        setOpen={setIsEditDialogOpen}
         application={data}
       />
     </>

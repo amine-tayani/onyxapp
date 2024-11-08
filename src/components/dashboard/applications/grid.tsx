@@ -3,7 +3,7 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Application, ApplicationStatus } from '@/lib/db/types';
 
-import { ApplicationCard } from './application-card';
+import { ApplicationCard } from './card';
 
 interface GridViewProps {
   applications: Application[];

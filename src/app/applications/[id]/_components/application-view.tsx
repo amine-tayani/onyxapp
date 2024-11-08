@@ -3,7 +3,7 @@
 import { Pencil } from 'lucide-react';
 import * as React from 'react';
 
-import { EditApplicationModal } from '@/components/dashboard/applications/edit-application-modal';
+import { EditApplicationModal } from '@/components/dashboard/applications/edit';
 import { DescriptionViewer } from '@/components/editor/description-viewer';
 import { Button } from '@/components/ui/button';
 import { EmptyPlaceholder } from '@/components/ui/empty-placeholder';
@@ -50,7 +50,7 @@ export function ApplicationView({ application }: { application: Application }) {
               }}
               className='text-neutral-300 outline-none hover:text-primary focus-visible:ring-inset'
             >
-              <Pencil className='mr-2 h-5 w-5' />
+              <Pencil className='mr-2 size-5' />
               <span>Edit</span>
             </Button>
             <EditApplicationModal
