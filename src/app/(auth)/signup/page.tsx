@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 import { redirect } from 'next/navigation';
-import { getServerSession } from 'next-auth/next';
 
 import { CreateAccountForm } from '@/components/auth/signup/form';
-import { AUTH_OPTIONS } from '@/lib/next-auth-options';
+import { AUTH_OPTIONS } from '@/lib/auth/config';
+import { getServerSession } from 'next-auth';
 
 export const metadata: Metadata = {
   title: 'Signup | Onyx',

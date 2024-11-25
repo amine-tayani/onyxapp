@@ -48,12 +48,14 @@ export function LoginAccountForm({ className, ...props }: UserAuthFormProps) {
         ...data,
       });
 
-      if (res?.error)
+      if (!res?.ok && res?.error) {
         toast({
+          title: 'Error',
+          description: res.error,
           variant: 'destructive',
-          description: 'Oh no! Something went wrong.',
         });
-      router.push(callbackUrl);
+      }
+      // router.push(callbackUrl);
     } catch (err) {
       console.log(err);
     } finally {

@@ -2,8 +2,8 @@ import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import { NextAuthOptions, Session } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
-import prisma from './db/prisma';
-import { comparePassword } from './hash-password';
+import prisma from '../db/prisma';
+import { validatePassword } from './password';
 
 export const AUTH_OPTIONS: NextAuthOptions = {
   cookies: {
@@ -23,14 +23,8 @@ export const AUTH_OPTIONS: NextAuthOptions = {
     CredentialsProvider({
       name: 'credentials',
       credentials: {
-        email: {
-          label: 'Email',
-          type: 'email',
-        },
-        password: {
-          label: 'Password',
-          type: 'password',
-        },
+        email: {},
+        password: {},
       },
       async authorize(credentials) {
         const user = await prisma.user.findUnique({
@@ -51,7 +45,7 @@ export const AUTH_OPTIONS: NextAuthOptions = {
           throw new Error('Account or Email does not Exists.');
         }
 
-        const isCorrectPassword = await comparePassword(
+        const isCorrectPassword = await validatePassword(
           credentials!.password,
           user.hashedPassword as string
         );

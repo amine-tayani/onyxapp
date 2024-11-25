@@ -4,7 +4,7 @@ import { revalidatePath } from 'next/cache';
 import { getServerSession } from 'next-auth';
 
 import prisma from '@/lib/db/prisma';
-import { AUTH_OPTIONS } from '@/lib/next-auth-options';
+import { AUTH_OPTIONS } from '@/lib/auth/config';
 
 import {
   ProfileFormSchema,

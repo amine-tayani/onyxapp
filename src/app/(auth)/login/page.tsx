@@ -3,7 +3,7 @@ import { redirect } from 'next/navigation';
 import { getServerSession } from 'next-auth/next';
 
 import { LoginAccountForm } from '@/components/auth/login/form';
-import { AUTH_OPTIONS } from '@/lib/next-auth-options';
+import { AUTH_OPTIONS } from '@/lib/auth/config';
 
 export const metadata: Metadata = {
   title: 'Login | Onyx',

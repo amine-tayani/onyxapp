@@ -1,9 +1,9 @@
-import { getServerSession } from 'next-auth/next';
 import { createUploadthing, type FileRouter } from 'uploadthing/next';
 import { UploadThingError, UTApi } from 'uploadthing/server';
 
+import { AUTH_OPTIONS } from '@/lib/auth/config';
 import prisma from '@/lib/db/prisma';
-import { AUTH_OPTIONS } from '@/lib/next-auth-options';
+import { getServerSession } from 'next-auth';
 
 const f = createUploadthing();
 

@@ -3,7 +3,7 @@
 import { redirect } from 'next/navigation';
 import { getServerSession } from 'next-auth';
 
-import { AUTH_OPTIONS } from '@/lib/next-auth-options';
+import { AUTH_OPTIONS } from '@/lib/auth/config';
 import { stripe } from '@/lib/payments/stripe';
 import { getUserSubscriptionPlan } from '@/lib/payments/subscription';
 
