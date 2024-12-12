@@ -1,6 +1,5 @@
 'use client';
 
-import { Check } from 'lucide-react';
 import Link from 'next/link';
 
 import { BillingFormButton } from '@/components/billing/form-button';
@@ -19,44 +18,43 @@ export default function PricingCards({
   subscriptionPlan,
 }: PricingCardsProps) {
   const PricingCard = ({ offer }: { offer: SubscriptionPlan }) => {
+    const isPro = offer.title.toLowerCase() === 'pro';
+
     return (
       <div
         className={cn(
-          'relative flex flex-col overflow-hidden rounded-3xl border shadow-sm',
-          offer.title.toLocaleLowerCase() === 'pro'
-            ? '-m-0.5 border-2 border-purple-400'
-            : ''
+          'group relative flex flex-col overflow-hidden rounded-[20px] border p-8 shadow-lg backdrop-blur-sm',
+          isPro
+            ? 'border-hero bg-gradient-to-b from-hero/20 to-hero/5'
+            : 'border-neutral-800 bg-neutral-800/40 hover:border-transparent hover:bg-neutral-800/60'
         )}
-        key={offer.title}
       >
-        <div className='min-h-[150px] items-start space-y-4 bg-muted/50 p-6'>
-          <p className='font-urban flex text-sm font-bold uppercase tracking-wider text-muted-foreground'>
+        <div className='mb-5'>
+          <h3 className='text-base font-medium uppercase tracking-wide text-neutral-300'>
             {offer.title}
-          </p>
-
-          <div className='flex flex-row'>
-            <div className='flex items-end'>
-              <div className='flex text-left text-3xl font-semibold leading-6'>
-                ${offer.prices.monthly}
-              </div>
-              <div className='-mb-1 ml-2 text-left text-sm font-medium text-muted-foreground'>
-                <div>/month</div>
-              </div>
-            </div>
+          </h3>
+          <div className='mt-4 flex items-baseline gap-2'>
+            <span className='text-4xl font-bold tracking-tight text-white'>
+              ${offer.prices.monthly}
+            </span>
+            <span className='text-sm font-medium text-neutral-400'>/month</span>
           </div>
-          {offer.prices.monthly > 0 ? (
-            <div className='text-left text-sm text-muted-foreground'>
-              when charged monthly
-            </div>
-          ) : null}
+
+          <p className='mt-2 text-sm text-neutral-400'>
+            {isPro
+              ? 'Powerful extra features for your growing business.'
+              : 'Everything you need to get started.'}
+          </p>
         </div>
 
-        <div className='flex h-full flex-col justify-between gap-16 p-6'>
-          <ul className='space-y-2 text-left text-sm font-medium leading-normal'>
+        <div className='flex h-full flex-col justify-between'>
+          <ul className='mb-8 space-y-4'>
             {offer.features.map((feature) => (
-              <li className='flex items-start gap-x-3' key={feature}>
-                <Check className='size-5 shrink-0 text-purple-500' />
-                <p>{feature}</p>
+              <li key={feature} className='flex items-start gap-3'>
+                <div className='mt-1.5 size-1.5 shrink-0 rounded-full bg-purple-500/80' />
+                <span className='text-[13px] leading-relaxed text-neutral-300'>
+                  {feature}
+                </span>
               </li>
             ))}
           </ul>
@@ -66,10 +64,7 @@ export default function PricingCards({
               <Link
                 href='/dashboard'
                 className={cn(
-                  buttonVariants({
-                    variant: 'outline',
-                  }),
-                  'w-full rounded-xl text-black'
+                  'inline-flex h-10 items-center justify-center rounded-lg border border-neutral-800 px-6 text-sm font-medium text-white transition-colors hover:bg-white/5'
                 )}
               >
                 Go to dashboard
@@ -85,15 +80,12 @@ export default function PricingCards({
               href='/login'
               className={cn(
                 buttonVariants({
-                  variant:
-                    offer.title.toLocaleLowerCase() === 'pro'
-                      ? 'default'
-                      : 'outline',
+                  variant: isPro ? 'default' : 'outline',
                 }),
-                'w-full rounded-xl',
-                offer.title.toLocaleLowerCase() === 'pro'
-                  ? 'text-primary'
-                  : 'text-neutral-900'
+                'w-[140px] rounded-lg transition-colors',
+                isPro
+                  ? 'bg-hero text-white hover:bg-hero/90'
+                  : 'border-neutral-800 bg-transparent text-white hover:bg-white/10'
               )}
             >
               Sign In
@@ -105,12 +97,21 @@ export default function PricingCards({
   };
 
   return (
-    <div className='my-20 flex items-center justify-center overflow-x-auto p-4 text-white'>
-      <div className='relative grid h-[450px] w-full min-w-[1000px] max-w-5xl grid-cols-1 gap-0 sm:grid-cols-2 lg:grid-cols-3'>
+    <section className='mx-auto max-w-7xl px-4 py-24'>
+      <div className='flex flex-col items-center text-center'>
+        <h1 className='text-4xl font-bold tracking-tight sm:text-5xl'>
+          Simple, transparent pricing
+        </h1>
+        <p className='mt-4 max-w-2xl text-lg text-neutral-400'>
+          Start tracking your job applications for free. Upgrade to unlock
+          advanced features, analytics, and unlimited applications tracking.
+        </p>
+      </div>
+      <div className='mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3'>
         {pricingData.map((offer) => (
           <PricingCard offer={offer} key={offer.title} />
         ))}
       </div>
-    </div>
+    </section>
   );
 }
