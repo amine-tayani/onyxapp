@@ -2,9 +2,9 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 import * as z from 'zod';
 
-import { toast } from '@/components/toast/use-toast';
 import { Form } from '@/components/ui/form';
 
 import SessionCard from './_components/session-card';
@@ -33,14 +33,11 @@ export function SecurityForm() {
   });
 
   function onSubmit(data: SecurityFormValues) {
-    toast({
-      title: 'You submitted the following values:',
-      description: (
-        <pre className='mt-2 w-[340px] rounded-md bg-slate-950'>
-          <code className='text-white'>{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    });
+    toast.info(
+      <pre>
+        <code className='text-white'>{JSON.stringify(data, null, 2)}</code>
+      </pre>
+    );
   }
 
   return (

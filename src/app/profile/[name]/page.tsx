@@ -18,23 +18,19 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
   const user = await prisma.user.findFirst({
     where: {
       name: {
-        equals: params.name,
+        equals: 'Amineti',
       },
     },
     select: {
-      id: true,
-      emailVerified: true,
       name: true,
       email: true,
       bio: true,
+      location: true,
       avatar: true,
       banner: true,
+      experience: true,
       socialLinks: true,
       createdAt: true,
-      updatedAt: true,
-      experience: true,
-      location: true,
-      skills: true,
     },
   });
 
