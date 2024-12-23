@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+import { Hash } from '@/lib/auth/password';
 import prisma from '@/lib/db/prisma';
 import { sendWelcomeEmail } from '@/lib/email/send-welcome';
-import { hashPassword } from '@/lib/hash-password';
 
 export async function POST(request: NextRequest) {
   try {
@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    const hashedPassword = await hashPassword(password);
+    const hashedPassword = await Hash(password);
 
     const addedUser = await prisma.user.create({
       data: {
