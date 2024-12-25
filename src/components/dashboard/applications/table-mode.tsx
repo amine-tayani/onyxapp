@@ -5,14 +5,14 @@ import { Application } from '@/lib/db/types';
 import { columns } from './data-table/columns';
 import { DataTable } from './data-table/data-table';
 
-interface TableViewProps {
-  applications: Application[];
+interface TableModeProps {
+  data: Application[];
 }
 
-export function TableView({ applications }: TableViewProps) {
+export function TableMode({ data }: TableModeProps) {
   return (
     <div className='py-4'>
-      <DataTable data={applications} columns={columns} />
+      <DataTable data={data} columns={columns} />
     </div>
   );
 }

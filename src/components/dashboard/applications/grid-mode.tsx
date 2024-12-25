@@ -5,11 +5,11 @@ import { Application, ApplicationStatus } from '@/lib/db/types';
 
 import { ApplicationCard } from './card';
 
-interface GridViewProps {
-  applications: Application[];
+interface GridModeProps {
+  data: Application[];
 }
 
-export function GridView({ applications }: GridViewProps) {
+export function GridMode({ data }: GridModeProps) {
   const labels = Object.values(ApplicationStatus).map((status) => ({
     label: status,
     value: status,
@@ -30,7 +30,7 @@ export function GridView({ applications }: GridViewProps) {
       {labels.map(({ label, value }) => (
         <TabsContent key={label} value={value} className='space-y-4'>
           <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
-            {applications
+            {data
               .filter((application) => application.status === value)
               .map((item) => (
                 <ApplicationCard application={item} key={item.id} />

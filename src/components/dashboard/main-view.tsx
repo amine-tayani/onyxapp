@@ -4,30 +4,28 @@ import { useSearchParams } from 'next/navigation';
 
 import { Application } from '@/lib/db/types';
 
-import { GridView } from './applications/grid';
-import { TableView } from './applications/table';
-import { ApplicationsContentHeader } from './content-header';
+import { GridMode } from './applications/grid-mode';
+import { TableMode } from './applications/table-mode';
+import { DTSHeader } from './dts-header';
 import { EmptyPlaceholder } from './empty-placeholder';
 
-interface ApplicationsContentProps {
+interface MainViewProps {
   applications: Application[];
 }
 
-export function ApplicationsContent({
-  applications,
-}: ApplicationsContentProps) {
+export function MainView({ applications }: MainViewProps) {
   const params = useSearchParams();
   const mode = params.get('mode');
 
   return (
     <div className='flex-1 px-6'>
-      <ApplicationsContentHeader />
+      <DTSHeader />
       {applications.length === 0 ? (
         <EmptyPlaceholder />
       ) : mode === 'table' ? (
-        <TableView applications={applications} />
+        <TableMode data={applications} />
       ) : (
-        <GridView applications={applications} />
+        <GridMode data={applications} />
       )}
     </div>
   );
