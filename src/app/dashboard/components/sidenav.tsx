@@ -28,10 +28,13 @@ export function DashboardSideNav({
 }) {
   return (
     <SidebarGroup>
-      <SidebarMenu className='px-2'>
+      <SidebarMenu>
         {items.map((item) => (
           <SidebarMenuItem>
-            <SidebarMenuButton tooltip={item.title}>
+            <SidebarMenuButton
+              tooltip={item.title}
+              className='h-8 rounded-lg px-4 hover:bg-neutral-800 hover:text-neutral-50'
+            >
               {item.icon && <item.icon />}
               <span>{item.title}</span>
             </SidebarMenuButton>

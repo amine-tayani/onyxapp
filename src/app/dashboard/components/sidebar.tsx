@@ -4,10 +4,11 @@
 
 import {
   BellIcon,
-  HelpCircleIcon,
+  CreditCard,
   Inbox,
   PieChartIcon,
   SettingsIcon,
+  ShieldIcon,
   UserIcon,
 } from 'lucide-react';
 import * as React from 'react';
@@ -51,14 +52,19 @@ const data = {
       icon: SettingsIcon,
     },
     {
+      title: 'Billing',
+      url: '/dashboard/billing',
+      icon: CreditCard,
+    },
+    {
       title: 'Profile',
       url: '/dashboard/profile',
       icon: UserIcon,
     },
     {
-      title: 'Help',
-      url: '/dashboard/help',
-      icon: HelpCircleIcon,
+      title: 'Security',
+      url: '/dashboard/security',
+      icon: ShieldIcon,
     },
   ],
 };
@@ -74,7 +80,10 @@ export function DashboardSidebar({
           <SidebarMenuItem>
             <div
               href='/dashboard'
-              className='mt-4 flex items-center gap-x-2 px-3'
+              className={cn(
+                'mt-4 flex items-center gap-x-2',
+                state === 'collapsed' ? 'ml-0' : 'ml-3'
+              )}
             >
               <Icons.logo className='size-8' />
               <span

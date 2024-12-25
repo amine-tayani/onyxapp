@@ -2,7 +2,7 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { format } from 'date-fns';
-import { CalendarIcon, Plus } from 'lucide-react';
+import { CalendarIcon, ChevronDown } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
@@ -40,6 +40,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { Separator } from '@/components/ui/separator';
 import { Spinner } from '@/components/ui/spinner';
 import { cn } from '@/lib/cn';
 
@@ -87,11 +88,13 @@ export function CreateAppButton() {
       <Dialog open={dialogOpen} onOpenChange={(o) => setDialogOpen(o)}>
         <DialogTrigger asChild>
           <Button
-            className='bg-hero hover:bg-purple-800'
+            size='sm'
+            className='flex h-8 w-24 justify-between rounded-lg bg-hero hover:bg-purple-800'
             onClick={() => setDialogOpen(!dialogOpen)}
           >
-            <Plus className='block size-5 md:hidden' />
-            <span className='hidden md:block'>Add Application</span>
+            <span className='hidden md:block'>New</span>
+            <Separator orientation='vertical' className='bg-primary/40' />
+            <ChevronDown className='size-4' />
           </Button>
         </DialogTrigger>
         <DialogContent
