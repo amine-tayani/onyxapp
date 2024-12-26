@@ -4,6 +4,7 @@ import { type LucideIcon } from 'lucide-react';
 
 import {
   SidebarGroup,
+  SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
@@ -12,7 +13,7 @@ import {
   SidebarMenuSubItem,
 } from '@/components/ui/sidebar';
 
-export function DashboardSideNav({
+export function MainNav({
   items,
 }: {
   items: {
@@ -27,13 +28,14 @@ export function DashboardSideNav({
   }[];
 }) {
   return (
-    <SidebarGroup>
+    <SidebarGroup className='mt-4'>
+      <SidebarGroupLabel>main</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => (
           <SidebarMenuItem>
             <SidebarMenuButton
               tooltip={item.title}
-              className='h-8 rounded-lg px-4 hover:bg-neutral-800 hover:text-neutral-50'
+              className='h-8 rounded-lg px-4 text-neutral-300 hover:bg-neutral-800 hover:text-neutral-50'
             >
               {item.icon && <item.icon />}
               <span>{item.title}</span>

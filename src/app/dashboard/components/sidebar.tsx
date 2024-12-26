@@ -7,6 +7,7 @@ import {
   CreditCard,
   Inbox,
   PieChartIcon,
+  Search,
   SettingsIcon,
   ShieldIcon,
   UserIcon,
@@ -26,11 +27,17 @@ import {
 } from '@/components/ui/sidebar';
 import { cn } from '@/lib/cn';
 
-import { DashboardSideNav } from './sidenav';
+import { MainNav } from './main-nav';
+import { SettingsNav } from './settings-nav';
 import { UserMenu } from './user-menu';
 
 const data = {
-  sideNav: [
+  main: [
+    {
+      title: 'Search',
+      url: '/dashboard/search',
+      icon: Search,
+    },
     {
       title: 'Inbox',
       url: '/dashboard/inbox',
@@ -41,6 +48,14 @@ const data = {
       url: '/dashboard/analytics',
       icon: PieChartIcon,
     },
+
+    {
+      title: 'Profile',
+      url: '/dashboard/profile',
+      icon: UserIcon,
+    },
+  ],
+  settings: [
     {
       title: 'Notifications',
       url: '/dashboard/notifications',
@@ -55,11 +70,6 @@ const data = {
       title: 'Billing',
       url: '/dashboard/billing',
       icon: CreditCard,
-    },
-    {
-      title: 'Profile',
-      url: '/dashboard/profile',
-      icon: UserIcon,
     },
     {
       title: 'Security',
@@ -100,7 +110,8 @@ export function DashboardSidebar({
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <DashboardSideNav items={data.sideNav} />
+        <MainNav items={data.main} />
+        <SettingsNav items={data.settings} />
       </SidebarContent>
       <SidebarFooter>
         <UserMenu />

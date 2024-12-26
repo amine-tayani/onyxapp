@@ -2,6 +2,7 @@
 
 import { DropdownMenuTrigger } from '@radix-ui/react-dropdown-menu';
 import { Table } from '@tanstack/react-table';
+import { EyeOffIcon } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -11,7 +12,6 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
 } from '@/components/ui/dropdown-menu';
-import { Icons } from '@/components/ui/icons';
 
 interface DataTableViewOptionsProps<TData> {
   table: Table<TData>;
@@ -24,11 +24,12 @@ export function DataTableViewOptions<TData>({
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
+          variant='link'
           size='sm'
-          className='ml-auto hidden h-8 text-muted-foreground/80 lg:flex'
+          className='ml-auto hidden h-8 text-muted-foreground/80 hover:text-primary lg:flex'
         >
-          <Icons.columns className='mr-2 h-5 w-5' />
-          Customize
+          <EyeOffIcon className='mr-2 size-5' />
+          Show
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align='end' className='w-[150px]'>

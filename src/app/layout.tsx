@@ -30,13 +30,10 @@ export default async function RootLayout({
             icons={{ error: '❌', success: '✅', warning: '⚠️', info: 'ℹ️' }}
             toastOptions={{
               classNames: {
-                error:
-                  'bg-gradient-to-r from-muted/80 to-muted/90 text-red-500',
-                success:
-                  'bg-gradient-to-r from-muted/80 to-muted/90 text-green-500',
-                warning:
-                  'bg-gradient-to-r from-muted/80 to-muted/90 text-yellow-500',
-                info: 'bg-gradient-to-r from-muted/80 to-muted/90 text-blue-500',
+                error: 'bg-muted text-red-500',
+                success: 'bg-muted text-green-500',
+                warning: 'bg-muted text-yellow-500',
+                info: 'bg-muted text-blue-500',
               },
             }}
           />

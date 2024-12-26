@@ -8,7 +8,7 @@ import type { Application, ApplicationStatus } from '@/lib/db/types';
 import { getRelativeTime } from '@/utils/time';
 
 import { CellAction } from './cell-action';
-import { DataTableColumnHeader } from './data-table-column-header';
+import { DataTableColumnHeader } from './column-header';
 
 export const columns: ColumnDef<Application>[] = [
   {

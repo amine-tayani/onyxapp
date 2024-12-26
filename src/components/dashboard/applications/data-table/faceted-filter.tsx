@@ -1,5 +1,5 @@
 import { Column } from '@tanstack/react-table';
-import { CheckIcon } from 'lucide-react';
+import { CheckIcon, LucideListFilter } from 'lucide-react';
 import * as React from 'react';
 
 import { Badge } from '@/components/ui/badge';
@@ -8,12 +8,9 @@ import {
   Command,
   CommandEmpty,
   CommandGroup,
-  CommandInput,
   CommandItem,
   CommandList,
-  CommandSeparator,
 } from '@/components/ui/command';
-import { Icons } from '@/components/ui/icons';
 import {
   Popover,
   PopoverContent,
@@ -43,8 +40,12 @@ export function DataTableFacetedFilter<TData, TValue>({
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button size='sm' className='group h-8 text-muted-foreground/80'>
-          <Icons.filterIcon className='mr-2 h-5 w-5' />
+        <Button
+          variant='link'
+          size='sm'
+          className='group h-8 text-muted-foreground/80 hover:text-primary'
+        >
+          <LucideListFilter className='mr-2 size-4' />
           {title}
           {selectedValues?.size > 0 && (
             <>
@@ -83,7 +84,6 @@ export function DataTableFacetedFilter<TData, TValue>({
       </PopoverTrigger>
       <PopoverContent className='w-[200px] p-0' align='start'>
         <Command>
-          <CommandInput placeholder={title} />
           <CommandList>
             <CommandEmpty>No results found.</CommandEmpty>
             <CommandGroup>
@@ -115,11 +115,11 @@ export function DataTableFacetedFilter<TData, TValue>({
                       <CheckIcon className={cn('h-4 w-4')} />
                     </div>
                     {option.icon && (
-                      <option.icon className='mr-2 h-4 w-4 text-muted-foreground' />
+                      <option.icon className='mr-2 size-4 text-muted-foreground' />
                     )}
                     <span>{option.label}</span>
                     {facets?.get(option.value) && (
-                      <span className='ml-auto flex h-4 w-4 items-center justify-center font-mono text-xs'>
+                      <span className='ml-auto flex size-4 items-center justify-center font-mono text-xs'>
                         {facets.get(option.value)}
                       </span>
                     )}
@@ -128,17 +128,14 @@ export function DataTableFacetedFilter<TData, TValue>({
               })}
             </CommandGroup>
             {selectedValues.size > 0 && (
-              <>
-                <CommandSeparator />
-                <CommandGroup>
-                  <CommandItem
-                    onSelect={() => column?.setFilterValue(undefined)}
-                    className='justify-center text-center'
-                  >
-                    Clear filters
-                  </CommandItem>
-                </CommandGroup>
-              </>
+              <CommandGroup>
+                <CommandItem
+                  onSelect={() => column?.setFilterValue(undefined)}
+                  className='justify-center text-center'
+                >
+                  Clear filters
+                </CommandItem>
+              </CommandGroup>
             )}
           </CommandList>
         </Command>
