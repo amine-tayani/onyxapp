@@ -37,7 +37,6 @@ export function DataTableToolbar<TData>({
             options={statuses}
           />
         )}
-
         {isFiltered && (
           <Button
             variant='link'

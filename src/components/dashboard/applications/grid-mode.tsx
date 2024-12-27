@@ -33,7 +33,7 @@ export function GridMode({ data }: GridModeProps) {
             {data.filter((application) => application.status === value)
               .length === 0 ? (
               <p className='p-2 text-sm text-muted-foreground'>
-                0 Applications
+                No applications yet
               </p>
             ) : (
               data.map((item) => (

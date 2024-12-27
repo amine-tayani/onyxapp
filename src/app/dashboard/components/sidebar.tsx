@@ -4,13 +4,15 @@
 
 import {
   BellIcon,
-  CreditCard,
+  CreditCardIcon,
   Inbox,
   PieChartIcon,
   Search,
   SettingsIcon,
   ShieldIcon,
+  User2Icon,
   UserIcon,
+  WrenchIcon,
 } from 'lucide-react';
 import * as React from 'react';
 
@@ -30,6 +32,8 @@ import { cn } from '@/lib/cn';
 import { MainNav } from './main-nav';
 import { SettingsNav } from './settings-nav';
 import { UserMenu } from './user-menu';
+
+const SETTINGS_PREF = '/dashboard/settings';
 
 const data = {
   main: [
@@ -57,23 +61,33 @@ const data = {
   ],
   settings: [
     {
-      title: 'Notifications',
-      url: '/dashboard/notifications',
-      icon: BellIcon,
-    },
-    {
-      title: 'Settings',
-      url: '/dashboard/settings',
+      title: 'General',
+      url: `${SETTINGS_PREF}/`,
       icon: SettingsIcon,
     },
     {
+      title: 'Account',
+      url: `${SETTINGS_PREF}/account`,
+      icon: User2Icon,
+    },
+    {
       title: 'Billing',
-      url: '/dashboard/billing',
-      icon: CreditCard,
+      url: `${SETTINGS_PREF}/billing`,
+      icon: CreditCardIcon,
+    },
+    {
+      title: 'Preferences',
+      url: `${SETTINGS_PREF}/preferences`,
+      icon: WrenchIcon,
+    },
+    {
+      title: 'Notifications',
+      url: `${SETTINGS_PREF}/notifications`,
+      icon: BellIcon,
     },
     {
       title: 'Security',
-      url: '/dashboard/security',
+      url: `${SETTINGS_PREF}/security`,
       icon: ShieldIcon,
     },
   ],

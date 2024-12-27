@@ -10,7 +10,7 @@ interface Props {
   };
 }
 
-export default async function SettingPage({ params: { id } }: Props) {
+export default async function SettingsPage({ params: { id } }: Props) {
   const userProfileData = await prisma.user.findFirstOrThrow({
     where: {
       id: {
