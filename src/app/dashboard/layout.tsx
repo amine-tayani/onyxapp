@@ -39,7 +39,7 @@ export default async function DashboardLayout({
             <Breadcrumb>
               <BreadcrumbList>
                 <BreadcrumbItem className='hidden md:block'>
-                  <BreadcrumbLink href='#'>Home</BreadcrumbLink>
+                  <BreadcrumbLink href='/dashboard'>Home</BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator className='hidden md:block'>
                   /

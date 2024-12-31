@@ -2,7 +2,7 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Tag, TagInput } from 'emblor';
-import { Upload } from 'lucide-react';
+import { Edit2, User2 } from 'lucide-react';
 import Image from 'next/image';
 import * as React from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
@@ -18,10 +18,8 @@ import {
   FormItem,
   FormMessage,
 } from '@/components/ui/form';
-import { Icons } from '@/components/ui/icons';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Skeleton } from '@/components/ui/skeleton';
 import { Spinner } from '@/components/ui/spinner';
 import { Textarea } from '@/components/ui/textarea';
 import {
@@ -93,6 +91,7 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
     banner: user.banner || undefined,
     experience: user.experience || undefined,
     location: user.location || '',
+    skills: user.skills,
   };
 
   const form = useForm<ProfileFormValues>({
@@ -135,10 +134,11 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
                 }
                 alt='avatar'
                 className='size-14 object-cover object-center'
-                width={40}
+                width={100}
+                height={100}
               />
-              <AvatarFallback>
-                <Skeleton className='size-14 rounded-full bg-background' />
+              <AvatarFallback className='size-14'>
+                <User2 className='size-8' />
               </AvatarFallback>
             </Avatar>
             <FormField
@@ -148,42 +148,33 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
                 <FormItem>
                   <FormControl>
                     <div className='flex space-x-4'>
-                      <TooltipProvider>
-                        <Tooltip>
-                          <TooltipTrigger asChild>
-                            <Button type='button' size='sm'>
-                              <Input
-                                type='file'
-                                id='fileInput'
-                                name={field.name}
-                                ref={field.ref}
-                                className='hidden'
-                                disabled={form.formState.isLoading}
-                                onChange={(e) => {
-                                  const files = getImageData(
-                                    e,
-                                    setAvatarPreview
-                                  );
-                                  field.onChange(files);
-                                  setAvatarFile(e.target.files![0]);
-                                }}
-                              />
-                              <label
-                                htmlFor='fileInput'
-                                className='flex items-center space-x-2'
-                              >
-                                <Upload className='size-4' />
-                                <span className='whitespace-nowrap'>
-                                  Upload
-                                </span>
-                              </label>
-                            </Button>
-                          </TooltipTrigger>
-                          <TooltipContent side='right'>
-                            <p>Add photo</p>
-                          </TooltipContent>
-                        </Tooltip>
-                      </TooltipProvider>
+                      <Button
+                        type='button'
+                        variant='link'
+                        size='sm'
+                        className='h-7 rounded-full text-muted-foreground hover:bg-muted hover:text-primary'
+                      >
+                        <Input
+                          type='file'
+                          id='fileInput'
+                          name={field.name}
+                          ref={field.ref}
+                          className='hidden'
+                          disabled={form.formState.isLoading}
+                          onChange={(e) => {
+                            const files = getImageData(e, setAvatarPreview);
+                            field.onChange(files);
+                            setAvatarFile(e.target.files![0]);
+                          }}
+                        />
+                        <label
+                          htmlFor='fileInput'
+                          className='inline-flex items-center gap-2'
+                        >
+                          <Edit2 className='size-4' />
+                          <span>Upload</span>
+                        </label>
+                      </Button>
                     </div>
                   </FormControl>
                   <FormMessage />
@@ -194,8 +185,8 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
         </div>
 
         <div className='flex flex-col items-center justify-center space-y-4'>
-          <div className='group relative w-full '>
-            <div className='mt-2 h-[140px] rounded-lg bg-hero'>
+          <div className='group relative '>
+            <div className='mt-2 h-[140px] w-[760px] rounded-lg bg-hero'>
               {bannerPreview ||
                 (user.banner && (
                   <Image
@@ -203,7 +194,7 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
                     height={400}
                     src={bannerPreview || user.banner}
                     alt='banner'
-                    className='h-[140px] w-full rounded-lg object-cover object-center group-hover:blur-sm '
+                    className='h-[140px] rounded-lg object-cover object-center group-hover:blur-sm '
                   />
                 ))}
             </div>
@@ -233,14 +224,14 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
                           <Tooltip>
                             <TooltipTrigger asChild>
                               <Label
-                                className='group inline-flex cursor-pointer items-center justify-center rounded-full bg-muted p-2.5 text-primary transition-all focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50'
+                                className='group inline-flex cursor-pointer items-center justify-center rounded-full bg-neutral-700 p-2.5 text-primary transition-all focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50'
                                 htmlFor='bannerInput'
                               >
-                                <Icons.cameraPlus className='size-6 text-neutral-200' />
+                                <Edit2 className='size-6 text-neutral-200' />
                               </Label>
                             </TooltipTrigger>
                             <TooltipContent>
-                              <p>Add photo</p>
+                              <p>Add banner</p>
                             </TooltipContent>
                           </Tooltip>
                         </TooltipProvider>
@@ -352,18 +343,40 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
               <Label className='text-left'>Skills</Label>
               <FormControl className='w-full'>
                 <TagInput
+                  styleClasses={{
+                    input: 'border border-gray-300 p-2',
+                    inlineTagsContainer: 'bg-gray-200 p-2 rounded',
+                    tagPopover: {
+                      popoverContent: 'bg-white shadow-lg',
+                      popoverTrigger: 'text-blue-500 hover:text-blue-600',
+                    },
+                    tagList: {
+                      container: 'bg-red-100',
+                      sortableList: 'p-1',
+                    },
+                    autoComplete: {
+                      command: 'bg-blue-100',
+                      popoverTrigger: 'bg-green-200',
+                      popoverContent: 'p-4',
+                      commandList: 'list-none',
+                      commandGroup: 'font-bold',
+                      commandItem: 'cursor-pointer hover:bg-gray-100',
+                    },
+                    tag: {
+                      body: 'flex items-center gap-2',
+                      closeButton: 'text-red-500 hover:text-red-600',
+                    },
+                    clearAllButton: 'text-red-500 hover:text-red-600',
+                  }}
                   {...field}
                   tags={tags}
                   activeTagIndex={activeTagIndex}
                   setActiveTagIndex={setActiveTagIndex}
-                  className='bg-muted sm:min-w-[450px]'
+                  className='sm:min-w-[450px]'
                   placeholder='What skills do you have?'
                   maxTags={25}
                   showCount
                   size='sm'
-                  interaction='clickable'
-                  inlineTags={false}
-                  inputFieldPosition='bottom'
                   animation='fadeIn'
                   shape='pill'
                   borderStyle='none'
@@ -374,11 +387,9 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
                   customTagRenderer={(tag, isActiveTag) => (
                     <div
                       key={tag.id}
-                      className={`rounded-full bg-muted/50 px-2 py-1 ${isActiveTag ? 'ring-2 ring-muted/60 ring-offset-2 ring-offset-neutral-600' : ''}`}
+                      className={`rounded-full bg-neutral-700 px-2 py-1 ${isActiveTag ? 'ring-2 ring-muted/60 ring-offset-2 ring-offset-neutral-600' : ''}`}
                     >
-                      <span className='mr-1 font-display font-medium'>
-                        {tag.text}
-                      </span>
+                      <span className='mr-1'>{tag.text}</span>
                     </div>
                   )}
                 />

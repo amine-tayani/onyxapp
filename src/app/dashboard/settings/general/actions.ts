@@ -85,7 +85,7 @@ export async function updateGeneralSettings(data: ProfileFormSchema) {
     await prisma.$disconnect();
   }
 
-  revalidatePath('/settings');
+  revalidatePath('/dashboard/settings');
 
   return {
     message: 'Settings updated successfully',

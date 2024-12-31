@@ -5,14 +5,15 @@
 import {
   BellIcon,
   CreditCardIcon,
+  HomeIcon,
   Inbox,
   PieChartIcon,
   Search,
+  Settings2Icon,
   SettingsIcon,
   ShieldIcon,
   User2Icon,
   UserIcon,
-  WrenchIcon,
 } from 'lucide-react';
 import * as React from 'react';
 
@@ -37,6 +38,11 @@ const SETTINGS_PREF = '/dashboard/settings';
 
 const data = {
   main: [
+    {
+      title: 'Home',
+      url: '/dashboard',
+      icon: HomeIcon,
+    },
     {
       title: 'Search',
       url: '/dashboard/search',
@@ -76,9 +82,9 @@ const data = {
       icon: CreditCardIcon,
     },
     {
-      title: 'Preferences',
+      title: 'Appearance',
       url: `${SETTINGS_PREF}/preferences`,
-      icon: WrenchIcon,
+      icon: Settings2Icon,
     },
     {
       title: 'Notifications',

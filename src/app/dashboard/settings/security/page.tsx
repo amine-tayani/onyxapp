@@ -4,7 +4,7 @@ import { SecurityForm } from './security-form';
 
 export default function SecurityPage() {
   return (
-    <div className='space-y-6'>
+    <div className='mx-4 mt-4 flex max-w-xl flex-col space-y-6'>
       <div className='ml-4'>
         <h3 className='text-lg font-semibold tracking-wide'>
           Security & Access
@@ -13,7 +13,7 @@ export default function SecurityPage() {
           Keep your account secure
         </p>
       </div>
-      <Separator orientation='vertical' />
+      <Separator />
       <SecurityForm />
     </div>
   );
