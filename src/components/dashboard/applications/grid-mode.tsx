@@ -16,7 +16,7 @@ export function GridMode({ data }: GridModeProps) {
   }));
 
   return (
-    <Tabs defaultValue={ApplicationStatus.APPLIED} className='mt-3 space-y-4'>
+    <Tabs defaultValue={data[0].status} className='mt-3 space-y-4'>
       <div className='flex justify-between '>
         <TabsList className='w-full sm:w-auto '>
           {labels.map(({ label, value }) => (

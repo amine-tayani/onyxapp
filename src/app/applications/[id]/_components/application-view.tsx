@@ -29,7 +29,7 @@ export function ApplicationView({ application }: { application: Application }) {
       <div className='mx-8'>
         <div className='flex justify-between'>
           <div>
-            <div className=''>
+            <div>
               <p className='mb-2 text-sm leading-6 text-muted-foreground/80 '>
                 {application.location}
               </p>
@@ -54,9 +54,9 @@ export function ApplicationView({ application }: { application: Application }) {
               <span>Edit</span>
             </Button>
             <EditApplicationModal
-              isEditApplicationModalOpen={isDialogOpen}
-              setIsEditApplicationModalOpen={setIsDialogOpen}
               application={application}
+              setOpen={setIsDialogOpen}
+              isOpen={isDialogOpen}
             />
           </div>
         </div>

@@ -39,7 +39,7 @@ export function SettingsNav({
       <SidebarMenu>
         {items.map((item) => (
           <SidebarMenuItem>
-            <SidebarMenuButton asChild tooltip={item.title}>
+            <SidebarMenuButton tooltip={item.title} asChild>
               <Link
                 key={item.url}
                 href={item.url}

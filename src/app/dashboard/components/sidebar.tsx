@@ -8,7 +8,6 @@ import {
   HomeIcon,
   Inbox,
   PieChartIcon,
-  Search,
   Settings2Icon,
   SettingsIcon,
   ShieldIcon,
@@ -43,11 +42,7 @@ const data = {
       url: '/dashboard',
       icon: HomeIcon,
     },
-    {
-      title: 'Search',
-      url: '/dashboard/search',
-      icon: Search,
-    },
+
     {
       title: 'Inbox',
       url: '/dashboard/inbox',
