@@ -1,9 +1,8 @@
 'use server';
 
 import { redirect } from 'next/navigation';
-import { getServerSession } from 'next-auth';
 
-import { AuthOptions } from '@/lib/auth/authjs-conf';
+import { getAuthSession } from '@/lib/auth/authjs-conf';
 import { stripe } from '@/lib/payments/stripe';
 
 export type responseAction = {
@@ -19,7 +18,7 @@ export async function openCustomerPortal(
   let redirectUrl: string = '';
 
   try {
-    const session = await getServerSession(AuthOptions);
+    const session = await getAuthSession();
 
     if (!session?.user || !session?.user.email) {
       throw new Error('Unauthorized');

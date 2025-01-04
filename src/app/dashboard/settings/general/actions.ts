@@ -1,9 +1,8 @@
 'use server';
 
 import { revalidatePath } from 'next/cache';
-import { getServerSession } from 'next-auth';
 
-import { AuthOptions } from '@/lib/auth/authjs-conf';
+import { getAuthSession } from '@/lib/auth/authjs-conf';
 import prisma from '@/lib/db/prisma';
 
 import {
@@ -12,7 +11,7 @@ import {
 } from './_components/profile-schema';
 
 export async function updateGeneralSettings(data: ProfileFormSchema) {
-  const session = await getServerSession(AuthOptions);
+  const session = await getAuthSession();
 
   if (!session || !session.user) {
     throw new Error('User is not logged in');

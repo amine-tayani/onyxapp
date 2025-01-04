@@ -1,5 +1,5 @@
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
-import { NextAuthOptions, Session } from 'next-auth';
+import { getServerSession, NextAuthOptions, Session } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
 import prisma from '@/lib/db/prisma';
@@ -131,3 +131,5 @@ export const AuthOptions: NextAuthOptions = {
   },
   debug: process.env.NODE_ENV === 'development',
 };
+
+export const getAuthSession = () => getServerSession(AuthOptions);

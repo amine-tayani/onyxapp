@@ -1,6 +1,4 @@
-import { getServerSession } from 'next-auth';
-
-import { AuthOptions } from '@/lib/auth/authjs-conf';
+import { getAuthSession } from '@/lib/auth/authjs-conf';
 import { getUserSubscriptionPlan } from '@/lib/payments/subscription';
 
 import Features from './_components/features';
@@ -9,7 +7,7 @@ import Hero from './_components/hero';
 import PricingCards from './_components/pricings-cards';
 
 export default async function HomePage() {
-  const session = await getServerSession(AuthOptions);
+  const session = await getAuthSession();
 
   const user = session?.user;
 

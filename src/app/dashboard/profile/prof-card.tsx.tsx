@@ -29,7 +29,7 @@ export default function UserProfile({ user }: UserProfileProps) {
             <div className='flex items-center space-x-4'>
               <Avatar className='ring-4 ring-[#0E0E0E] ring-offset-4 ring-offset-[#0E0E0E]'>
                 <AvatarImage
-                  className='h-12 w-12 md:h-16 md:w-16  lg:h-20 lg:w-20'
+                  className='size-12 md:size-16 lg:size-20'
                   src={
                     user.avatar ||
                     'https://avatars.githubusercontent.com/u/104228?v=4'
@@ -37,7 +37,7 @@ export default function UserProfile({ user }: UserProfileProps) {
                   alt={user.name || 'User Avatar'}
                 />
                 <AvatarFallback>
-                  <Skeleton className='h-20 w-20 rounded-full' />
+                  <Skeleton className='size-20 rounded-full' />
                 </AvatarFallback>
               </Avatar>
             </div>
@@ -49,7 +49,7 @@ export default function UserProfile({ user }: UserProfileProps) {
                   'flex items-center justify-center text-sm font-medium text-neutral-300 outline-none ring-4 ring-[#0E0E0E] ring-offset-4 ring-offset-[#0E0E0E] hover:text-primary focus-visible:ring-inset'
                 )}
               >
-                <Pencil className='h-5 w-5 md:mr-2' />
+                <Pencil className='size-5 md:mr-2' />
                 <span className='hidden md:block'>Edit Profile</span>
               </Link>
             </div>
@@ -71,14 +71,14 @@ export default function UserProfile({ user }: UserProfileProps) {
             </p>
             <div className='flex space-x-3'>
               <div className='flex items-center'>
-                <MapPinIcon className='h-5 w-5 text-muted-foreground/90 md:mr-1' />
+                <MapPinIcon className='size-5 text-muted-foreground/90 md:mr-1' />
                 <span className='hidden text-sm text-muted-foreground/90 md:block'>
                   {user.location || 'Casablanca, Morocco'}
                 </span>
               </div>
 
               <div className='flex items-center'>
-                <LinkIcon className='h-5 w-5 text-muted-foreground/90 md:mr-1' />
+                <LinkIcon className='size-5 text-muted-foreground/90 md:mr-1' />
                 <span className='hidden text-sm text-muted-foreground/90 md:block'>
                   {/* here render user social media links */}
                   {user.location || 'amine-tayani.vercel.app'}
@@ -86,7 +86,7 @@ export default function UserProfile({ user }: UserProfileProps) {
               </div>
 
               <div className='flex items-center'>
-                <CalendarDays className='h-5 w-5 text-muted-foreground/90 md:mr-1' />
+                <CalendarDays className='size-5 text-muted-foreground/90 md:mr-1' />
                 <span className='hidden text-sm text-muted-foreground/90 md:block'>
                   Joined {getRelativeTime(user.createdAt)}
                 </span>
