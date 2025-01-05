@@ -38,10 +38,9 @@ export function SettingsNav({
       <SidebarGroupLabel>settings</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => (
-          <SidebarMenuItem>
+          <SidebarMenuItem key={item.url}>
             <SidebarMenuButton tooltip={item.title} asChild>
               <Link
-                key={item.url}
                 href={item.url}
                 className={cn(
                   buttonVariants({ variant: 'sidenav' }),
