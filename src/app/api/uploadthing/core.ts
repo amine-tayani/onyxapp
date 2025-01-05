@@ -1,7 +1,7 @@
 import { createUploadthing, type FileRouter } from 'uploadthing/next';
 import { UploadThingError, UTApi } from 'uploadthing/server';
 
-import { getAuthSession } from '@/lib/auth/authjs-conf';
+import { getAuthSession } from '@/lib/auth';
 import prisma from '@/lib/db/prisma';
 
 const f = createUploadthing();

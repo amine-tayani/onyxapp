@@ -1,4 +1,4 @@
-import { getAuthSession } from '@/lib/auth/authjs-conf';
+import { getAuthSession } from '@/lib/auth';
 import { getUserSubscriptionPlan } from '@/lib/payments/subscription';
 
 import Features from './_components/features';

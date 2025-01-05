@@ -11,9 +11,9 @@ import { cn } from '@/lib/cn';
 import { UserProfileProps } from '@/types/user';
 import { getRelativeTime } from '@/utils/time';
 
-export default function UserProfile({ user }: UserProfileProps) {
+export default function UserProfileCard({ user }: UserProfileProps) {
   return (
-    <div className='mx-auto max-w-4xl flex-1 space-y-4 rounded-xl bg-[#0E0E0E] p-2'>
+    <div className='mx-auto max-w-6xl space-y-4 rounded-xl bg-[#0E0E0E] p-6'>
       <Card className='rounded-xl bg-transparent'>
         <div
           className='w-full rounded-t-xl bg-cover bg-center bg-no-repeat'
@@ -27,7 +27,7 @@ export default function UserProfile({ user }: UserProfileProps) {
         <CardHeader>
           <div className='-mt-16 flex items-center justify-between space-y-2'>
             <div className='flex items-center space-x-4'>
-              <Avatar className='ring-4 ring-[#0E0E0E] ring-offset-4 ring-offset-[#0E0E0E]'>
+              <Avatar className='ring-4 ring-muted ring-offset-4 ring-offset-neutral-900'>
                 <AvatarImage
                   className='size-12 md:size-16 lg:size-20'
                   src={
@@ -43,10 +43,10 @@ export default function UserProfile({ user }: UserProfileProps) {
             </div>
             <div className='flex flex-col space-y-4'>
               <Link
-                href='/settings/'
+                href='/dashboard/settings/'
                 className={cn(
                   buttonVariants(),
-                  'flex items-center justify-center text-sm font-medium text-neutral-300 outline-none ring-4 ring-[#0E0E0E] ring-offset-4 ring-offset-[#0E0E0E] hover:text-primary focus-visible:ring-inset'
+                  'flex items-center justify-center text-sm font-medium text-neutral-300 outline-none hover:text-primary'
                 )}
               >
                 <Pencil className='size-5 md:mr-2' />

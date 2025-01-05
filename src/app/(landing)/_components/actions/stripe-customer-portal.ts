@@ -2,7 +2,7 @@
 
 import { redirect } from 'next/navigation';
 
-import { getAuthSession } from '@/lib/auth/authjs-conf';
+import { getAuthSession } from '@/lib/auth';
 import { stripe } from '@/lib/payments/stripe';
 
 export type responseAction = {

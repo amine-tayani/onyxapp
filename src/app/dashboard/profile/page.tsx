@@ -1,24 +1,19 @@
 import { notFound } from 'next/navigation';
 
+import { getAuthSession } from '@/lib/auth';
 import prisma from '@/lib/db/prisma';
 
-import UserProfile from './_components/profile';
+import UserProfileCard from './card';
 
-interface ProfilePageProps {
-  params: {
-    name: string;
-  };
-}
+export default async function ProfilePage() {
+  const session = await getAuthSession();
 
-export default async function ProfilePage({ params }: ProfilePageProps) {
-  if (!params.name) {
-    notFound();
-  }
+  if (!session?.user) return;
 
   const user = await prisma.user.findFirst({
     where: {
       name: {
-        equals: params.name,
+        equals: session.user.name,
       },
     },
     select: {
@@ -38,5 +33,6 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
     notFound();
   }
 
-  return <UserProfile user={user} />;
+  // @ts-ignore
+  return <UserProfileCard user={user} />;
 }

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 
 import { CreateAccountForm } from '@/components/auth/signup/form';
-import { getAuthSession } from '@/lib/auth/authjs-conf';
+import { getAuthSession } from '@/lib/auth';
 
 export const metadata: Metadata = {
   title: 'Signup | Onyx',

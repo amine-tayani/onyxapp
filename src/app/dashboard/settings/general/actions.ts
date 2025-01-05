@@ -2,7 +2,7 @@
 
 import { revalidatePath } from 'next/cache';
 
-import { getAuthSession } from '@/lib/auth/authjs-conf';
+import { getAuthSession } from '@/lib/auth';
 import prisma from '@/lib/db/prisma';
 
 import {
