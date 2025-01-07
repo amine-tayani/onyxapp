@@ -133,11 +133,11 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
                   'https://avatars.githubusercontent.com/u/104228?v=4'
                 }
                 alt='avatar'
-                className='size-14 object-cover object-center'
+                className='object-cover object-center'
                 width={100}
                 height={100}
               />
-              <AvatarFallback className='size-14'>
+              <AvatarFallback>
                 <User2 className='size-8' />
               </AvatarFallback>
             </Avatar>

@@ -15,7 +15,7 @@ export const profileFormSchema = z.object({
       message: 'Bio is too long, 160 characters max.',
     })
     .optional(),
-  experience: z.coerce.number().int().positive().min(0).max(30).optional(),
+  experience: z.coerce.number().int().positive().max(30).optional(),
   location: z.string().optional(),
   skills: z.array(
     z.object({
