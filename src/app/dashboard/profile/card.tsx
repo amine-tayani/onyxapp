@@ -21,7 +21,6 @@ import { UserProfileProps } from '@/types/user';
 import { getRelativeTime } from '@/utils/time';
 
 export default function UserProfileCard({ user }: UserProfileProps) {
-  console.log(user);
   return (
     <div className='min-h-screen bg-background'>
       <div className='relative h-48 bg-muted'>
@@ -109,19 +108,8 @@ export default function UserProfileCard({ user }: UserProfileProps) {
                   <div className='space-y-2'>
                     <h3 className='font-semibold'>Skills</h3>
                     <div className='flex flex-wrap gap-2'>
-                      {[
-                        'Web development',
-                        'UI/UX design',
-                        'Open Source',
-                        'App Development',
-                        'Mentorship',
-                        'Sprint planning',
-                        'Leadership',
-                        'Engineering lead',
-                      ].map((skill) => (
-                        <Badge key={skill} variant='secondary'>
-                          {skill}
-                        </Badge>
+                      {user.skills.map((skill) => (
+                        <Badge key={skill.id}>{skill.text}</Badge>
                       ))}
                     </div>
                   </div>

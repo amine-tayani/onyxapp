@@ -26,6 +26,7 @@ export default async function ProfilePage() {
       experience: true,
       socialLinks: true,
       createdAt: true,
+      skills: true,
     },
   });
 
