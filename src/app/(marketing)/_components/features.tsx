@@ -72,7 +72,7 @@ export default function Features() {
         <div className='relative z-20 px-6'>
           <div className='w-full'>
             <div className='flex items-center justify-center space-x-1.5 font-medium text-muted-foreground/70 sm:text-lg'>
-              <Rocket className='h-5 w-5' />
+              <Rocket className='size-5' />
               <span>Features</span>
             </div>
             <div className='mt-5 flex justify-center font-display text-[1.7rem] font-extrabold leading-[1.3] text-primary md:text-5xl md:leading-[1.15]'>
@@ -95,7 +95,7 @@ export default function Features() {
             >
               <span className='flex w-full items-center justify-center  space-x-1 rounded-full bg-hero px-5 py-2 text-sm font-medium hover:bg-hero/70 sm:w-fit'>
                 <span>Get Started</span>
-                <ChevronRight className='h-5 w-5' />
+                <ChevronRight className='size-5' />
               </span>
             </Link>
           </div>
@@ -141,7 +141,7 @@ export const Grid = ({
     [Math.floor(Math.random() * 4) + 7, Math.floor(Math.random() * 6) + 1],
   ];
   return (
-    <div className='pointer-events-none absolute left-1/2 top-0 -ml-4 -mt-2 h-full w-full [mask-image:linear-gradient(gray,transparent)]'>
+    <div className='pointer-events-none absolute left-1/2 top-0 -ml-4 -mt-2 size-full [mask-image:linear-gradient(gray,transparent)]'>
       <div className='absolute inset-0 bg-gradient-to-r from-neutral-600 via-neutral-700 to-neutral-900 opacity-100 [mask-image:radial-gradient(farthest-side_at_top,white,transparent)]'>
         <GridPattern
           width={size ?? 20}
@@ -149,7 +149,7 @@ export const Grid = ({
           x='-12'
           y='4'
           squares={p}
-          className='absolute inset-0 h-full w-full fill-muted-foreground stroke-muted-foreground/70 mix-blend-overlay'
+          className='absolute inset-0 size-full fill-muted-foreground stroke-muted-foreground/70 mix-blend-overlay'
         />
       </div>
     </div>

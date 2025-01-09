@@ -41,7 +41,7 @@ export default function Hero() {
             className='group rounded-lg bg-transparent px-6 py-3 text-[15px] font-semibold text-white hover:bg-neutral-900/50 hover:text-white'
           >
             Browse features{' '}
-            <ArrowRight className='ml-2 h-4 w-4 transition-transform duration-300 ease-in-out group-hover:translate-x-1' />
+            <ArrowRight className='ml-2 size-4 transition-transform duration-300 ease-in-out group-hover:translate-x-1' />
           </Button>
         </div>
       </div>
