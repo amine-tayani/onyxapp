@@ -1,5 +1,6 @@
 'use client';
 
+import format from 'date-fns/format';
 import {
   Globe2,
   Mail,
@@ -18,7 +19,6 @@ import { Card } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { UserProfileProps } from '@/types/user';
-import { getRelativeTime } from '@/utils/time';
 
 export default function UserProfileCard({ user }: UserProfileProps) {
   return (
@@ -66,7 +66,8 @@ export default function UserProfileCard({ user }: UserProfileProps) {
                 <h1 className='text-2xl font-bold'>{user.name}</h1>
                 <div className='inline-flex gap-x-3'>
                   <p className='text-sm text-muted-foreground'>
-                    @{user.name} · joined {getRelativeTime(user.createdAt)}
+                    @{user.name} · joined{' '}
+                    {format(user.createdAt, 'MMM dd, yyyy')}
                   </p>
                   <span className='flex items-center text-sm text-muted-foreground'>
                     <MapPinIcon className='mr-1 size-4 ' />
