@@ -115,6 +115,8 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
 
       await updateGeneralSettings(data);
       toast.success('Your Settings has been updated.');
+
+      toast.info(JSON.stringify(data, null, 2));
     } catch (error) {
       toast.error('Something went wrong while updating your profile.');
     }
@@ -340,33 +342,15 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
           name='skills'
           render={({ field }) => (
             <FormItem className='flex flex-col items-start'>
-              <Label className='text-left'>Skills</Label>
+              <Label className='text-neutral-300'>Skills</Label>
               <FormControl className='w-full'>
                 <TagInput
                   styleClasses={{
-                    input: 'border border-gray-300 p-2',
-                    inlineTagsContainer: 'bg-gray-200 p-2 rounded',
-                    tagPopover: {
-                      popoverContent: 'bg-white shadow-lg',
-                      popoverTrigger: 'text-blue-500 hover:text-blue-600',
-                    },
-                    tagList: {
-                      container: 'bg-red-100',
-                      sortableList: 'p-1',
-                    },
-                    autoComplete: {
-                      command: 'bg-blue-100',
-                      popoverTrigger: 'bg-green-200',
-                      popoverContent: 'p-4',
-                      commandList: 'list-none',
-                      commandGroup: 'font-bold',
-                      commandItem: 'cursor-pointer hover:bg-gray-100',
-                    },
+                    input:
+                      'border-none p-2 h-10 bg-muted hover:bg-muted/70 focus:bg-muted/60',
                     tag: {
-                      body: 'flex items-center gap-2',
-                      closeButton: 'text-red-500 hover:text-red-600',
+                      body: 'bg-muted text-neutral-300 pl-3',
                     },
-                    clearAllButton: 'text-red-500 hover:text-red-600',
                   }}
                   {...field}
                   tags={tags}
@@ -374,24 +358,13 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
                   setActiveTagIndex={setActiveTagIndex}
                   className='sm:min-w-[450px]'
                   placeholder='What skills do you have?'
-                  maxTags={25}
+                  maxTags={30}
                   showCount
-                  size='sm'
-                  animation='fadeIn'
                   shape='pill'
-                  borderStyle='none'
                   setTags={(newTags) => {
                     setTags(newTags);
                     form.setValue('skills', newTags as [Tag, ...Tag[]]);
                   }}
-                  customTagRenderer={(tag, isActiveTag) => (
-                    <div
-                      key={tag.id}
-                      className={`rounded-full bg-neutral-700 px-2 py-1 ${isActiveTag ? 'ring-2 ring-muted/60 ring-offset-2 ring-offset-neutral-600' : ''}`}
-                    >
-                      <span className='mr-1'>{tag.text}</span>
-                    </div>
-                  )}
                 />
               </FormControl>
               <FormMessage />
