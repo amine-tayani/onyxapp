@@ -2,7 +2,6 @@
 
 import { useTransition } from 'react';
 
-import { generateUserStripe } from '@/app/(landing)/_components/actions/generate-stripe-user';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/cn';
 import { SubscriptionPlan, UserSubscriptionPlan } from '@/types/stripe';
