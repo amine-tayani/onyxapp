@@ -1,9 +1,9 @@
 <p align="center">
-  <a href="https://github.com/amine-tayani/onyxapp">
+<!--   <a href="https://github.com/amine-tayani/onyxapp">
    <img src="https://github.com/amine-tayani/onyxapp/blob/main/media/landing.png" alt="Landing">
-  </a>
+  </a> -->
 
-  <h3 align="center">Onyx.com (formerly Appeo)</h3>
+  <h3 align="center">Onyx</h3>
 
   <p align="center">
     The ultimate job search management tool
