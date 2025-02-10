@@ -6,13 +6,8 @@
   <h3 align="center">Onyx</h3>
 
   <p align="center">
-    The ultimate job search management tool
-    <br />
-    <a href="https://github.com/amine-tayani/onyxapp"><strong>Check out Repo »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/amine-tayani/onyxapp">Discord</a>
-    ·
+    The ultimate job applications management tool
+    <br />    ·
     <a href="https://github.com/amine-tayani/onyxapp">Website</a>
     ·
     <a href="https://github.com/amine-tayani/onyxapp/issues">Issues</a>
