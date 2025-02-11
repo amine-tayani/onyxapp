@@ -1,7 +1,4 @@
 <p align="center">
-<!--   <a href="https://github.com/amine-tayani/onyxapp">
-   <img src="https://github.com/amine-tayani/onyxapp/blob/main/media/landing.png" alt="Landing">
-  </a> -->
 
   <h3 align="center">Onyx</h3>
 
