@@ -35,13 +35,13 @@ export function ApplicationList({ items, selected }: ApplicationListProps) {
                 <div className='flex items-center space-x-2'>
                   <Avatar>
                     <AvatarImage
-                      className='h-14 w-14 rounded-full object-cover object-center'
+                      className='size-14 rounded-full object-cover object-center'
                       width={40}
                       src='https://avatars.githubusercontent.com/u/62437851?v=4'
                       alt={item.company}
                     />
                     <AvatarFallback>
-                      <Skeleton className='h-14 w-14 rounded-full bg-background' />
+                      <Skeleton className='size-14 rounded-full bg-background' />
                     </AvatarFallback>
                   </Avatar>
                   <div className=''>

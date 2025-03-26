@@ -28,7 +28,7 @@ EmptyPlaceholder.Icon = function EmptyPlaceHolderIcon({
   children: React.ReactNode;
 }) {
   return (
-    <div className='bg-background-subtle flex h-20 w-20 items-center justify-center rounded-full'>
+    <div className='bg-background-subtle flex size-20 items-center justify-center rounded-full'>
       {children}
     </div>
   );

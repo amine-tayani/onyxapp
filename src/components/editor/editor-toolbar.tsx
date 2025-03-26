@@ -31,7 +31,7 @@ export function Toolbar({ editor }: Props) {
         pressed={editor.isActive('bold')}
         onPressedChange={() => editor.chain().focus().toggleBold().run()}
       >
-        <BoldIcon className='mr-1 h-4 w-4' />
+        <BoldIcon className='mr-1 size-4' />
       </Toggle>
       <Toggle
         size='sm'
@@ -40,7 +40,7 @@ export function Toolbar({ editor }: Props) {
         disabled={!editor.can().chain().focus().toggleItalic().run()}
         className={editor.isActive('italic') ? 'is-active' : ''}
       >
-        <ItalicIcon className='mr-1 h-4 w-4' />
+        <ItalicIcon className='mr-1 size-4' />
       </Toggle>
 
       <Toggle
@@ -49,7 +49,7 @@ export function Toolbar({ editor }: Props) {
         onClick={() => editor.chain().focus().setParagraph().run()}
         className={editor.isActive('paragraph') ? 'is-active' : ''}
       >
-        <TextIcon className='mr-1 h-4 w-4' />
+        <TextIcon className='mr-1 size-4' />
       </Toggle>
       <Toggle
         size='sm'
@@ -57,7 +57,7 @@ export function Toolbar({ editor }: Props) {
         onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
         className={editor.isActive('heading', { level: 1 }) ? 'is-active' : ''}
       >
-        <Heading1Icon className='mr-1 h-4 w-4' />
+        <Heading1Icon className='mr-1 size-4' />
       </Toggle>
       <Toggle
         size='sm'
@@ -65,7 +65,7 @@ export function Toolbar({ editor }: Props) {
         onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
         className={editor.isActive('heading', { level: 2 }) ? 'is-active' : ''}
       >
-        <Heading2Icon className='mr-1 h-4 w-4' />
+        <Heading2Icon className='mr-1 size-4' />
       </Toggle>
 
       <Toggle
@@ -74,7 +74,7 @@ export function Toolbar({ editor }: Props) {
         onClick={() => editor.chain().focus().toggleBulletList().run()}
         className={editor.isActive('bulletList') ? 'is-active' : ''}
       >
-        <ListIcon className='mr-1 h-4 w-4' />
+        <ListIcon className='mr-1 size-4' />
       </Toggle>
 
       <Toggle
@@ -83,7 +83,7 @@ export function Toolbar({ editor }: Props) {
         onClick={() => editor.chain().focus().undo().run()}
         disabled={!editor.can().chain().focus().undo().run()}
       >
-        <Undo className='mr-1 h-4 w-4' />
+        <Undo className='mr-1 size-4' />
       </Toggle>
       <Toggle
         size='sm'
@@ -91,7 +91,7 @@ export function Toolbar({ editor }: Props) {
         onClick={() => editor.chain().focus().redo().run()}
         disabled={!editor.can().chain().focus().redo().run()}
       >
-        <Redo className='mr-1 h-4 w-4' />
+        <Redo className='mr-1 size-4' />
       </Toggle>
       {/* <Toggle
         size="sm"

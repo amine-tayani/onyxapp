@@ -50,7 +50,7 @@ export function UserMenu() {
               size='lg'
               className='data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground'
             >
-              <Avatar className='h-8 w-8'>
+              <Avatar className='size-8'>
                 <AvatarImage
                   alt={session.user.name ?? 'avatar'}
                   src={
@@ -59,7 +59,7 @@ export function UserMenu() {
                   }
                 />
                 <AvatarFallback>
-                  <Skeleton className='h-8 w-8 rounded-full py-3' />
+                  <Skeleton className='size-8 rounded-full py-3' />
                 </AvatarFallback>
               </Avatar>
               <div className='flex flex-col space-y-1'>
@@ -68,18 +68,18 @@ export function UserMenu() {
                 </p>
                 <p className='text-xs leading-none'>{session.user.email}</p>
               </div>
-              <ChevronsUpDown className='ml-auto h-4 w-4' />
+              <ChevronsUpDown className='ml-auto size-4' />
             </SidebarMenuButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent
-            className='min-w-56 w-[--radix-dropdown-menu-trigger-width] rounded-lg'
+            className='w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg'
             side={isMobile ? 'bottom' : 'right'}
             align='end'
             sideOffset={4}
           >
             <DropdownMenuLabel className='p-0 font-normal'>
               <div className='flex items-center gap-2 px-1 py-1.5 text-left text-sm'>
-                <Avatar className='h-8 w-8'>
+                <Avatar className='size-8'>
                   <AvatarImage
                     alt={session.user.name ?? 'avatar'}
                     src={
@@ -88,7 +88,7 @@ export function UserMenu() {
                     }
                   />
                   <AvatarFallback>
-                    <Skeleton className='h-8 w-8 rounded-full py-3' />
+                    <Skeleton className='size-8 rounded-full py-3' />
                   </AvatarFallback>
                 </Avatar>
                 <div className='flex flex-col space-y-1'>
@@ -103,28 +103,28 @@ export function UserMenu() {
             <DropdownMenuGroup>
               <Link href={`/profile/${session.user.name}`}>
                 <DropdownMenuItem>
-                  <User className='mr-2 h-5 w-5' />
+                  <User className='mr-2 size-5' />
                   Profile
                 </DropdownMenuItem>
               </Link>
               <Link href='/settings'>
                 <DropdownMenuItem>
-                  <Settings className='mr-2 h-5 w-5' />
+                  <Settings className='mr-2 size-5' />
                   Settings
                 </DropdownMenuItem>
               </Link>
               <DropdownMenuItem>
-                <CreditCard className='mr-2 h-5 w-5' />
+                <CreditCard className='mr-2 size-5' />
                 Billing
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <Bell className='mr-2 h-5 w-5' />
+                <Bell className='mr-2 size-5' />
                 Notifications
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <LogOutIcon className='mr-2 h-5 w-5' />
+              <LogOutIcon className='mr-2 size-5' />
               <LogoutButton />
             </DropdownMenuItem>
           </DropdownMenuContent>

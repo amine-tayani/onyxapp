@@ -1,6 +1,5 @@
 'use client';
 
-import { DialogProps } from '@radix-ui/react-alert-dialog';
 import { CircleIcon, FileIcon, Search } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import * as React from 'react';
@@ -18,7 +17,7 @@ import {
 import { menuConfig } from '@/config/site';
 import { cn } from '@/lib/cn';
 
-export function SearchMenu({ ...props }: DialogProps) {
+export function SearchMenu() {
   const router = useRouter();
   const [open, setOpen] = React.useState(false);
 
@@ -55,10 +54,9 @@ export function SearchMenu({ ...props }: DialogProps) {
           'group/search relative h-10 w-full justify-start rounded-lg border-[0.12rem] border-muted-foreground/10 bg-transparent text-sm font-normal text-muted-foreground shadow-none hover:bg-muted sm:pr-12 md:w-40 lg:w-52'
         )}
         onClick={() => setOpen(true)}
-        {...props}
       >
         <div className='pointer-events-none absolute left-3 top-[0.55rem] hidden h-5 select-none items-center opacity-100 sm:flex'>
-          <Search className='h-4 w-4' />
+          <Search className='size-4' />
         </div>
         <span className='ml-6 hidden lg:inline-flex'>Search</span>
         <span className='inline-flex lg:hidden'>Search</span>
@@ -82,7 +80,7 @@ export function SearchMenu({ ...props }: DialogProps) {
                   runCommand(() => router.push(navItem.href as string));
                 }}
               >
-                <FileIcon className='mr-2 h-4 w-4' />
+                <FileIcon className='mr-2 size-4' />
                 {navItem.title}
               </CommandItem>
             ))}
@@ -97,8 +95,8 @@ export function SearchMenu({ ...props }: DialogProps) {
                     runCommand(() => router.push(navItem.href as string));
                   }}
                 >
-                  <div className='mr-2 flex h-4 w-4 items-center justify-center'>
-                    <CircleIcon className='h-3 w-3' />
+                  <div className='mr-2 flex size-4 items-center justify-center'>
+                    <CircleIcon className='size-3' />
                   </div>
                   {navItem.title}
                 </CommandItem>

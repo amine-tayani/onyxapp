@@ -27,7 +27,7 @@ export default function UserNav({ align }: UserNavProps) {
   const { data: session, status } = useSession();
 
   if (status === 'loading')
-    return <Skeleton className='h-8 w-8 rounded-full bg-muted-foreground/80' />;
+    return <Skeleton className='size-8 rounded-full bg-muted-foreground/80' />;
 
   if (!session || !session.user) {
     return null;
@@ -36,8 +36,8 @@ export default function UserNav({ align }: UserNavProps) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant='ghost' className='relative h-8 w-8 rounded-full'>
-          <Avatar className='h-8 w-8'>
+        <Button variant='ghost' className='relative size-8 rounded-full'>
+          <Avatar className='size-8'>
             <AvatarImage
               alt={session.user.name ?? 'avatar'}
               src={
@@ -46,7 +46,7 @@ export default function UserNav({ align }: UserNavProps) {
               }
             />
             <AvatarFallback>
-              <Skeleton className='h-8 w-8 rounded-full py-3' />
+              <Skeleton className='size-8 rounded-full py-3' />
             </AvatarFallback>
           </Avatar>
         </Button>

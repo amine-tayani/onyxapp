@@ -43,7 +43,7 @@ export function Navigation() {
         <div className='flex w-full items-center justify-between'>
           <div className='relative flex items-center gap-3'>
             <Link className='mx-4 focus:outline-none' href='/'>
-              <Icons.logo className='h-8 w-8' />
+              <Icons.logo className='size-8' />
             </Link>
             <div className='hidden items-center md:flex md:space-x-6'>
               <NavLinks />

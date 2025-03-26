@@ -34,6 +34,7 @@ export async function openCustomerPortal(
     }
   } catch (error) {
     throw new Error('Failed to generate user stripe session');
+    console.log(error);
   }
 
   redirect(redirectUrl);

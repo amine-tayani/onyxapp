@@ -91,7 +91,6 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
     banner: user.banner || undefined,
     experience: user.experience || undefined,
     location: user.location || '',
-    skills: user.skills,
   };
 
   const form = useForm<ProfileFormValues>({
@@ -118,6 +117,7 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
 
       toast.info(JSON.stringify(data, null, 2));
     } catch (error) {
+      console.log(error);
       toast.error('Something went wrong while updating your profile.');
     }
   }
