@@ -83,7 +83,7 @@ export function GeneralSettingsForm({ user }: UserProfileProps) {
   ]).sort((a, b) => b.url.localeCompare(a.url));
 
   const defaultValues: Partial<ProfileFormValues> = {
-    name: user.name || '',
+    name: user.name || undefined,
     email: user.email || '',
     bio: user.bio || '',
     links: socialLinks,
