@@ -6,15 +6,20 @@ import prisma from '@/lib/db/prisma';
 
 import { Match } from './password';
 
+const useSecureCookies = process.env.VERCEL_ENV === 'production';
+const cookiePrefix = useSecureCookies ? '__Secure-' : '';
+const cookieDomain = useSecureCookies ? 'onyxxx.vercel.app' : undefined;
+
 export const AuthOptions: NextAuthOptions = {
   cookies: {
     sessionToken: {
-      name: 'next-auth.session-token',
+      name: `${cookiePrefix}next-auth.session-token`,
       options: {
         httpOnly: true,
         sameSite: 'lax',
         path: '/',
-        secure: true,
+        domain: cookieDomain,
+        secure: useSecureCookies,
       },
     },
   },
