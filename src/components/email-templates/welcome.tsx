@@ -11,6 +11,8 @@ import {
   Text,
 } from '@react-email/components';
 
+import { siteConfig } from '@/config/site';
+
 interface WelcomeEmailProps {
   name: string;
   to: string;
@@ -39,7 +41,7 @@ const WelcomeEmail = ({ name, to }: WelcomeEmailProps) => {
             your dream job.
           </Text>
           <Section style={btnContainer}>
-            <Button style={button} href='http://localhost:3000/login'>
+            <Button style={button} href={`${siteConfig.url}/login`}>
               Get started
             </Button>
           </Section>
