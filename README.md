@@ -26,10 +26,10 @@ Onyx is a job search management tool that helps you organize and track your ever
 
    ```
 
-2. Install NPM packages using Bun
+2. Install NPM packages using Bun or any Node.js package manager
 
    ```sh
-   bun install
+   bun install OR npm install
    ```
 
 ## Usage
@@ -37,7 +37,7 @@ Onyx is a job search management tool that helps you organize and track your ever
 1. Run the development server:
 
    ```sh
-   bun run dev
+   bun run dev OR npm run dev
    ```
 
 2. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
