@@ -1,0 +1,42 @@
+# docker-compose.yaml
+
+name: onyxapp
+
+services:
+  db:
+    image: postgres
+    restart: always
+    container_name: onyxdb
+    environment:
+      POSTGRES_USER: onyxdev
+      POSTGRES_PASSWORD: onyxdev123
+      POSTGRES_DB: onyxdb
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U onyxdev']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - ./db/data:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+    networks:
+      - nextjs
+  app:
+    container_name: onyxapp
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      - db
+    networks:
+      - nextjs
+
+networks:
+  nextjs:
+    driver: bridge
